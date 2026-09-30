@@ -1,0 +1,47 @@
+#I LEAVE IT GENERIC FOR IF ANYBODY WANTS TO USE IT
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "my-project"
+version = "0.1.0"
+description = "A short description of your project"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "" }
+authors = [
+    { name = "Your Name", email = "your.email@example.com" }
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "ruff>=0.3.0",
+]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 88
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # Pyflakes
+    "I",  # isort (import sorting)
+    "B",  # flake8-bugbear
+]
+ignore = []
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-ra -q"
