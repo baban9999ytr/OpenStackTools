@@ -1,0 +1,288 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cryptography & Password Tools | OpenStackTools</title>
+  <meta name="description"
+    content="Generate cryptographically secure passwords, UUID v4 tokens, and SHA-256 / SHA-512 / MD5 hashes directly in browser RAM with Web Crypto API.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            zinc: {
+              850: '#1e1e24',
+              950: '#09090b',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body
+  class="bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-300 min-h-screen flex flex-col font-sans antialiased selection:bg-zinc-200 dark:selection:bg-zinc-800 selection:text-zinc-900 dark:selection:text-zinc-100 transition-colors">
+
+  <div class="w-full border-b border-zinc-200 dark:border-zinc-900 bg-zinc-100/50 dark:bg-zinc-950/50">
+    <div class="max-w-6xl mx-auto px-4 py-2 flex justify-center">
+      <div
+        class="adsense-slot w-full max-w-[728px] h-[90px] bg-zinc-900 border border-zinc-800/50 flex flex-col items-center justify-center">
+        <span class="text-[10px] uppercase tracking-widest text-zinc-600 font-mono mb-1">Advertisement</span>
+      </div>
+    </div>
+  </div>
+
+ <header class="sticky top-0 z-40 w-full backdrop-blur-md bg-white/80 dark:bg-zinc-950/80 border-b border-zinc-200 dark:border-zinc-900">
+    <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+      <a href="/" class="flex items-center space-x-3">
+        <div class="w-6 h-6 bg-zinc-100 text-zinc-950 flex items-center justify-center font-bold font-mono text-[10px]">
+          OST</div>
+        <span class="font-semibold text-sm tracking-wide text-zinc-900 dark:text-zinc-100">OpenStackTools</span>
+      </a>
+
+      <nav class="hidden md:flex items-center space-x-6 text-sm">
+        <div class="relative group">
+          <a href="/#tools-grid"
+            class="flex items-center space-x-1 py-4 hover:text-zinc-100 transition-colors text-zinc-300 font-medium">
+            <span>Tools</span>
+            <svg class="w-3.5 h-3.5 text-zinc-500 group-hover:text-zinc-300 transition-transform group-hover:rotate-180"
+              fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </a>
+
+          <div
+            class="absolute left-0 top-full hidden group-hover:block w-64 bg-zinc-950 border border-zinc-800 shadow-xl py-2 z-50">
+            <a href="/pdf-merger/" class="block px-4 py-2.5 hover:bg-zinc-900 transition-colors">
+              <div class="text-xs font-semibold text-zinc-800 dark:text-zinc-200">PDF Merger & Splitter</div>
+              <div class="text-[11px] text-zinc-500">Reorder, merge & extract pages</div>
+            </a>
+            <a href="/image-compressor/"
+              class="block px-4 py-2.5 hover:bg-zinc-900 transition-colors border-t border-zinc-900">
+              <div class="text-xs font-semibold text-zinc-800 dark:text-zinc-200">Image Compressor</div>
+              <div class="text-[11px] text-zinc-500">Compress WebP, PNG & JPEG</div>
+            </a>
+            <a href="/audio-trimmer/"
+              class="block px-4 py-2.5 hover:bg-zinc-900 transition-colors border-t border-zinc-900">
+              <div class="text-xs font-semibold text-zinc-800 dark:text-zinc-200">Audio Cutter</div>
+              <div class="text-[11px] text-zinc-500">Trim waveform & export WAV</div>
+            </a>
+            <a href="/json-formatter/"
+              class="block px-4 py-2.5 hover:bg-zinc-900 transition-colors border-t border-zinc-900">
+              <div class="text-xs font-semibold text-zinc-800 dark:text-zinc-200">JSON & CSV Studio</div>
+              <div class="text-[11px] text-zinc-500">Format, validate & convert</div>
+            </a>
+            <a href="/password-generator/"
+              class="block px-4 py-2.5 hover:bg-zinc-900 transition-colors border-t border-zinc-900">
+              <div class="text-xs font-semibold text-zinc-800 dark:text-zinc-200">Cryptography Tools</div>
+              <div class="text-[11px] text-zinc-500">Passwords, UUIDs & hashes</div>
+            </a>
+            <a href="/background-remover/"
+              class="block px-4 py-2.5 hover:bg-zinc-900 transition-colors border-t border-zinc-900">
+              <div class="text-xs font-semibold text-zinc-800 dark:text-zinc-200">Crop & Erase</div>
+              <div class="text-[11px] text-zinc-500">Color key transparency & crop</div>
+            </a>
+          </div>
+        </div>
+
+        <div class="relative group">
+          <a href="/privacy-policy/"
+            class="flex items-center space-x-1 py-4 hover:text-zinc-100 transition-colors text-zinc-300 font-medium">
+            <span>Governance</span>
+            <svg class="w-3.5 h-3.5 text-zinc-500 group-hover:text-zinc-300 transition-transform group-hover:rotate-180"
+              fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </a>
+
+          <div
+            class="absolute left-0 top-full hidden group-hover:block w-56 bg-zinc-950 border border-zinc-800 shadow-xl py-2 z-50">
+            <a href="/privacy-policy/"
+              class="block px-4 py-2 hover:bg-zinc-900 transition-colors text-xs text-zinc-300">Privacy Policy</a>
+            <a href="/terms-of-service/"
+              class="block px-4 py-2 hover:bg-zinc-900 transition-colors text-xs text-zinc-300 border-t border-zinc-900">Terms
+              of Service</a>
+            <a href="/cookie-policy/"
+              class="block px-4 py-2 hover:bg-zinc-900 transition-colors text-xs text-zinc-300 border-t border-zinc-900">Cookie
+              Policy</a>
+            <a href="/gdpr-kvkk/"
+              class="block px-4 py-2 hover:bg-zinc-900 transition-colors text-xs text-zinc-300 border-t border-zinc-900">GDPR
+              & KVKK</a>
+          </div>
+        </div>
+
+        <a href="https://github.com/baban9999ytr/OpenStackTools" target="_blank" rel="noopener noreferrer"
+          class="hover:text-zinc-100 transition-colors text-zinc-300">Source</a>
+      </nav>
+
+                <div class="flex items-center space-x-3">
+            <button id="lang-toggle-btn" class="px-2 py-1 border border-zinc-700 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-xs font-mono text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">EN / TR</button>
+            <button id="ost-theme-toggle-btn" class="px-2 py-1 border border-zinc-700 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-xs text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"><span id="ost-theme-icon">Dark</span></button>
+            <input type="range" id="ost-font-scale-slider" min="75" max="150" step="5" value="100" style="width:80px;flex-shrink:0;" class="h-2 accent-zinc-600 dark:accent-zinc-400 rounded" />
+            <span id="ost-font-scale-val" class="text-xs text-zinc-500 dark:text-zinc-400">100%</span>
+            <select id="donation-select" class="px-2 py-1 border border-zinc-700 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-xs text-zinc-800 dark:text-zinc-100">
+              <option value="kreosus">Kreosus (TRY)</option>
+              <option value="bmc">Buy Me a Coffee (USD)</option>
+            </select>
+            <a id="donate-link" href="https://kreosus.com/aridigital/about" target="_blank" rel="noopener noreferrer" class="px-2 py-1 border border-zinc-700 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-xs text-zinc-800 dark:text-zinc-100 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors">Donate</a>
+            <a href="https://github.com/baban9999ytr/OpenStackTools" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center space-x-2 px-3 py-1.5 text-xs font-medium text-zinc-100 bg-zinc-800 dark:bg-zinc-900 hover:bg-zinc-700 dark:hover:bg-zinc-800 border border-zinc-700 dark:border-zinc-800 transition-colors"><span>GitHub</span></a>
+          </div>
+    </div>
+  </header>
+
+
+  <main class="max-w-6xl mx-auto px-4 py-12 w-full flex-1">
+    <div class="flex flex-col lg:flex-row gap-8">
+
+      <div class="flex-1">
+        <div class="border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 p-6 space-y-8">
+          <div>
+            <div class="inline-block border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900/50 px-2.5 py-0.5 mb-3">
+              <span class="text-[11px] font-mono text-zinc-400 uppercase tracking-widest">Client-Side Engine</span>
+            </div>
+            <h1 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">Password, Hash & UUID Generator</h1>
+            <p class="text-xs text-zinc-500 mt-1">Generate CSPRNG passwords, UUID v4 identifiers, and compute SHA-256 /
+              SHA-512 / MD5 hashes in browser memory.</p>
+          </div>
+
+          <div class="p-4 border border-zinc-800 bg-zinc-900/30 space-y-4">
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-mono text-zinc-400">Password Generator</span>
+              <div class="flex items-center space-x-2 text-xs font-mono">
+                <span class="text-zinc-500">Length:</span>
+                <span id="crypto-pass-length-val" class="text-zinc-200 font-semibold">18</span>
+              </div>
+            </div>
+            <input type="range" id="crypto-pass-length" min="8" max="64" value="18"
+              class="w-full accent-zinc-100 bg-zinc-800">
+            <div class="flex flex-wrap gap-4 text-xs text-zinc-400 font-mono">
+              <label class="flex items-center space-x-1.5 cursor-pointer">
+                <input type="checkbox" id="crypto-inc-upper" checked class="bg-zinc-900 border-zinc-800">
+                <span>Uppercase (A-Z)</span>
+              </label>
+              <label class="flex items-center space-x-1.5 cursor-pointer">
+                <input type="checkbox" id="crypto-inc-num" checked class="bg-zinc-900 border-zinc-800">
+                <span>Numbers (0-9)</span>
+              </label>
+              <label class="flex items-center space-x-1.5 cursor-pointer">
+                <input type="checkbox" id="crypto-inc-sym" checked class="bg-zinc-900 border-zinc-800">
+                <span>Symbols (!@#$)</span>
+              </label>
+            </div>
+            <div class="flex items-center space-x-2">
+              <input type="text" id="crypto-pass-output" readonly
+                class="flex-1 bg-zinc-900 border border-zinc-800 px-3 py-1.5 font-mono text-xs text-zinc-200 focus:outline-none">
+              <button id="crypto-gen-pass-btn"
+                class="px-3 py-1.5 border border-zinc-800 bg-zinc-900 hover:bg-zinc-800 text-xs font-medium text-zinc-200 transition-colors">Generate</button>
+              <button id="crypto-copy-pass-btn"
+                class="px-3 py-1.5 bg-zinc-100 text-zinc-950 hover:bg-zinc-200 text-xs font-medium transition-colors">Copy</button>
+            </div>
+          </div>
+
+          <div class="p-4 border border-zinc-800 bg-zinc-900/30 space-y-3">
+            <span class="text-xs font-mono text-zinc-400 block">UUID v4 Generator</span>
+            <div class="flex items-center space-x-2">
+              <input type="text" id="crypto-uuid-output" readonly
+                class="flex-1 bg-zinc-900 border border-zinc-800 px-3 py-1.5 font-mono text-xs text-zinc-200 focus:outline-none">
+              <button id="crypto-gen-uuid-btn"
+                class="px-3 py-1.5 border border-zinc-800 bg-zinc-900 hover:bg-zinc-800 text-xs font-medium text-zinc-200 transition-colors">New
+                UUID</button>
+              <button id="crypto-copy-uuid-btn"
+                class="px-3 py-1.5 bg-zinc-100 text-zinc-950 hover:bg-zinc-200 text-xs font-medium transition-colors">Copy</button>
+            </div>
+          </div>
+
+          <div class="p-4 border border-zinc-800 bg-zinc-900/30 space-y-4">
+            <span class="text-xs font-mono text-zinc-400 block">Hash Calculator (Crypto API)</span>
+            <input type="text" id="crypto-hash-input" placeholder="Enter text to calculate hashes..."
+              class="w-full bg-zinc-900 border border-zinc-800 px-3 py-1.5 text-xs font-mono text-zinc-200 focus:outline-none focus:border-zinc-700">
+            <div class="space-y-2 text-xs font-mono">
+              <div class="p-2 bg-zinc-900 border border-zinc-800 flex items-center justify-between gap-2">
+                <span class="text-zinc-500 w-16">SHA-256</span>
+                <span id="crypto-sha256-output" class="text-zinc-300 truncate flex-1 font-mono">---</span>
+                <button id="crypto-copy-sha256" class="text-zinc-500 hover:text-zinc-200 text-xs">Copy</button>
+              </div>
+              <div class="p-2 bg-zinc-900 border border-zinc-800 flex items-center justify-between gap-2">
+                <span class="text-zinc-500 w-16">SHA-512</span>
+                <span id="crypto-sha512-output" class="text-zinc-300 truncate flex-1 font-mono">---</span>
+                <button id="crypto-copy-sha512" class="text-zinc-500 hover:text-zinc-200 text-xs">Copy</button>
+              </div>
+              <div class="p-2 bg-zinc-900 border border-zinc-800 flex items-center justify-between gap-2">
+                <span class="text-zinc-500 w-16">MD5</span>
+                <span id="crypto-md5-output" class="text-zinc-300 truncate flex-1 font-mono">---</span>
+                <button id="crypto-copy-md5" class="text-zinc-500 hover:text-zinc-200 text-xs">Copy</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <article class="mt-8 border border-zinc-200 dark:border-zinc-900 p-6 bg-zinc-50 dark:bg-zinc-950 text-xs text-zinc-600 dark:text-zinc-500 space-y-3">
+          <h2 class="text-sm font-semibold text-zinc-300">WebCrypto API CSPRNG Execution</h2>
+          <p class="leading-relaxed">Random values are sourced using the native
+            <code>window.crypto.getRandomValues</code> interface, satisfying cryptographically secure pseudo-random
+            number generator (CSPRNG) requirements. Cryptographic hashing routines operate via standard
+            <code>SubtleCrypto.digest</code> implementations directly within client memory sandbox environments.</p>
+        </article>
+      </div>
+
+      <aside class="w-full lg:w-72 flex-shrink-0">
+        <div class="sticky top-20 space-y-4">
+          <div
+            class="adsense-slot p-4 min-h-[300px] bg-zinc-900 border border-zinc-800/50 flex flex-col items-center justify-center">
+            <span class="text-[10px] uppercase tracking-widest text-zinc-600 font-mono mb-1">Advertisement</span>
+          </div>
+          <div class="p-4 border border-zinc-200 dark:border-zinc-900 bg-white dark:bg-zinc-950 text-xs text-zinc-600 dark:text-zinc-500">
+            <div class="font-semibold text-zinc-300 mb-1 font-mono">Isolation Note</div>
+            <p class="leading-relaxed">Entropy and hash outputs generated locally via native WebCrypto APIs.</p>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+
+    <div class="mt-12 flex justify-center">
+      <div
+        class="adsense-slot w-full max-w-[970px] h-[90px] bg-zinc-900 border border-zinc-800/50 flex flex-col items-center justify-center">
+        <span class="text-[10px] uppercase tracking-widest text-zinc-600 font-mono">Advertisement</span>
+      </div>
+    </div>
+  </main>
+
+  <footer class="border-t border-zinc-200 dark:border-zinc-900 bg-zinc-50 dark:bg-zinc-950 py-8 mt-auto">
+    <div
+      class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="font-semibold text-zinc-700 dark:text-zinc-300">OpenStackTools</span>
+        <span>&mdash;</span>
+        <a href="/privacy-policy/" class="hover:text-zinc-300 transition-colors">Privacy</a>
+        <a href="/terms-of-service/" class="hover:text-zinc-300 transition-colors">Terms</a>
+        <a href="/cookie-policy/" class="hover:text-zinc-300 transition-colors">Cookies</a>
+        <a href="/gdpr-kvkk/" class="hover:text-zinc-300 transition-colors">GDPR</a>
+        <span>&mdash;</span>
+        <a href="https://github.com/baban9999ytr/" target="_blank" rel="noopener noreferrer"
+          class="hover:text-zinc-300 transition-colors">GitHub</a>
+        <a href="https://www.linkedin.com/in/mustafa-goksal-ari/" target="_blank" rel="noopener noreferrer"
+          class="hover:text-zinc-300 transition-colors">LinkedIn</a>
+      </div>
+      <div class="font-mono text-[11px] text-zinc-600">
+        Execute locally &mdash; MIT
+      </div>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initCryptoTool } from '/js/tools/crypto-tool.js';
+    import '/js/app.js';
+    document.addEventListener('DOMContentLoaded', () => {
+      initCryptoTool();
+    });
+  </script>
+</body>
+
+</html>
