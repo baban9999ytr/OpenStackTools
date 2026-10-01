@@ -4,9 +4,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JSON Formatter & CSV Studio | OpenStackTools</title>
-  <meta name="description"
-    content="Format, minify, and validate JSON data online with syntax checking and bi-directional CSV conversion. Zero server uploads.">
+  <title>JSON Formatter & CSV Converter in Browser | OpenStackTools</title>
+  <meta name="description" content="Beautify, minify, and validate JSON and convert to CSV locally. No upload, no account. Processing stays in this tab.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://openstacktool.com/json-formatter/">
+  <link rel="alternate" hreflang="en" href="https://openstacktool.com/json-formatter/?lang=en">
+  <link rel="alternate" hreflang="tr" href="https://openstacktool.com/json-formatter/?lang=tr">
+  <link rel="alternate" hreflang="x-default" href="https://openstacktool.com/json-formatter/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="JSON Formatter & CSV Converter in Browser | OpenStackTools">
+  <meta property="og:description" content="Beautify, minify, and validate JSON and convert to CSV locally. No upload, no account. Processing stays in this tab.">
+  <meta property="og:url" content="https://openstacktool.com/json-formatter/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="JSON Formatter & CSV Converter in Browser | OpenStackTools">
+  <meta name="twitter:description" content="Beautify, minify, and validate JSON and convert to CSV locally. No upload, no account. Processing stays in this tab.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["WebApplication", "SoftwareApplication"],
+        "name": "JSON & CSV Studio",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web browser",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": "Beautify, minify, and validate JSON and convert to CSV locally. No upload, no account. Processing stays in this tab."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [{
+          "@type": "Question",
+          "name": "Is my JSON sent to a server?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Formatting and CSV conversion run in JavaScript in this page." }
+        }]
+      }
+    ]
+  }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -143,7 +178,7 @@
   </header>
 
   <main class="max-w-6xl mx-auto px-4 py-12 w-full flex-1">
-    <div class="flex flex-col lg:flex-row gap-8">
+    <div class="flex flex-col lg:flex-row gap-12">
 
       <div class="flex-1">
         <div class="border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 p-6">
@@ -152,9 +187,8 @@
               <div class="inline-block border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900/50 px-2.5 py-0.5 mb-3">
                 <span class="text-[11px] font-mono text-zinc-400 uppercase tracking-widest">Client-Side Engine</span>
               </div>
-              <h1 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">JSON & CSV Studio</h1>
-              <p class="text-xs text-zinc-500 mt-1">Format, minify, and validate JSON payloads, or convert
-                bi-directionally with CSV formats.</p>
+              <h1 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">Format JSON and convert CSV locally — no upload</h1>
+              <p class="text-xs text-zinc-500 mt-1">Validate and pretty-print JSON, minify payloads, and convert JSON to CSV in memory. Your data does not go to a backend.</p>
             </div>
             <div class="flex items-center space-x-2">
               <input type="file" id="json-file-input" accept=".json,.csv,.txt" class="hidden">
@@ -209,6 +243,12 @@
             array sequences in memory without transmitting configuration or credential data to external network ports.
           </p>
         </article>
+
+        <article class="mt-8 border border-zinc-200 dark:border-zinc-900 p-6 bg-zinc-50 dark:bg-zinc-950 text-xs text-zinc-600 dark:text-zinc-500 space-y-3">
+          <h2 class="text-sm font-semibold text-zinc-300">FAQ</h2>
+          <p class="leading-relaxed"><strong class="text-zinc-400">Is my JSON sent to a server?</strong> No. Formatting and CSV conversion run in JavaScript in this page.</p>
+        </article>
+
       </div>
 
       <aside class="w-full lg:w-72 flex-shrink-0">

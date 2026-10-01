@@ -4,9 +4,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Image Compressor & Resizer | OpenStackTools</title>
-  <meta name="description"
-    content="Compress and resize JPEG, PNG, and WebP images locally in your browser. Zero server uploads, HTML5 Canvas optimization.">
+  <title>Compress Image in Browser Locally (No Upload) | OpenStackTools</title>
+  <meta name="description" content="Compress JPEG, PNG, and WebP in your browser with HTML5 Canvas. No upload, no account. Files stay in RAM on this device.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://openstacktool.com/image-compressor/">
+  <link rel="alternate" hreflang="en" href="https://openstacktool.com/image-compressor/?lang=en">
+  <link rel="alternate" hreflang="tr" href="https://openstacktool.com/image-compressor/?lang=tr">
+  <link rel="alternate" hreflang="x-default" href="https://openstacktool.com/image-compressor/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Compress Image in Browser Locally (No Upload) | OpenStackTools">
+  <meta property="og:description" content="Compress JPEG, PNG, and WebP in your browser with HTML5 Canvas. No upload, no account. Files stay in RAM on this device.">
+  <meta property="og:url" content="https://openstacktool.com/image-compressor/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Compress Image in Browser Locally (No Upload) | OpenStackTools">
+  <meta name="twitter:description" content="Compress JPEG, PNG, and WebP in your browser with HTML5 Canvas. No upload, no account. Files stay in RAM on this device.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["WebApplication", "SoftwareApplication"],
+        "name": "Image Compressor",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web browser",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": "Compress JPEG, PNG, and WebP in your browser with HTML5 Canvas. No upload, no account. Files stay in RAM on this device."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [{
+          "@type": "Question",
+          "name": "Are my photos uploaded when I compress them?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Compression runs on Canvas in this tab. Download the result from your device." }
+        }]
+      }
+    ]
+  }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -143,7 +178,7 @@
   </header>
 
   <main class="max-w-6xl mx-auto px-4 py-12 w-full flex-1">
-    <div class="flex flex-col lg:flex-row gap-8">
+    <div class="flex flex-col lg:flex-row gap-12">
 
       <div class="flex-1">
         <div class="border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 p-6">
@@ -151,9 +186,8 @@
             <div class="inline-block border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900/50 px-2.5 py-0.5 mb-3">
               <span class="text-[11px] font-mono text-zinc-400 uppercase tracking-widest">Client-Side Engine</span>
             </div>
-            <h1 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">Image Compressor & Resizer</h1>
-            <p class="text-xs text-zinc-500 mt-1">Compress and resize JPEG, PNG, and WebP formats synchronously using
-              HTML5 Canvas graphics hardware acceleration.</p>
+            <h1 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">Compress images locally in your browser — without uploading</h1>
+            <p class="text-xs text-zinc-500 mt-1">Resize and compress JPEG, PNG, and WebP on HTML5 Canvas. The original file is never sent to an OpenStackTools server.</p>
           </div>
 
           <div id="img-drop-zone"
@@ -242,6 +276,12 @@
             transformations are calculated. High-performance browser rasterizers encode output byte arrays directly into
             Blob constructs before issuing direct browser download streams.</p>
         </article>
+
+        <article class="mt-8 border border-zinc-200 dark:border-zinc-900 p-6 bg-zinc-50 dark:bg-zinc-950 text-xs text-zinc-600 dark:text-zinc-500 space-y-3">
+          <h2 class="text-sm font-semibold text-zinc-300">FAQ</h2>
+          <p class="leading-relaxed"><strong class="text-zinc-400">Are my photos uploaded when I compress them?</strong> No. Compression runs on Canvas in this tab. Download the result from your device.</p>
+        </article>
+
       </div>
 
       <!-- SIDEBAR ADSLOT (Square_Banner_Slot) -->

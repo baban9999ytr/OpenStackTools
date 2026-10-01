@@ -4,9 +4,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Canvas Crop & Background Eraser | OpenStackTools</title>
-  <meta name="description"
-    content="Erase image backgrounds and apply color key transparency locally in your browser. Zero server uploads, HTML5 Canvas processing.">
+  <title>Crop Image & Remove Background Locally | OpenStackTools</title>
+  <meta name="description" content="Crop images and erase solid backgrounds to transparent PNG on HTML5 Canvas. No upload. Processing stays in RAM.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://openstacktool.com/background-remover/">
+  <link rel="alternate" hreflang="en" href="https://openstacktool.com/background-remover/?lang=en">
+  <link rel="alternate" hreflang="tr" href="https://openstacktool.com/background-remover/?lang=tr">
+  <link rel="alternate" hreflang="x-default" href="https://openstacktool.com/background-remover/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Crop Image & Remove Background Locally | OpenStackTools">
+  <meta property="og:description" content="Crop images and erase solid backgrounds to transparent PNG on HTML5 Canvas. No upload. Processing stays in RAM.">
+  <meta property="og:url" content="https://openstacktool.com/background-remover/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Crop Image & Remove Background Locally | OpenStackTools">
+  <meta name="twitter:description" content="Crop images and erase solid backgrounds to transparent PNG on HTML5 Canvas. No upload. Processing stays in RAM.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["WebApplication", "SoftwareApplication"],
+        "name": "Crop & Background Eraser",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web browser",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": "Crop images and erase solid backgrounds to transparent PNG on HTML5 Canvas. No upload. Processing stays in RAM."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [{
+          "@type": "Question",
+          "name": "Is this an AI background remover that uploads photos?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. It is a local color-key and crop tool. Pixels stay in this browser." }
+        }]
+      }
+    ]
+  }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -143,7 +178,7 @@
   </header>
 
   <main class="max-w-6xl mx-auto px-4 py-12 w-full flex-1">
-    <div class="flex flex-col lg:flex-row gap-8">
+    <div class="flex flex-col lg:flex-row gap-12">
 
       <div class="flex-1">
         <div class="border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 p-6">
@@ -151,9 +186,8 @@
             <div class="inline-block border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900/50 px-2.5 py-0.5 mb-3">
               <span class="text-[11px] font-mono text-zinc-400 uppercase tracking-widest">Client-Side Engine</span>
             </div>
-            <h1 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">Canvas Crop & Color Key Eraser</h1>
-            <p class="text-xs text-zinc-500 mt-1">Erase solid background colors, apply tolerance thresholds, or crop
-              rectangular sections directly on HTML5 Canvas.</p>
+            <h1 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">Crop and erase backgrounds locally — no upload</h1>
+            <p class="text-xs text-zinc-500 mt-1">Color-key transparency and crop on Canvas in this tab. Your image is not uploaded to a removal API.</p>
           </div>
 
           <div id="bg-drop-zone"
@@ -208,6 +242,12 @@
             matching. Matching ranges are mutated to zero-alpha values in local memory before rendering uncompressed
             transparent PNG outputs.</p>
         </article>
+
+        <article class="mt-8 border border-zinc-200 dark:border-zinc-900 p-6 bg-zinc-50 dark:bg-zinc-950 text-xs text-zinc-600 dark:text-zinc-500 space-y-3">
+          <h2 class="text-sm font-semibold text-zinc-300">FAQ</h2>
+          <p class="leading-relaxed"><strong class="text-zinc-400">Is this an AI background remover that uploads photos?</strong> No. It is a local color-key and crop tool. Pixels stay in this browser.</p>
+        </article>
+
       </div>
 
       <aside class="w-full lg:w-72 flex-shrink-0">

@@ -4,9 +4,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Audio Waveform Trimmer | OpenStackTools</title>
-  <meta name="description"
-    content="Trim audio files locally with a visual waveform editor. Zero server uploads, Web Audio API processing.">
+  <title>Trim Audio in Browser (No Upload) | OpenStackTools</title>
+  <meta name="description" content="Cut MP3, WAV, OGG, or AAC in your browser with the Web Audio API. Export WAV locally. No server upload.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://openstacktool.com/audio-trimmer/">
+  <link rel="alternate" hreflang="en" href="https://openstacktool.com/audio-trimmer/?lang=en">
+  <link rel="alternate" hreflang="tr" href="https://openstacktool.com/audio-trimmer/?lang=tr">
+  <link rel="alternate" hreflang="x-default" href="https://openstacktool.com/audio-trimmer/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Trim Audio in Browser (No Upload) | OpenStackTools">
+  <meta property="og:description" content="Cut MP3, WAV, OGG, or AAC in your browser with the Web Audio API. Export WAV locally. No server upload.">
+  <meta property="og:url" content="https://openstacktool.com/audio-trimmer/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Trim Audio in Browser (No Upload) | OpenStackTools">
+  <meta name="twitter:description" content="Cut MP3, WAV, OGG, or AAC in your browser with the Web Audio API. Export WAV locally. No server upload.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["WebApplication", "SoftwareApplication"],
+        "name": "Audio Trimmer",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web browser",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": "Cut MP3, WAV, OGG, or AAC in your browser with the Web Audio API. Export WAV locally. No server upload."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [{
+          "@type": "Question",
+          "name": "Does the audio cutter upload my file?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Decoding, trimming, and WAV export happen in this browser session." }
+        }]
+      }
+    ]
+  }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -143,7 +178,7 @@
   </header>
 
   <main class="max-w-6xl mx-auto px-4 py-12 w-full flex-1">
-    <div class="flex flex-col lg:flex-row gap-8">
+    <div class="flex flex-col lg:flex-row gap-12">
 
       <div class="flex-1">
         <div class="border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 p-6">
@@ -151,9 +186,8 @@
             <div class="inline-block border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900/50 px-2.5 py-0.5 mb-3">
               <span class="text-[11px] font-mono text-zinc-400 uppercase tracking-widest">Client-Side Engine</span>
             </div>
-            <h1 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">Audio Waveform Trimmer</h1>
-            <p class="text-xs text-zinc-500 mt-1">Decode audio via Web Audio API, adjust boundaries on the visual
-              amplitude graph, and export WAV PCM data locally.</p>
+            <h1 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">Trim audio in the browser — files stay on your device</h1>
+            <p class="text-xs text-zinc-500 mt-1">Decode with the Web Audio API, set start and end on the waveform, export WAV from RAM. Nothing is uploaded to process the clip.</p>
           </div>
 
           <div id="av-drop-zone"
@@ -211,6 +245,12 @@
             isolates the target PCM sample frames and wraps them into a RIFF WAV container without transmitting data
             over any network interface.</p>
         </article>
+
+        <article class="mt-8 border border-zinc-200 dark:border-zinc-900 p-6 bg-zinc-50 dark:bg-zinc-950 text-xs text-zinc-600 dark:text-zinc-500 space-y-3">
+          <h2 class="text-sm font-semibold text-zinc-300">FAQ</h2>
+          <p class="leading-relaxed"><strong class="text-zinc-400">Does the audio cutter upload my file?</strong> No. Decoding, trimming, and WAV export happen in this browser session.</p>
+        </article>
+
       </div>
 
       <aside class="w-full lg:w-72 flex-shrink-0">

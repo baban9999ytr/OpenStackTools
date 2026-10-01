@@ -4,9 +4,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cryptography & Password Tools | OpenStackTools</title>
-  <meta name="description"
-    content="Generate cryptographically secure passwords, UUID v4 tokens, and SHA-256 / SHA-512 / MD5 hashes directly in browser RAM with Web Crypto API.">
+  <title>Password, UUID & Hash Generator (WebCrypto) | OpenStackTools</title>
+  <meta name="description" content="Generate CSPRNG passwords, UUID v4, and SHA-256 / SHA-512 / MD5 hashes in the browser with WebCrypto. Nothing is uploaded.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://openstacktool.com/password-generator/">
+  <link rel="alternate" hreflang="en" href="https://openstacktool.com/password-generator/?lang=en">
+  <link rel="alternate" hreflang="tr" href="https://openstacktool.com/password-generator/?lang=tr">
+  <link rel="alternate" hreflang="x-default" href="https://openstacktool.com/password-generator/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Password, UUID & Hash Generator (WebCrypto) | OpenStackTools">
+  <meta property="og:description" content="Generate CSPRNG passwords, UUID v4, and SHA-256 / SHA-512 / MD5 hashes in the browser with WebCrypto. Nothing is uploaded.">
+  <meta property="og:url" content="https://openstacktool.com/password-generator/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Password, UUID & Hash Generator (WebCrypto) | OpenStackTools">
+  <meta name="twitter:description" content="Generate CSPRNG passwords, UUID v4, and SHA-256 / SHA-512 / MD5 hashes in the browser with WebCrypto. Nothing is uploaded.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["WebApplication", "SoftwareApplication"],
+        "name": "Cryptography Tools",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web browser",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": "Generate CSPRNG passwords, UUID v4, and SHA-256 / SHA-512 / MD5 hashes in the browser with WebCrypto. Nothing is uploaded."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [{
+          "@type": "Question",
+          "name": "Do you store generated passwords?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Values exist only in this page until you copy or leave. We have no password database." }
+        }]
+      }
+    ]
+  }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -143,7 +178,7 @@
   </header>
 
   <main class="max-w-6xl mx-auto px-4 py-12 w-full flex-1">
-    <div class="flex flex-col lg:flex-row gap-8">
+    <div class="flex flex-col lg:flex-row gap-12">
 
       <div class="flex-1">
         <div class="border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 p-6 space-y-8">
@@ -151,9 +186,8 @@
             <div class="inline-block border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900/50 px-2.5 py-0.5 mb-3">
               <span class="text-[11px] font-mono text-zinc-400 uppercase tracking-widest">Client-Side Engine</span>
             </div>
-            <h1 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">Password, Hash & UUID Generator</h1>
-            <p class="text-xs text-zinc-500 mt-1">Generate CSPRNG passwords, UUID v4 identifiers, and compute SHA-256 /
-              SHA-512 / MD5 hashes in browser memory.</p>
+            <h1 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">Generate passwords and hashes in browser RAM</h1>
+            <p class="text-xs text-zinc-500 mt-1">Use WebCrypto for passwords, UUID v4, and hashes. Secrets are computed locally and are not sent to OpenStackTools.</p>
           </div>
 
           <div class="p-4 border border-zinc-800 bg-zinc-900/30 space-y-4">
@@ -234,6 +268,12 @@
             number generator (CSPRNG) requirements. Cryptographic hashing routines operate via standard
             <code>SubtleCrypto.digest</code> implementations directly within client memory sandbox environments.</p>
         </article>
+
+        <article class="mt-8 border border-zinc-200 dark:border-zinc-900 p-6 bg-zinc-50 dark:bg-zinc-950 text-xs text-zinc-600 dark:text-zinc-500 space-y-3">
+          <h2 class="text-sm font-semibold text-zinc-300">FAQ</h2>
+          <p class="leading-relaxed"><strong class="text-zinc-400">Do you store generated passwords?</strong> No. Values exist only in this page until you copy or leave. We have no password database.</p>
+        </article>
+
       </div>
 
       <!-- SIDEBAR ADSLOT (Square_Banner_Slot) -->

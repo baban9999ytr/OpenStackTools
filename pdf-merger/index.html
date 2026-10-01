@@ -4,9 +4,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PDF Merger & Splitter | OpenStackTools</title>
-  <meta name="description"
-    content="Merge, split, reorder, and extract PDF pages locally in your browser. Zero server uploads, pdf-lib processing.">
+  <title>Free Online PDF Merger (No Upload) | OpenStackTools</title>
+  <meta name="description" content="Merge, split, and extract PDF pages in your browser. No server upload, no account, no cloud quota. pdf-lib runs in RAM on this device.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://openstacktool.com/pdf-merger/">
+  <link rel="alternate" hreflang="en" href="https://openstacktool.com/pdf-merger/?lang=en">
+  <link rel="alternate" hreflang="tr" href="https://openstacktool.com/pdf-merger/?lang=tr">
+  <link rel="alternate" hreflang="x-default" href="https://openstacktool.com/pdf-merger/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Free Online PDF Merger (No Upload) | OpenStackTools">
+  <meta property="og:description" content="Merge, split, and extract PDF pages in your browser. No server upload, no account, no cloud quota. pdf-lib runs in RAM on this device.">
+  <meta property="og:url" content="https://openstacktool.com/pdf-merger/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Free Online PDF Merger (No Upload) | OpenStackTools">
+  <meta name="twitter:description" content="Merge, split, and extract PDF pages in your browser. No server upload, no account, no cloud quota. pdf-lib runs in RAM on this device.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["WebApplication", "SoftwareApplication"],
+        "name": "PDF Merger & Splitter",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web browser",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": "Merge, split, and extract PDF pages in your browser. No server upload, no account, no cloud quota. pdf-lib runs in RAM on this device."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [{
+          "@type": "Question",
+          "name": "Is there a PDF merge upload limit?",
+          "acceptedAnswer": { "@type": "Answer", "text": "OpenStackTools does not host your PDFs. Limits are your browser and RAM, not a server quota." }
+        }]
+      }
+    ]
+  }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -144,7 +179,7 @@
   </header>
 
   <main class="max-w-6xl mx-auto px-4 py-12 w-full flex-1">
-    <div class="flex flex-col lg:flex-row gap-8">
+    <div class="flex flex-col lg:flex-row gap-12">
 
       <div class="flex-1">
         <div class="border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 p-6">
@@ -152,9 +187,8 @@
             <div class="inline-block border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900/50 px-2.5 py-0.5 mb-3">
               <span class="text-[11px] font-mono text-zinc-400 uppercase tracking-widest">Client-Side Engine</span>
             </div>
-            <h1 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">PDF Merger & Splitter</h1>
-            <p class="text-xs text-zinc-500 mt-1">Combine multiple PDF documents or extract page ranges synchronously in
-              client browser memory using pdf-lib.</p>
+            <h1 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">Free online PDF merger — no upload, no account</h1>
+            <p class="text-xs text-zinc-500 mt-1">Combine PDFs, reorder pages, and extract ranges locally with pdf-lib. There is no OpenStackTools upload limit because files never leave this tab.</p>
           </div>
 
           <div id="pdf-drop-zone"
@@ -196,6 +230,12 @@
             pdf-lib. Page trees are duplicated, re-indexed, or removed entirely within client RAM buffers before
             generating updated binary Blob arrays for immediate browser download streams.</p>
         </article>
+
+        <article class="mt-8 border border-zinc-200 dark:border-zinc-900 p-6 bg-zinc-50 dark:bg-zinc-950 text-xs text-zinc-600 dark:text-zinc-500 space-y-3">
+          <h2 class="text-sm font-semibold text-zinc-300">FAQ</h2>
+          <p class="leading-relaxed"><strong class="text-zinc-400">Is there a PDF merge upload limit?</strong> OpenStackTools does not host your PDFs. Limits are your browser and RAM, not a server quota.</p>
+        </article>
+
       </div>
 
       <!-- SIDEBAR ADSLOT (Square_Banner_Slot) -->
