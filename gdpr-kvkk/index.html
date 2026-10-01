@@ -24,6 +24,7 @@
         }
     </script>
     <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/consent-banner.js"></script>
 </head>
 
 <body
@@ -32,13 +33,18 @@
     <div class="w-full border-b border-zinc-200 dark:border-zinc-900 bg-zinc-100/50 dark:bg-zinc-950/50">
         <div class="max-w-6xl mx-auto px-4 py-2 flex justify-center">
             <div
-                class="adsense-slot w-full max-w-[728px] h-[90px] bg-zinc-900 border border-zinc-800/50 flex flex-col items-center justify-center">
-                <span class="text-[10px] uppercase tracking-widest text-zinc-600 font-mono mb-1">Advertisement</span>
+                class="adsense-slot w-full max-w-[728px] min-h-[90px] bg-zinc-900 border border-zinc-800/50 flex flex-col items-center justify-center overflow-hidden">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-6573718396125228"
+                     data-ad-slot="9697842219"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
             </div>
         </div>
     </div>
 
- <header class="sticky top-0 z-40 w-full backdrop-blur-md bg-white/80 dark:bg-zinc-950/80 border-b border-zinc-200 dark:border-zinc-900">
+   <header class="sticky top-0 z-40 w-full backdrop-blur-md bg-white/80 dark:bg-zinc-950/80 border-b border-zinc-200 dark:border-zinc-900">
     <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
       <a href="/" class="flex items-center space-x-3">
         <div class="w-6 h-6 bg-zinc-100 text-zinc-950 flex items-center justify-center font-bold font-mono text-[10px]">
@@ -121,21 +127,20 @@
           class="hover:text-zinc-100 transition-colors text-zinc-300">Source</a>
       </nav>
 
-                <div class="flex items-center space-x-3">
-            <button id="lang-toggle-btn" class="px-2 py-1 border border-zinc-700 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-xs font-mono text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">EN / TR</button>
-            <button id="ost-theme-toggle-btn" class="px-2 py-1 border border-zinc-700 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-xs text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"><span id="ost-theme-icon">Dark</span></button>
-            <input type="range" id="ost-font-scale-slider" min="75" max="150" step="5" value="100" style="width:80px;flex-shrink:0;" class="h-2 accent-zinc-600 dark:accent-zinc-400 rounded" />
-            <span id="ost-font-scale-val" class="text-xs text-zinc-500 dark:text-zinc-400">100%</span>
-            <select id="donation-select" class="px-2 py-1 border border-zinc-700 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-xs text-zinc-800 dark:text-zinc-100">
-              <option value="kreosus">Kreosus (TRY)</option>
-              <option value="bmc">Buy Me a Coffee (USD)</option>
-            </select>
-            <a id="donate-link" href="https://kreosus.com/aridigital/about" target="_blank" rel="noopener noreferrer" class="px-2 py-1 border border-zinc-700 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-xs text-zinc-800 dark:text-zinc-100 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors">Donate</a>
-            <a href="https://github.com/baban9999ytr/OpenStackTools" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center space-x-2 px-3 py-1.5 text-xs font-medium text-zinc-100 bg-zinc-800 dark:bg-zinc-900 hover:bg-zinc-700 dark:hover:bg-zinc-800 border border-zinc-700 dark:border-zinc-800 transition-colors"><span>GitHub</span></a>
-          </div>
+      <div class="flex items-center space-x-3">
+        <button id="lang-toggle-btn" class="px-2 py-1 border border-zinc-700 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-xs font-mono text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">EN / TR</button>
+        <button id="ost-theme-toggle-btn" class="px-2 py-1 border border-zinc-700 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-xs text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"><span id="ost-theme-icon">Dark</span></button>
+        <input type="range" id="ost-font-scale-slider" min="75" max="150" step="5" value="100" style="width:80px;flex-shrink:0;" class="h-2 accent-zinc-600 dark:accent-zinc-400 rounded" />
+        <span id="ost-font-scale-val" class="text-xs text-zinc-500 dark:text-zinc-400">100%</span>
+        <select id="donation-select" class="px-2 py-1 border border-zinc-700 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-xs text-zinc-800 dark:text-zinc-100">
+          <option value="kreosus">Kreosus (TRY)</option>
+          <option value="bmc">Buy Me a Coffee (USD)</option>
+        </select>
+        <a id="donate-link" href="https://kreosus.com/aridigital/about" target="_blank" rel="noopener noreferrer" class="px-2 py-1 border border-zinc-700 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-xs text-zinc-800 dark:text-zinc-100 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors">Donate</a>
+        <a href="https://github.com/baban9999ytr/OpenStackTools" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center space-x-2 px-3 py-1.5 text-xs font-medium text-zinc-100 bg-zinc-800 dark:bg-zinc-900 hover:bg-zinc-700 dark:hover:bg-zinc-800 border border-zinc-700 dark:border-zinc-800 transition-colors"><span>GitHub</span></a>
+      </div>
     </div>
   </header>
-
 
     <main class="max-w-4xl mx-auto px-4 py-12 w-full flex-1">
         <div class="border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 p-6 sm:p-10 space-y-8">
@@ -201,6 +206,7 @@
                 <a href="/terms-of-service/" class="hover:text-zinc-300 transition-colors">Terms</a>
                 <a href="/cookie-policy/" class="hover:text-zinc-300 transition-colors">Cookies</a>
                 <a href="/gdpr-kvkk/" class="hover:text-zinc-300 transition-colors">GDPR</a>
+        <button type="button" class="hover:text-zinc-300 transition-colors" onclick="window.OSTConsent&&OSTConsent.open()">Cookie settings</button>
                 <span>&mdash;</span>
                 <a href="https://github.com/baban9999ytr/" target="_blank" rel="noopener noreferrer"
                     class="hover:text-zinc-300 transition-colors">GitHub</a>
@@ -212,17 +218,8 @@
             </div>
         </div>
     </footer>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6573718396125228"
-     crossorigin="anonymous"></script>
+
     <script type="module" src="/js/app.js"></script>
-     <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const ads = document.querySelectorAll('.adsbygoogle');
-    ads.forEach(() => {
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    });
-  });
-</script>
 </body>
 
 </html>

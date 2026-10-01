@@ -4,9 +4,72 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OpenStackTools | Client-Side Web Utilities</title>
+  <title>OpenStackTools | Free PDF Merger, Image Compressor & JSON Tools (No Upload)</title>
   <meta name="description"
-    content="Free, browser-based web utilities. Merge PDFs, compress images, and format data locally. Zero server uploads.">
+    content="Free online PDF merger, image compressor, audio trimmer, and JSON formatter that run in your browser. No account, no server upload, no file-size paywall. Files stay in RAM.">
+  <meta name="keywords"
+    content="free online pdf merger no upload limit, compress image in browser locally without uploading, client-side json formatter, audio trimmer no upload, open source web tools">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="author" content="OpenStackTools">
+  <link rel="canonical" href="/">
+  <link rel="alternate" hreflang="en" href="/?lang=en">
+  <link rel="alternate" hreflang="tr" href="/?lang=tr">
+  <link rel="alternate" hreflang="x-default" href="/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenStackTools">
+  <meta property="og:title" content="OpenStackTools | Free client-side PDF, image & JSON tools">
+  <meta property="og:description"
+    content="Merge PDFs, compress images, trim audio, and format JSON in browser RAM. Zero server uploads.">
+  <meta property="og:url" content="/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="OpenStackTools | Free client-side PDF, image & JSON tools">
+  <meta name="twitter:description"
+    content="Browser-only utilities. Files never leave your device. No account, no upload queue.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["WebApplication", "SoftwareApplication"],
+        "name": "OpenStackTools",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web browser",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "license": "https://opensource.org/licenses/MIT",
+        "isAccessibleForFree": true,
+        "browserRequirements": "Requires JavaScript. Processing runs in browser RAM.",
+        "featureList": [
+          "PDF merge and split with no server upload",
+          "Image compression on HTML5 Canvas",
+          "Audio trim via Web Audio API",
+          "JSON and CSV conversion locally",
+          "WebCrypto passwords and hashes"
+        ],
+        "description": "Open-source client-side web utilities. Files are processed 100% locally in browser RAM with zero server uploads."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Does OpenStackTools upload my files?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No. PDF, image, audio, and JSON tools run in your browser memory. There is no file-processing API." }
+          },
+          {
+            "@type": "Question",
+            "name": "Is there a PDF merge upload limit?",
+            "acceptedAnswer": { "@type": "Answer", "text": "OpenStackTools does not impose a server upload limit because files never leave your device. Practical limits are your RAM and browser." }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I compress images locally without uploading?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. The image compressor uses HTML5 Canvas in this tab. The original file is not sent to OpenStackTools servers." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -24,16 +87,24 @@
     }
   </script>
   <link rel="stylesheet" href="/css/style.css">
+  
+  <script src="/js/consent-banner.js"></script>
 </head>
 
 <body
   class="bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-300 min-h-screen flex flex-col font-sans antialiased selection:bg-zinc-800 selection:text-zinc-100 transition-colors">
 
+  <!-- TOP ADSLOT (Upper_Banner_Slot) -->
   <div class="w-full border-b border-zinc-200 dark:border-zinc-900 bg-zinc-100/50 dark:bg-zinc-950/50">
     <div class="max-w-6xl mx-auto px-4 py-2 flex justify-center">
       <div
-        class="adsense-slot w-full max-w-[728px] h-[90px] bg-zinc-900 border border-zinc-800/50 flex flex-col items-center justify-center">
-        <span class="text-[10px] uppercase tracking-widest text-zinc-600 font-mono mb-1">Advertisement</span>
+        class="adsense-slot w-full max-w-[728px] min-h-[90px] bg-zinc-900 border border-zinc-800/50 flex flex-col items-center justify-center overflow-hidden">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-6573718396125228"
+             data-ad-slot="9697842219"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
       </div>
     </div>
   </div>
@@ -140,18 +211,22 @@
     <div class="inline-block border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900/50 px-3 py-1 mb-8">
       <span class="text-xs font-mono text-zinc-400 uppercase tracking-widest">v1.0.0 — 100% Local Processing</span>
     </div>
-    <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-6 leading-tight">
-      Client-side web utilities.<br>Zero server uploads.
+    <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-6 leading-tight" data-i18n="hero_headline">
+      Free online PDF, image, audio &amp; JSON tools — no upload, no account
     </h1>
-    <p class="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-      A collection of essential tools for developers and professionals. Built on WebAssembly and HTML5 Canvas. Your
-      files are processed in your browser's memory and never leave your device.
+    <p class="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed" data-i18n="hero_subtitle">
+      Merge PDFs, compress images, trim audio, and format JSON in your browser. Files stay in RAM. No server uploads and no file-size paywall.
     </p>
+    <ul class="max-w-xl mx-auto text-left text-sm text-zinc-600 dark:text-zinc-400 space-y-2 mb-2">
+      <li>Free online PDF merger with no server upload limit — pdf-lib runs in this tab.</li>
+      <li>Compress JPEG, PNG, and WebP in the browser locally, without uploading.</li>
+      <li>Trim audio and format JSON with the same local-RAM model. Open source, MIT licensed.</li>
+    </ul>
   </section>
 
   <section id="tools-grid" class="max-w-6xl mx-auto px-4 py-12 w-full flex-1 border-t border-zinc-200 dark:border-zinc-900">
     <div class="flex items-center justify-between mb-8">
-      <h2 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100">Available Utilities</h2>
+        <h2 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100">Browser tools that never upload your files</h2>
       <span class="text-xs font-mono text-zinc-500">6 Modules Loaded</span>
     </div>
 
@@ -208,7 +283,6 @@
           API.</p>
       </a>
 
-      <!-- Tool 4: JSON Formatter -->
       <a href="/json-formatter/"
         class="group flex flex-col p-5 border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors">
         <div class="flex items-center justify-between mb-4">
@@ -265,8 +339,13 @@
 
     <div class="mt-12 flex justify-center">
       <div
-        class="adsense-slot w-full max-w-[970px] h-[90px] bg-zinc-900 border border-zinc-800/50 flex flex-col items-center justify-center">
-        <span class="text-[10px] uppercase tracking-widest text-zinc-600 font-mono">Advertisement</span>
+        class="adsense-slot w-full max-w-[970px] min-h-[90px] bg-zinc-900 border border-zinc-800/50 flex flex-col items-center justify-center overflow-hidden">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-6573718396125228"
+             data-ad-slot="7071678871"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
       </div>
     </div>
   </section>
@@ -286,6 +365,26 @@
           <p class="leading-relaxed">OpenStackTools shifts the compute entirely to the client. By leveraging modern
             browser APIs (WebAssembly, WebCrypto, HTML5 Canvas), all processing occurs synchronously within your
             device's RAM.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="border-t border-zinc-200 dark:border-zinc-900 py-16">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-6">Common questions</h2>
+      <div class="space-y-6 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+        <div>
+          <h3 class="text-zinc-900 dark:text-zinc-100 font-medium mb-1">Do you upload PDFs or images?</h3>
+          <p>No. Tools read files into this page’s memory, process them with browser APIs, and let you download the result. OpenStackTools does not operate a file-processing server.</p>
+        </div>
+        <div>
+          <h3 class="text-zinc-900 dark:text-zinc-100 font-medium mb-1">Is there an upload size limit?</h3>
+          <p>We do not set a cloud quota. Large files are limited by your device RAM and the browser tab. That is why a “free online PDF merger no upload limit” search matches this architecture.</p>
+        </div>
+        <div>
+          <h3 class="text-zinc-900 dark:text-zinc-100 font-medium mb-1">How do ads work?</h3>
+          <p>Google AdSense loads only after you accept cookies. You can change that anytime with Cookie settings. File tools work whether ads are on or off.</p>
         </div>
       </div>
     </div>
@@ -321,6 +420,7 @@
         <a href="/terms-of-service/" class="hover:text-zinc-300 transition-colors">Terms</a>
         <a href="/cookie-policy/" class="hover:text-zinc-300 transition-colors">Cookies</a>
         <a href="/gdpr-kvkk/" class="hover:text-zinc-300 transition-colors">GDPR</a>
+        <button type="button" class="hover:text-zinc-300 transition-colors" onclick="window.OSTConsent&&OSTConsent.open()">Cookie settings</button>
         <span>&mdash;</span>
         <a href="https://github.com/baban9999ytr/" target="_blank" rel="noopener noreferrer"
           class="hover:text-zinc-300 transition-colors">GitHub</a>
@@ -332,17 +432,8 @@
       </div>
     </div>
   </footer>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6573718396125228"
-     crossorigin="anonymous"></script>
+
   <script type="module" src="/js/app.js"></script>
-   <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const ads = document.querySelectorAll('.adsbygoogle');
-    ads.forEach(() => {
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    });
-  });
-</script>
 </body>
 
 </html>

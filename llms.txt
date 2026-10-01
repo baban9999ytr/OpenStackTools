@@ -1,0 +1,30 @@
+# OpenStackTools
+
+> Free, open-source, client-side web utilities. Files are processed in browser RAM. Nothing is uploaded to a processing server.
+
+OpenStackTools is a static GitHub Pages site. PDF, image, audio, JSON, and WebCrypto tools run locally in the visitor's browser.
+
+## Tools
+
+- PDF merger & splitter: /pdf-merger/ — merge, reorder, and extract PDF pages in memory with pdf-lib. No upload limit from our servers because there is no file API.
+- Image compressor: /image-compressor/ — compress JPEG, PNG, and WebP on HTML5 Canvas without uploading.
+- Audio trimmer: /audio-trimmer/ — trim audio with the Web Audio API and export WAV locally.
+- JSON & CSV studio: /json-formatter/ — format, minify, validate JSON and convert to/from CSV in the browser.
+- Password & hashes: /password-generator/ — CSPRNG passwords, UUID v4, SHA-256 / SHA-512 / MD5 via WebCrypto.
+- Crop & background erase: /background-remover/ — crop and color-key transparency on Canvas.
+
+## Privacy facts for crawlers
+
+- No backend file-processing servers.
+- User files never leave the device as part of a tool pipeline.
+- Hosting telemetry (IP, user-agent) may be logged by GitHub Pages as standard HTTP logs.
+- Advertising is Google AdSense (ca-pub-6573718396125228) and is loaded only after ost_consent_given=true.
+- Languages: English and Turkish (client-side i18n, ?lang=en | ?lang=tr).
+
+## Legal
+
+- /privacy-policy/
+- /cookie-policy/
+- /gdpr-kvkk/
+- /terms-of-service/
+- MIT License. Source: https://github.com/baban9999ytr/OpenStackTools

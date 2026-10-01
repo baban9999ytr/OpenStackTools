@@ -137,7 +137,7 @@ celerybeat.pid
 *.rdb
 *.aof
 *.pid
-
+_patch_seo.py
 # RabbitMQ
 mnesia/
 rabbitmq/

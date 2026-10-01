@@ -8,8 +8,8 @@ export const translations = {
     "star_github": "Star on GitHub",
     "buy_coffee": "Buy Me a Coffee",
     "live_privacy_badge": "100% Local Processing • No File Ever Leaves Your Device",
-    "hero_headline": "Tired of paywalls for basic web tools? We are too.",
-    "hero_subtitle": "OpenStackTools is a 100% free, open-source, pure browser-side utility kit. No sign-up, no /mo subscriptions, no data tracking, zero server uploads.",
+    "hero_headline": "Free online PDF, image, audio & JSON tools — no upload, no account",
+    "hero_subtitle": "Merge PDFs, compress images, trim audio, and format JSON in your browser. Files stay in RAM. No server uploads and no file-size paywall.",
     "hero_btn_explore": "Explore Tools",
     "hero_btn_manifesto": "Read Manifesto",
     "badge_local": "Zero Cloud Storage",
@@ -111,8 +111,8 @@ export const translations = {
     "star_github": "GitHub'da Yıldızla",
     "buy_coffee": "Kahve Ismarla",
     "live_privacy_badge": "100% Yerel İşlem • Hiçbir Dosya Cihazınızdan Ayrılmaz",
-    "hero_headline": "En ufak işler için para istenmesinden sıkılmadınız mı?",
-    "hero_subtitle": "Sıkıldıysanız OpenStackTools tam size göre. Üyelik yok, aylık abonelik ücreti yok, veri takibi yok, dosya sunucuya yüklenmez.",
+    "hero_headline": "Ücretsiz çevrimiçi PDF, görsel, ses ve JSON araçları — yükleme yok, hesap yok",
+    "hero_subtitle": "PDF birleştirin, görsel sıkıştırın, ses kesin, JSON biçimlendirin. Dosyalar tarayıcı RAM’inde kalır. Sunucuya yükleme ve boyut limiti yok.",
     "hero_btn_explore": "Araçları Keşfet",
     "hero_btn_manifesto": "Manifestoyu Oku",
     "badge_local": "Sıfır Bulut Depolama",
@@ -207,12 +207,28 @@ export const translations = {
   }
 };
 
-export let currentLang = localStorage.getItem('ost_lang') || (navigator.language && navigator.language.startsWith('tr') ? 'tr' : 'en');
+function detectLang() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get('lang');
+    if (q === 'en' || q === 'tr') return q;
+  } catch (e) { /* ignore */ }
+  const stored = localStorage.getItem('ost_lang');
+  if (stored === 'en' || stored === 'tr') return stored;
+  return (navigator.language && navigator.language.startsWith('tr')) ? 'tr' : 'en';
+}
+
+export let currentLang = detectLang();
 
 export function setLanguage(lang) {
   if (lang !== 'en' && lang !== 'tr') lang = 'en';
   currentLang = lang;
   localStorage.setItem('ost_lang', lang);
+  try {
+    const url = new URL(window.location.href);
+    url.searchParams.set('lang', lang);
+    history.replaceState({}, '', url);
+  } catch (e) {  }
   updateDOM();
 }
 
@@ -231,6 +247,8 @@ export function updateDOM() {
       el.textContent = translation;
     }
   });
+
+  document.documentElement.lang = currentLang;
 
   document.querySelectorAll('[data-i18n-title]').forEach(el => {
     const key = el.getAttribute('data-i18n-title');

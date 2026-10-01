@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://baban9999ytr.github.io/OpenStackTools/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://baban9999ytr.github.io/OpenStackTools/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://baban9999ytr.github.io/OpenStackTools/?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://baban9999ytr.github.io/OpenStackTools/"/>
+  </url>
+  <url><loc>https://baban9999ytr.github.io/OpenStackTools/pdf-merger/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://baban9999ytr.github.io/OpenStackTools/image-compressor/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://baban9999ytr.github.io/OpenStackTools/audio-trimmer/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://baban9999ytr.github.io/OpenStackTools/json-formatter/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://baban9999ytr.github.io/OpenStackTools/password-generator/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://baban9999ytr.github.io/OpenStackTools/background-remover/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://baban9999ytr.github.io/OpenStackTools/privacy-policy/</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://baban9999ytr.github.io/OpenStackTools/cookie-policy/</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://baban9999ytr.github.io/OpenStackTools/gdpr-kvkk/</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://baban9999ytr.github.io/OpenStackTools/terms-of-service/</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+</urlset>
