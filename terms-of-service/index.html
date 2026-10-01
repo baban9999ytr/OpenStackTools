@@ -213,6 +213,14 @@
     </footer>
 
     <script type="module" src="/js/app.js"></script>
+     <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const ads = document.querySelectorAll('.adsbygoogle');
+    ads.forEach(() => {
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    });
+  });
+</script>
 </body>
 
 </html>

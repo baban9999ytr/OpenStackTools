@@ -248,7 +248,7 @@
       </div>
     </div>
   </footer>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6573718396125228"
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6573718396125228"
      crossorigin="anonymous"></script>
   <script type="module">
     import { initBgRemoverTool } from '/js/tools/bg-remover-tool.js';
@@ -257,6 +257,14 @@
       initBgRemoverTool();
     });
   </script>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const ads = document.querySelectorAll('.adsbygoogle');
+    ads.forEach(() => {
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    });
+  });
+</script>
 </body>
 
 </html>
