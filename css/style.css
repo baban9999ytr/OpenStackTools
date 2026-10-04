@@ -88,6 +88,10 @@ pre,
   margin: 0;
 }
 
+.adsense-slot > ins.adsbygoogle {
+  width: 100%;
+}
+
 .adsense-slot.is-consent-blocked ins.adsbygoogle {
   display: none !important;
 }
