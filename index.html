@@ -1,437 +1,881 @@
-﻿<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="en" class="dark">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OpenStackTools | Free PDF Merger, Image Compressor & JSON Tools (No Upload)</title>
-  <meta name="description"
-    content="Free online PDF merger, image compressor, audio trimmer, and JSON formatter that run in your browser. No account, no server upload, no file-size paywall. Files stay in RAM.">
-  <meta name="keywords"
-    content="free online pdf merger no upload limit, compress image in browser locally without uploading, client-side json formatter, audio trimmer no upload, open source web tools">
-  <meta name="robots" content="index,follow,max-image-preview:large">
-  <meta name="author" content="OpenStackTools">
-  <link rel="canonical" href="/">
-  <link rel="alternate" hreflang="en" href="/?lang=en">
-  <link rel="alternate" hreflang="tr" href="/?lang=tr">
-  <link rel="alternate" hreflang="x-default" href="/">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="OpenStackTools">
-  <meta property="og:title" content="OpenStackTools | Free client-side PDF, image & JSON tools">
-  <meta property="og:description"
-    content="Merge PDFs, compress images, trim audio, and format JSON in browser RAM. Zero server uploads.">
-  <meta property="og:url" content="/">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="OpenStackTools | Free client-side PDF, image & JSON tools">
-  <meta name="twitter:description"
-    content="Browser-only utilities. Files never leave your device. No account, no upload queue.">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      OpenStackTools | Free PDF Merger, Image Compressor & JSON Tools (No
+      Upload)
+    </title>
+    <meta
+      name="description"
+      content="Free online PDF merger, image compressor, audio trimmer, and JSON formatter that run in your browser. No account, no server upload, no file-size paywall. Files stay in RAM."
+    />
+    <meta
+      name="keywords"
+      content="free online pdf merger no upload limit, compress image in browser locally without uploading, client-side json formatter, audio trimmer no upload, open source web tools"
+    />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="author" content="OpenStackTools" />
+    <link rel="canonical" href="/" />
+    <link rel="alternate" hreflang="en" href="/?lang=en" />
+    <link rel="alternate" hreflang="tr" href="/?lang=tr" />
+    <link rel="alternate" hreflang="x-default" href="/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="OpenStackTools" />
+    <meta
+      property="og:title"
+      content="OpenStackTools | Free client-side PDF, image & JSON tools"
+    />
+    <meta
+      property="og:description"
+      content="Merge PDFs, compress images, trim audio, and format JSON in browser RAM. Zero server uploads."
+    />
+    <meta property="og:url" content="/" />
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="OpenStackTools | Free client-side PDF, image & JSON tools"
+    />
+    <meta
+      name="twitter:description"
+      content="Browser-only utilities. Files never leave your device. No account, no upload queue."
+    />
+    <script type="application/ld+json">
       {
-        "@type": ["WebApplication", "SoftwareApplication"],
-        "name": "OpenStackTools",
-        "applicationCategory": "UtilitiesApplication",
-        "operatingSystem": "Web browser",
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-        "license": "https://opensource.org/licenses/MIT",
-        "isAccessibleForFree": true,
-        "browserRequirements": "Requires JavaScript. Processing runs in browser RAM.",
-        "featureList": [
-          "PDF merge and split with no server upload",
-          "Image compression on HTML5 Canvas",
-          "Audio trim via Web Audio API",
-          "JSON and CSV conversion locally",
-          "WebCrypto passwords and hashes"
-        ],
-        "description": "Open-source client-side web utilities. Files are processed 100% locally in browser RAM with zero server uploads."
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
+        "@context": "https://schema.org",
+        "@graph": [
           {
-            "@type": "Question",
-            "name": "Does OpenStackTools upload my files?",
-            "acceptedAnswer": { "@type": "Answer", "text": "No. PDF, image, audio, and JSON tools run in your browser memory. There is no file-processing API." }
+            "@type": ["WebApplication", "SoftwareApplication"],
+            "name": "OpenStackTools",
+            "applicationCategory": "UtilitiesApplication",
+            "operatingSystem": "Web browser",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "license": "https://opensource.org/licenses/MIT",
+            "isAccessibleForFree": true,
+            "browserRequirements": "Requires JavaScript. Processing runs in browser RAM.",
+            "featureList": [
+              "PDF merge and split with no server upload",
+              "Image compression on HTML5 Canvas",
+              "Audio trim via Web Audio API",
+              "JSON and CSV conversion locally",
+              "WebCrypto passwords and hashes"
+            ],
+            "description": "Open-source client-side web utilities. Files are processed 100% locally in browser RAM with zero server uploads."
           },
           {
-            "@type": "Question",
-            "name": "Is there a PDF merge upload limit?",
-            "acceptedAnswer": { "@type": "Answer", "text": "OpenStackTools does not impose a server upload limit because files never leave your device. Practical limits are your RAM and browser." }
-          },
-          {
-            "@type": "Question",
-            "name": "Can I compress images locally without uploading?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Yes. The image compressor uses HTML5 Canvas in this tab. The original file is not sent to OpenStackTools servers." }
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Does OpenStackTools upload my files?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. PDF, image, audio, and JSON tools run in your browser memory. There is no file-processing API."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is there a PDF merge upload limit?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "OpenStackTools does not impose a server upload limit because files never leave your device. Practical limits are your RAM and browser."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I compress images locally without uploading?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. The image compressor uses HTML5 Canvas in this tab. The original file is not sent to OpenStackTools servers."
+                }
+              }
+            ]
           }
         ]
       }
-    ]
-  }
-  </script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            zinc: {
-              850: '#1e1e24',
-              950: '#09090b',
-            }
-          }
-        }
-      }
-    }
-  </script>
-  <link rel="stylesheet" href="/css/style.css">
-  
-  <script src="/js/consent-banner.js"></script>
-</head>
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              zinc: {
+                850: "#1e1e24",
+                950: "#09090b",
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="/css/style.css" />
 
-<body
-  class="bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-300 min-h-screen flex flex-col font-sans antialiased selection:bg-zinc-800 selection:text-zinc-100 transition-colors">
+    <script src="/js/consent-banner.js"></script>
+  </head>
 
-  <div class="w-full border-b border-zinc-200 dark:border-zinc-900 bg-zinc-100/50 dark:bg-zinc-950/50">
-    <div class="max-w-6xl mx-auto px-4 py-2 flex justify-center">
-      <div class="adsense-slot w-full max-w-[728px] mx-auto bg-zinc-900 border border-zinc-800/50 flex flex-col items-center justify-center overflow-hidden my-4">
-    <ins class="adsbygoogle"
-         style="display:block; width:100%;"
-         data-ad-client="ca-pub-6573718396125228"
-         data-ad-slot="9697842219"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-</div>
-    </div>
-  </div>
-
-  <header class="sticky top-0 z-40 w-full backdrop-blur-md bg-white/80 dark:bg-zinc-950/80 border-b border-zinc-200 dark:border-zinc-900">
-    <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
-      <a href="/" class="flex items-center space-x-3">
-        <div class="w-6 h-6 bg-zinc-100 text-zinc-950 flex items-center justify-center font-bold font-mono text-[10px]">
-          OST</div>
-        <span class="font-semibold text-sm tracking-wide text-zinc-900 dark:text-zinc-100">OpenStackTools</span>
-      </a>
-
-      <nav class="hidden md:flex items-center space-x-6 text-sm">
-        <div class="relative group">
-          <a href="/#tools-grid"
-            class="flex items-center space-x-1 py-4 hover:text-zinc-100 transition-colors text-zinc-300 font-medium">
-            <span>Tools</span>
-            <svg class="w-3.5 h-3.5 text-zinc-500 group-hover:text-zinc-300 transition-transform group-hover:rotate-180"
-              fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </a>
-
-          <div
-            class="absolute left-0 top-full hidden group-hover:block w-64 bg-zinc-950 border border-zinc-800 shadow-xl py-2 z-50">
-            <a href="/pdf-merger/" class="block px-4 py-2.5 hover:bg-zinc-900 transition-colors">
-              <div class="text-xs font-semibold text-zinc-800 dark:text-zinc-200">PDF Merger & Splitter</div>
-              <div class="text-[11px] text-zinc-500">Reorder, merge & extract pages</div>
-            </a>
-            <a href="/image-compressor/"
-              class="block px-4 py-2.5 hover:bg-zinc-900 transition-colors border-t border-zinc-900">
-              <div class="text-xs font-semibold text-zinc-800 dark:text-zinc-200">Image Compressor</div>
-              <div class="text-[11px] text-zinc-500">Compress WebP, PNG & JPEG</div>
-            </a>
-            <a href="/audio-trimmer/"
-              class="block px-4 py-2.5 hover:bg-zinc-900 transition-colors border-t border-zinc-900">
-              <div class="text-xs font-semibold text-zinc-800 dark:text-zinc-200">Audio Cutter</div>
-              <div class="text-[11px] text-zinc-500">Trim waveform & export WAV</div>
-            </a>
-            <a href="/json-formatter/"
-              class="block px-4 py-2.5 hover:bg-zinc-900 transition-colors border-t border-zinc-900">
-              <div class="text-xs font-semibold text-zinc-800 dark:text-zinc-200">JSON & CSV Studio</div>
-              <div class="text-[11px] text-zinc-500">Format, validate & convert</div>
-            </a>
-            <a href="/password-generator/"
-              class="block px-4 py-2.5 hover:bg-zinc-900 transition-colors border-t border-zinc-900">
-              <div class="text-xs font-semibold text-zinc-800 dark:text-zinc-200">Cryptography Tools</div>
-              <div class="text-[11px] text-zinc-500">Passwords, UUIDs & hashes</div>
-            </a>
-            <a href="/background-remover/"
-              class="block px-4 py-2.5 hover:bg-zinc-900 transition-colors border-t border-zinc-900">
-              <div class="text-xs font-semibold text-zinc-800 dark:text-zinc-200">Crop & Erase</div>
-              <div class="text-[11px] text-zinc-500">Color key transparency & crop</div>
-            </a>
-          </div>
-        </div>
-
-        <div class="relative group">
-          <a href="/privacy-policy/"
-            class="flex items-center space-x-1 py-4 hover:text-zinc-100 transition-colors text-zinc-300 font-medium">
-            <span>Governance</span>
-            <svg class="w-3.5 h-3.5 text-zinc-500 group-hover:text-zinc-300 transition-transform group-hover:rotate-180"
-              fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </a>
-
-          <div
-            class="absolute left-0 top-full hidden group-hover:block w-56 bg-zinc-950 border border-zinc-800 shadow-xl py-2 z-50">
-            <a href="/privacy-policy/"
-              class="block px-4 py-2 hover:bg-zinc-900 transition-colors text-xs text-zinc-300">Privacy Policy</a>
-            <a href="/terms-of-service/"
-              class="block px-4 py-2 hover:bg-zinc-900 transition-colors text-xs text-zinc-300 border-t border-zinc-900">Terms
-              of Service</a>
-            <a href="/cookie-policy/"
-              class="block px-4 py-2 hover:bg-zinc-900 transition-colors text-xs text-zinc-300 border-t border-zinc-900">Cookie
-              Policy</a>
-            <a href="/gdpr-kvkk/"
-              class="block px-4 py-2 hover:bg-zinc-900 transition-colors text-xs text-zinc-300 border-t border-zinc-900">GDPR
-              & KVKK</a>
-          </div>
-        </div>
-
-        <a href="https://github.com/baban9999ytr/OpenStackTools" target="_blank" rel="noopener noreferrer"
-          class="hover:text-zinc-100 transition-colors text-zinc-300">Source</a>
-      </nav>
-
-      <div class="flex items-center space-x-3">
-        <button id="lang-toggle-btn" class="px-2 py-1 border border-zinc-800 hover:bg-zinc-900 text-xs font-mono text-zinc-400 hover:text-zinc-100 transition-colors">EN / TR</button>
-        <button id="ost-theme-toggle-btn" class="px-2 py-1 border border-zinc-800 hover:bg-zinc-900 text-xs text-zinc-400 hover:text-zinc-100 transition-colors"><span id="ost-theme-icon">Dark</span></button>
-        <input type="range" id="ost-font-scale-slider" min="75" max="150" step="5" value="100" class="w-20 h-2 bg-zinc-700 rounded" />
-        <span id="ost-font-scale-val" class="text-xs text-zinc-400">100%</span>
-        <select id="donation-select" class="px-2 py-1 border border-zinc-800 bg-zinc-900 text-xs text-zinc-100">
-          <option value="kreosus">Kreosus (TRY)</option>
-          <option value="bmc">Buy Me a Coffee (USD)</option>
-        </select>
-        <a id="donate-link" href="https://kreosus.com/aridigital/about" target="_blank" rel="noopener noreferrer" class="px-2 py-1 border border-zinc-800 bg-zinc-900 text-xs text-zinc-100 hover:bg-zinc-800 transition-colors">Donate</a>
-        <a href="https://github.com/baban9999ytr/OpenStackTools" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center space-x-2 px-3 py-1.5 text-xs font-medium text-zinc-100 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 transition-colors"><span>GitHub</span></a>
-      </div>
-    </div>
-  </header>
-
-  <section class="max-w-4xl mx-auto px-4 pt-24 pb-16 text-center">
-    <div class="inline-block border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900/50 px-3 py-1 mb-8">
-      <span class="text-xs font-mono text-zinc-400 uppercase tracking-widest">v1.0.0 — 100% Local Processing</span>
-    </div>
-    <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-6 leading-tight" data-i18n="hero_headline">
-      Free online PDF, image, audio &amp; JSON tools — no upload, no account
-    </h1>
-    <p class="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed" data-i18n="hero_subtitle">
-      Merge PDFs, compress images, trim audio, and format JSON in your browser. Files stay in RAM. No server uploads and no file-size paywall.
-    </p>
-    <ul class="max-w-xl mx-auto text-left text-sm text-zinc-600 dark:text-zinc-400 space-y-2 mb-2">
-      <li>Free online PDF merger with no server upload limit — pdf-lib runs in this tab.</li>
-      <li>Compress JPEG, PNG, and WebP in the browser locally, without uploading.</li>
-      <li>Trim audio and format JSON with the same local-RAM model. Open source, MIT licensed.</li>
-    </ul>
-  </section>
-
-  <section id="tools-grid" class="max-w-6xl mx-auto px-4 py-12 w-full flex-1 border-t border-zinc-200 dark:border-zinc-900">
-    <div class="flex items-center justify-between mb-8">
-        <h2 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100">Browser tools that never upload your files</h2>
-      <span class="text-xs font-mono text-zinc-500">6 Modules Loaded</span>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-
-      <a href="/pdf-merger/"
-        class="group flex flex-col p-5 border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors">
-        <div class="flex items-center justify-between mb-4">
-          <svg class="w-5 h-5 text-zinc-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-              d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-          </svg>
-          <svg class="w-4 h-4 text-zinc-600 group-hover:text-zinc-300 transition-colors" fill="none" viewBox="0 0 24 24"
-            stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-          </svg>
-        </div>
-        <h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-2">PDF Merger & Splitter</h3>
-        <p class="text-xs text-zinc-500 leading-relaxed mt-auto">Reorder, combine, split, and extract pages using
-          pdf-lib.</p>
-      </a>
-
-      <a href="/image-compressor/"
-        class="group flex flex-col p-5 border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors">
-        <div class="flex items-center justify-between mb-4">
-          <svg class="w-5 h-5 text-zinc-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-          </svg>
-          <svg class="w-4 h-4 text-zinc-600 group-hover:text-zinc-300 transition-colors" fill="none" viewBox="0 0 24 24"
-            stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-          </svg>
-        </div>
-        <h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-2">Image Compressor</h3>
-        <p class="text-xs text-zinc-500 leading-relaxed mt-auto">Compress and resize JPEG, PNG, and WebP via HTML5
-          Canvas.</p>
-      </a>
-
-      <a href="/audio-trimmer/"
-        class="group flex flex-col p-5 border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors">
-        <div class="flex items-center justify-between mb-4">
-          <svg class="w-5 h-5 text-zinc-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-              d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
-          </svg>
-          <svg class="w-4 h-4 text-zinc-600 group-hover:text-zinc-300 transition-colors" fill="none" viewBox="0 0 24 24"
-            stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-          </svg>
-        </div>
-        <h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-2">Audio Cutter</h3>
-        <p class="text-xs text-zinc-500 leading-relaxed mt-auto">Decode, trim precisely, and export audio via Web Audio
-          API.</p>
-      </a>
-
-      <a href="/json-formatter/"
-        class="group flex flex-col p-5 border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors">
-        <div class="flex items-center justify-between mb-4">
-          <svg class="w-5 h-5 text-zinc-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-              d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-          </svg>
-          <svg class="w-4 h-4 text-zinc-600 group-hover:text-zinc-300 transition-colors" fill="none" viewBox="0 0 24 24"
-            stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-          </svg>
-        </div>
-        <h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-2">JSON & CSV Studio</h3>
-        <p class="text-xs text-zinc-500 leading-relaxed mt-auto">Format, repair, and convert JSON payloads locally.</p>
-      </a>
-
-      <a href="/password-generator/"
-        class="group flex flex-col p-5 border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors">
-        <div class="flex items-center justify-between mb-4">
-          <svg class="w-5 h-5 text-zinc-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-              d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-          </svg>
-          <svg class="w-4 h-4 text-zinc-600 group-hover:text-zinc-300 transition-colors" fill="none" viewBox="0 0 24 24"
-            stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-          </svg>
-        </div>
-        <h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-2">Cryptography Tools</h3>
-        <p class="text-xs text-zinc-500 leading-relaxed mt-auto">Generate secure passwords, UUIDs, and compute hashes.
-        </p>
-      </a>
-
-      <a href="/background-remover/"
-        class="group flex flex-col p-5 border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors">
-        <div class="flex items-center justify-between mb-4">
-          <svg class="w-5 h-5 text-zinc-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-          </svg>
-          <svg class="w-4 h-4 text-zinc-600 group-hover:text-zinc-300 transition-colors" fill="none" viewBox="0 0 24 24"
-            stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-          </svg>
-        </div>
-        <h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-2">Crop & Erase</h3>
-        <p class="text-xs text-zinc-500 leading-relaxed mt-auto">Crop regions or make backgrounds transparent locally.
-        </p>
-      </a>
-
-    </div>
-
-    <div class="mt-12 flex justify-center">
-      <div
-        class="adsense-slot w-full max-w-[970px] min-h-[90px] bg-zinc-900 border border-zinc-800/50 flex flex-col items-center justify-center overflow-hidden">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-6573718396125228"
-             data-ad-slot="7071678871"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-      </div>
-    </div>
-  </section>
-
-  <section id="architecture" class="border-t border-zinc-200 dark:border-zinc-900 bg-zinc-50 dark:bg-zinc-950 py-16">
-    <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-6">System Architecture</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-zinc-600 dark:text-zinc-400">
-        <div>
-          <h3 class="text-zinc-900 dark:text-zinc-100 font-medium mb-2">The Problem</h3>
-          <p class="leading-relaxed">Most online utility platforms operate by uploading your private files to remote
-            servers. This introduces artificial processing queues, bandwidth constraints, and severe privacy risks for
-            sensitive documents.</p>
-        </div>
-        <div>
-          <h3 class="text-zinc-900 dark:text-zinc-100 font-medium mb-2">The Solution</h3>
-          <p class="leading-relaxed">OpenStackTools shifts the compute entirely to the client. By leveraging modern
-            browser APIs (WebAssembly, WebCrypto, HTML5 Canvas), all processing occurs synchronously within your
-            device's RAM.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="faq" class="border-t border-zinc-200 dark:border-zinc-900 py-16">
-    <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-6">Common questions</h2>
-      <div class="space-y-6 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-        <div>
-          <h3 class="text-zinc-900 dark:text-zinc-100 font-medium mb-1">Do you upload PDFs or images?</h3>
-          <p>No. Tools read files into this page’s memory, process them with browser APIs, and let you download the result. OpenStackTools does not operate a file-processing server.</p>
-        </div>
-        <div>
-          <h3 class="text-zinc-900 dark:text-zinc-100 font-medium mb-1">Is there an upload size limit?</h3>
-          <p>We do not set a cloud quota. Large files are limited by your device RAM and the browser tab. That is why a “free online PDF merger no upload limit” search matches this architecture.</p>
-        </div>
-        <div>
-          <h3 class="text-zinc-900 dark:text-zinc-100 font-medium mb-1">How do ads work?</h3>
-          <p>Google AdSense loads only after you accept cookies. You can change that anytime with Cookie settings. File tools work whether ads are on or off.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="legal" class="border-t border-zinc-200 dark:border-zinc-900 bg-zinc-50 dark:bg-zinc-950 py-16">
-    <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-6">Compliance & Governance</h2>
-      <div class="space-y-6 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-        <div>
-          <h3 class="text-zinc-900 dark:text-zinc-100 font-medium mb-1">Data Minimization</h3>
-          <p>We do not operate backend processing servers. Files loaded into OpenStackTools are processed locally and
-            discarded by your browser's garbage collector upon tab closure. No personal data is collected or
-            transmitted.</p>
-        </div>
-        <div>
-          <h3 class="text-zinc-900 dark:text-zinc-100 font-medium mb-1">Monetization & Cookies</h3>
-          <p>To maintain the platform independently, we utilize Google AdSense. AdSense may use cookies to serve
-            personalized advertisements. No user-identifiable tracking is implemented within the application logic
-            itself.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="border-t border-zinc-200 dark:border-zinc-900 bg-zinc-50 dark:bg-zinc-950 py-8 mt-auto">
+  <body
+    class="bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-300 min-h-screen flex flex-col font-sans antialiased selection:bg-zinc-800 selection:text-zinc-100 transition-colors"
+  >
     <div
-      class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
-      <div class="flex flex-wrap items-center gap-3">
-        <span class="font-semibold text-zinc-700 dark:text-zinc-300">OpenStackTools</span>
-        <span>&mdash;</span>
-        <a href="/privacy-policy/" class="hover:text-zinc-300 transition-colors">Privacy</a>
-        <a href="/terms-of-service/" class="hover:text-zinc-300 transition-colors">Terms</a>
-        <a href="/cookie-policy/" class="hover:text-zinc-300 transition-colors">Cookies</a>
-        <a href="/gdpr-kvkk/" class="hover:text-zinc-300 transition-colors">GDPR</a>
-        <button type="button" class="hover:text-zinc-300 transition-colors" onclick="window.OSTConsent&&OSTConsent.open()">Cookie settings</button>
-        <span>&mdash;</span>
-        <a href="https://github.com/baban9999ytr/" target="_blank" rel="noopener noreferrer"
-          class="hover:text-zinc-300 transition-colors">GitHub</a>
-        <a href="https://www.linkedin.com/in/mustafa-goksal-ari/" target="_blank" rel="noopener noreferrer"
-          class="hover:text-zinc-300 transition-colors">LinkedIn</a>
-      </div>
-      <div class="font-mono text-[11px] text-zinc-600">
-        Execute locally &mdash; MIT
+      class="w-full border-b border-zinc-200 dark:border-zinc-900 bg-zinc-100/50 dark:bg-zinc-950/50"
+    >
+      <div class="max-w-6xl mx-auto px-4 py-2 flex justify-center">
+        <div
+          class="adsense-slot w-full max-w-[728px] mx-auto bg-zinc-900 border border-zinc-800/50 flex flex-col items-center justify-center overflow-hidden my-4"
+        >
+          <ins
+            class="adsbygoogle"
+            style="display: block; width: 100%"
+            data-ad-client="ca-pub-6573718396125228"
+            data-ad-slot="9697842219"
+            data-ad-format="auto"
+            data-full-width-responsive="true"
+          ></ins>
+        </div>
       </div>
     </div>
-  </footer>
 
-  <script type="module" src="/js/app.js"></script>
-</body>
+    <header
+      class="sticky top-0 z-40 w-full backdrop-blur-md bg-white/80 dark:bg-zinc-950/80 border-b border-zinc-200 dark:border-zinc-900"
+    >
+      <div
+        class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between"
+      >
+        <a href="/" class="flex items-center space-x-3">
+          <div
+            class="w-6 h-6 bg-zinc-100 text-zinc-950 flex items-center justify-center font-bold font-mono text-[10px]"
+          >
+            OST
+          </div>
+          <span
+            class="font-semibold text-sm tracking-wide text-zinc-900 dark:text-zinc-100"
+            >OpenStackTools</span
+          >
+        </a>
 
+        <nav class="hidden md:flex items-center space-x-6 text-sm">
+          <div class="relative group">
+            <a
+              href="/#tools-grid"
+              class="flex items-center space-x-1 py-4 hover:text-zinc-100 transition-colors text-zinc-300 font-medium"
+            >
+              <span>Tools</span>
+              <svg
+                class="w-3.5 h-3.5 text-zinc-500 group-hover:text-zinc-300 transition-transform group-hover:rotate-180"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </a>
+
+            <div
+              class="absolute left-0 top-full hidden group-hover:block w-64 bg-zinc-950 border border-zinc-800 shadow-xl py-2 z-50"
+            >
+              <a
+                href="/pdf-merger/"
+                class="block px-4 py-2.5 hover:bg-zinc-900 transition-colors"
+              >
+                <div
+                  class="text-xs font-semibold text-zinc-800 dark:text-zinc-200"
+                >
+                  PDF Merger & Splitter
+                </div>
+                <div class="text-[11px] text-zinc-500">
+                  Reorder, merge & extract pages
+                </div>
+              </a>
+              <a
+                href="/image-compressor/"
+                class="block px-4 py-2.5 hover:bg-zinc-900 transition-colors border-t border-zinc-900"
+              >
+                <div
+                  class="text-xs font-semibold text-zinc-800 dark:text-zinc-200"
+                >
+                  Image Compressor
+                </div>
+                <div class="text-[11px] text-zinc-500">
+                  Compress WebP, PNG & JPEG
+                </div>
+              </a>
+              <a
+                href="/audio-trimmer/"
+                class="block px-4 py-2.5 hover:bg-zinc-900 transition-colors border-t border-zinc-900"
+              >
+                <div
+                  class="text-xs font-semibold text-zinc-800 dark:text-zinc-200"
+                >
+                  Audio Cutter
+                </div>
+                <div class="text-[11px] text-zinc-500">
+                  Trim waveform & export WAV
+                </div>
+              </a>
+              <a
+                href="/json-formatter/"
+                class="block px-4 py-2.5 hover:bg-zinc-900 transition-colors border-t border-zinc-900"
+              >
+                <div
+                  class="text-xs font-semibold text-zinc-800 dark:text-zinc-200"
+                >
+                  JSON & CSV Studio
+                </div>
+                <div class="text-[11px] text-zinc-500">
+                  Format, validate & convert
+                </div>
+              </a>
+              <a
+                href="/password-generator/"
+                class="block px-4 py-2.5 hover:bg-zinc-900 transition-colors border-t border-zinc-900"
+              >
+                <div
+                  class="text-xs font-semibold text-zinc-800 dark:text-zinc-200"
+                >
+                  Cryptography Tools
+                </div>
+                <div class="text-[11px] text-zinc-500">
+                  Passwords, UUIDs & hashes
+                </div>
+              </a>
+              <a
+                href="/background-remover/"
+                class="block px-4 py-2.5 hover:bg-zinc-900 transition-colors border-t border-zinc-900"
+              >
+                <div
+                  class="text-xs font-semibold text-zinc-800 dark:text-zinc-200"
+                >
+                  Crop & Erase
+                </div>
+                <div class="text-[11px] text-zinc-500">
+                  Color key transparency & crop
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <a
+              href="/privacy-policy/"
+              class="flex items-center space-x-1 py-4 hover:text-zinc-100 transition-colors text-zinc-300 font-medium"
+            >
+              <span>Governance</span>
+              <svg
+                class="w-3.5 h-3.5 text-zinc-500 group-hover:text-zinc-300 transition-transform group-hover:rotate-180"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </a>
+
+            <div
+              class="absolute left-0 top-full hidden group-hover:block w-56 bg-zinc-950 border border-zinc-800 shadow-xl py-2 z-50"
+            >
+              <a
+                href="/privacy-policy/"
+                class="block px-4 py-2 hover:bg-zinc-900 transition-colors text-xs text-zinc-300"
+                >Privacy Policy</a
+              >
+              <a
+                href="/terms-of-service/"
+                class="block px-4 py-2 hover:bg-zinc-900 transition-colors text-xs text-zinc-300 border-t border-zinc-900"
+                >Terms of Service</a
+              >
+              <a
+                href="/cookie-policy/"
+                class="block px-4 py-2 hover:bg-zinc-900 transition-colors text-xs text-zinc-300 border-t border-zinc-900"
+                >Cookie Policy</a
+              >
+              <a
+                href="/gdpr-kvkk/"
+                class="block px-4 py-2 hover:bg-zinc-900 transition-colors text-xs text-zinc-300 border-t border-zinc-900"
+                >GDPR & KVKK</a
+              >
+            </div>
+          </div>
+
+          <a
+            href="https://github.com/baban9999ytr/OpenStackTools"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-zinc-100 transition-colors text-zinc-300"
+            >Source</a
+          >
+        </nav>
+
+        <div class="flex items-center space-x-3">
+          <button
+            id="lang-toggle-btn"
+            class="px-2 py-1 border border-zinc-800 hover:bg-zinc-900 text-xs font-mono text-zinc-400 hover:text-zinc-100 transition-colors"
+          >
+            EN / TR
+          </button>
+          <button
+            id="ost-theme-toggle-btn"
+            class="px-2 py-1 border border-zinc-800 hover:bg-zinc-900 text-xs text-zinc-400 hover:text-zinc-100 transition-colors"
+          >
+            <span id="ost-theme-icon">Dark</span>
+          </button>
+          <input
+            type="range"
+            id="ost-font-scale-slider"
+            min="75"
+            max="150"
+            step="5"
+            value="100"
+            class="w-20 h-2 bg-zinc-700 rounded"
+          />
+          <span id="ost-font-scale-val" class="text-xs text-zinc-400"
+            >100%</span
+          >
+          <select
+            id="donation-select"
+            class="px-2 py-1 border border-zinc-800 bg-zinc-900 text-xs text-zinc-100"
+          >
+            <option value="kreosus">Kreosus (TRY)</option>
+            <option value="bmc">Buy Me a Coffee (USD)</option>
+          </select>
+          <a
+            id="donate-link"
+            href="https://kreosus.com/aridigital/about"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-2 py-1 border border-zinc-800 bg-zinc-900 text-xs text-zinc-100 hover:bg-zinc-800 transition-colors"
+            >Donate</a
+          >
+          <a
+            href="https://github.com/baban9999ytr/OpenStackTools"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hidden sm:inline-flex items-center space-x-2 px-3 py-1.5 text-xs font-medium text-zinc-100 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 transition-colors"
+            ><span>GitHub</span></a
+          >
+        </div>
+      </div>
+    </header>
+
+    <section class="max-w-4xl mx-auto px-4 pt-24 pb-16 text-center">
+      <div
+        class="inline-block border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900/50 px-3 py-1 mb-8"
+      >
+        <span class="text-xs font-mono text-zinc-400 uppercase tracking-widest"
+          >v1.0.0 — 100% Local Processing</span
+        >
+      </div>
+      <h1
+        class="text-4xl sm:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-6 leading-tight"
+        data-i18n="hero_headline"
+      >
+        Free online PDF, image, audio &amp; JSON tools — no upload, no account
+      </h1>
+      <p
+        class="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed"
+        data-i18n="hero_subtitle"
+      >
+        Merge PDFs, compress images, trim audio, and format JSON in your
+        browser. Files stay in RAM. No server uploads and no file-size paywall.
+      </p>
+      <ul
+        class="max-w-xl mx-auto text-left text-sm text-zinc-600 dark:text-zinc-400 space-y-2 mb-2"
+      >
+        <li>
+          Free online PDF merger with no server upload limit — pdf-lib runs in
+          this tab.
+        </li>
+        <li>
+          Compress JPEG, PNG, and WebP in the browser locally, without
+          uploading.
+        </li>
+        <li>
+          Trim audio and format JSON with the same local-RAM model. Open source,
+          MIT licensed.
+        </li>
+      </ul>
+    </section>
+
+    <section
+      id="tools-grid"
+      class="max-w-6xl mx-auto px-4 py-12 w-full flex-1 border-t border-zinc-200 dark:border-zinc-900"
+    >
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+          Browser tools that never upload your files
+        </h2>
+        <span class="text-xs font-mono text-zinc-500">6 Modules Loaded</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <a
+          href="/pdf-merger/"
+          class="group flex flex-col p-5 border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors"
+        >
+          <div class="flex items-center justify-between mb-4">
+            <svg
+              class="w-5 h-5 text-zinc-100"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+              />
+            </svg>
+            <svg
+              class="w-4 h-4 text-zinc-600 group-hover:text-zinc-300 transition-colors"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M14 5l7 7m0 0l-7 7m7-7H3"
+              />
+            </svg>
+          </div>
+          <h3
+            class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-2"
+          >
+            PDF Merger & Splitter
+          </h3>
+          <p class="text-xs text-zinc-500 leading-relaxed mt-auto">
+            Reorder, combine, split, and extract pages using pdf-lib.
+          </p>
+        </a>
+
+        <a
+          href="/image-compressor/"
+          class="group flex flex-col p-5 border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors"
+        >
+          <div class="flex items-center justify-between mb-4">
+            <svg
+              class="w-5 h-5 text-zinc-100"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+              />
+            </svg>
+            <svg
+              class="w-4 h-4 text-zinc-600 group-hover:text-zinc-300 transition-colors"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M14 5l7 7m0 0l-7 7m7-7H3"
+              />
+            </svg>
+          </div>
+          <h3
+            class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-2"
+          >
+            Image Compressor
+          </h3>
+          <p class="text-xs text-zinc-500 leading-relaxed mt-auto">
+            Compress and resize JPEG, PNG, and WebP via HTML5 Canvas.
+          </p>
+        </a>
+
+        <a
+          href="/audio-trimmer/"
+          class="group flex flex-col p-5 border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors"
+        >
+          <div class="flex items-center justify-between mb-4">
+            <svg
+              class="w-5 h-5 text-zinc-100"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"
+              />
+            </svg>
+            <svg
+              class="w-4 h-4 text-zinc-600 group-hover:text-zinc-300 transition-colors"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M14 5l7 7m0 0l-7 7m7-7H3"
+              />
+            </svg>
+          </div>
+          <h3
+            class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-2"
+          >
+            Audio Cutter
+          </h3>
+          <p class="text-xs text-zinc-500 leading-relaxed mt-auto">
+            Decode, trim precisely, and export audio via Web Audio API.
+          </p>
+        </a>
+
+        <a
+          href="/json-formatter/"
+          class="group flex flex-col p-5 border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors"
+        >
+          <div class="flex items-center justify-between mb-4">
+            <svg
+              class="w-5 h-5 text-zinc-100"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+              />
+            </svg>
+            <svg
+              class="w-4 h-4 text-zinc-600 group-hover:text-zinc-300 transition-colors"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M14 5l7 7m0 0l-7 7m7-7H3"
+              />
+            </svg>
+          </div>
+          <h3
+            class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-2"
+          >
+            JSON & CSV Studio
+          </h3>
+          <p class="text-xs text-zinc-500 leading-relaxed mt-auto">
+            Format, repair, and convert JSON payloads locally.
+          </p>
+        </a>
+
+        <a
+          href="/password-generator/"
+          class="group flex flex-col p-5 border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors"
+        >
+          <div class="flex items-center justify-between mb-4">
+            <svg
+              class="w-5 h-5 text-zinc-100"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+              />
+            </svg>
+            <svg
+              class="w-4 h-4 text-zinc-600 group-hover:text-zinc-300 transition-colors"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M14 5l7 7m0 0l-7 7m7-7H3"
+              />
+            </svg>
+          </div>
+          <h3
+            class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-2"
+          >
+            Cryptography Tools
+          </h3>
+          <p class="text-xs text-zinc-500 leading-relaxed mt-auto">
+            Generate secure passwords, UUIDs, and compute hashes.
+          </p>
+        </a>
+
+        <a
+          href="/background-remover/"
+          class="group flex flex-col p-5 border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors"
+        >
+          <div class="flex items-center justify-between mb-4">
+            <svg
+              class="w-5 h-5 text-zinc-100"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+              />
+            </svg>
+            <svg
+              class="w-4 h-4 text-zinc-600 group-hover:text-zinc-300 transition-colors"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M14 5l7 7m0 0l-7 7m7-7H3"
+              />
+            </svg>
+          </div>
+          <h3
+            class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-2"
+          >
+            Crop & Erase
+          </h3>
+          <p class="text-xs text-zinc-500 leading-relaxed mt-auto">
+            Crop regions or make backgrounds transparent locally.
+          </p>
+        </a>
+      </div>
+
+      <div class="mt-12 flex justify-center">
+        <div
+          class="adsense-slot w-full max-w-[970px] min-h-[90px] bg-zinc-900 border border-zinc-800/50 flex flex-col items-center justify-center overflow-hidden"
+        >
+          <ins
+            class="adsbygoogle"
+            style="display: block"
+            data-ad-client="ca-pub-6573718396125228"
+            data-ad-slot="7071678871"
+            data-ad-format="auto"
+            data-full-width-responsive="true"
+          ></ins>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="architecture"
+      class="border-t border-zinc-200 dark:border-zinc-900 bg-zinc-50 dark:bg-zinc-950 py-16"
+    >
+      <div class="max-w-4xl mx-auto px-4">
+        <h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-6">
+          System Architecture
+        </h2>
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-zinc-600 dark:text-zinc-400"
+        >
+          <div>
+            <h3 class="text-zinc-900 dark:text-zinc-100 font-medium mb-2">
+              The Problem
+            </h3>
+            <p class="leading-relaxed">
+              Most online utility platforms operate by uploading your private
+              files to remote servers. This introduces artificial processing
+              queues, bandwidth constraints, and severe privacy risks for
+              sensitive documents.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-zinc-900 dark:text-zinc-100 font-medium mb-2">
+              The Solution
+            </h3>
+            <p class="leading-relaxed">
+              OpenStackTools shifts the compute entirely to the client. By
+              leveraging modern browser APIs (WebAssembly, WebCrypto, HTML5
+              Canvas), all processing occurs synchronously within your device's
+              RAM.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="faq"
+      class="border-t border-zinc-200 dark:border-zinc-900 py-16"
+    >
+      <div class="max-w-4xl mx-auto px-4">
+        <h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-6">
+          Common questions
+        </h2>
+        <div
+          class="space-y-6 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed"
+        >
+          <div>
+            <h3 class="text-zinc-900 dark:text-zinc-100 font-medium mb-1">
+              Do you upload PDFs or images?
+            </h3>
+            <p>
+              No. Tools read files into this page’s memory, process them with
+              browser APIs, and let you download the result. OpenStackTools does
+              not operate a file-processing server.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-zinc-900 dark:text-zinc-100 font-medium mb-1">
+              Is there an upload size limit?
+            </h3>
+            <p>
+              We do not set a cloud quota. Large files are limited by your
+              device RAM and the browser tab. That is why a “free online PDF
+              merger no upload limit” search matches this architecture.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-zinc-900 dark:text-zinc-100 font-medium mb-1">
+              How do ads work?
+            </h3>
+            <p>
+              Google AdSense loads only after you accept cookies. You can change
+              that anytime with Cookie settings. File tools work whether ads are
+              on or off.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="legal"
+      class="border-t border-zinc-200 dark:border-zinc-900 bg-zinc-50 dark:bg-zinc-950 py-16"
+    >
+      <div class="max-w-4xl mx-auto px-4">
+        <h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-6">
+          Compliance & Governance
+        </h2>
+        <div
+          class="space-y-6 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed"
+        >
+          <div>
+            <h3 class="text-zinc-900 dark:text-zinc-100 font-medium mb-1">
+              Data Minimization
+            </h3>
+            <p>
+              We do not operate backend processing servers. Files loaded into
+              OpenStackTools are processed locally and discarded by your
+              browser's garbage collector upon tab closure. No personal data is
+              collected or transmitted.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-zinc-900 dark:text-zinc-100 font-medium mb-1">
+              Monetization & Cookies
+            </h3>
+            <p>
+              To maintain the platform independently, we utilize Google AdSense.
+              AdSense may use cookies to serve personalized advertisements. No
+              user-identifiable tracking is implemented within the application
+              logic itself.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer
+      class="border-t border-zinc-200 dark:border-zinc-900 bg-zinc-50 dark:bg-zinc-950 py-8 mt-auto"
+    >
+      <div
+        class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500"
+      >
+        <div class="flex flex-wrap items-center gap-3">
+          <span class="font-semibold text-zinc-700 dark:text-zinc-300"
+            >OpenStackTools</span
+          >
+          <span>&mdash;</span>
+          <a
+            href="/privacy-policy/"
+            class="hover:text-zinc-300 transition-colors"
+            >Privacy</a
+          >
+          <a
+            href="/terms-of-service/"
+            class="hover:text-zinc-300 transition-colors"
+            >Terms</a
+          >
+          <a
+            href="/cookie-policy/"
+            class="hover:text-zinc-300 transition-colors"
+            >Cookies</a
+          >
+          <a href="/gdpr-kvkk/" class="hover:text-zinc-300 transition-colors"
+            >GDPR</a
+          >
+          <button
+            type="button"
+            class="hover:text-zinc-300 transition-colors"
+            onclick="window.OSTConsent && OSTConsent.open()"
+          >
+            Cookie settings
+          </button>
+          <span>&mdash;</span>
+          <a
+            href="https://github.com/baban9999ytr/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-zinc-300 transition-colors"
+            >GitHub</a
+          >
+          <a
+            href="https://www.linkedin.com/in/mustafa-goksal-ari/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-zinc-300 transition-colors"
+            >LinkedIn</a
+          >
+        </div>
+        <div class="font-mono text-[11px] text-zinc-600">
+          Execute locally &mdash; MIT
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="/js/app.js"></script>
+  </body>
 </html>

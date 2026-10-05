@@ -1,4 +1,5 @@
 # OpenStackTools 🛠️
+
 > **100% Free, Open-Source, Pure Client-Side Web Utility Platform**
 > No paywalls. No sign-up. No /mo subscriptions. Zero server file uploads.
 
@@ -8,7 +9,7 @@
 
 ---
 
-##  Architectural Privacy Guarantee: ZERO SERVER UPLOADS
+## Architectural Privacy Guarantee: ZERO SERVER UPLOADS
 
 Unlike conventional SaaS utility platforms that charge /mo subscriptions and upload your sensitive contracts, photos, and files to remote cloud servers:
 
@@ -17,7 +18,7 @@ Unlike conventional SaaS utility platforms that charge /mo subscriptions and upl
 
 ---
 
-##  Included 6 Essential Utilities
+## Included 6 Essential Utilities
 
 1. **PDF Merger & Splitter (pdf-lib via CDN)**:
    - Reorder, combine, split, and extract specific page ranges in-memory.
@@ -34,7 +35,7 @@ Unlike conventional SaaS utility platforms that charge /mo subscriptions and upl
 
 ---
 
-##  Internationalization (i18n)
+## Internationalization (i18n)
 
 - Complete support for **English (EN)** and **Turkish (TR)** across all interface labels, instructions, toasts, and legal documents.
 - State persists in localStorage across page reloads.
@@ -44,6 +45,7 @@ Unlike conventional SaaS utility platforms that charge /mo subscriptions and upl
 ## Legal & AdSense Compliance
 
 Includes dedicated regulatory transparency sections:
+
 - **Privacy Policy** (Zero-upload guarantee)
 - **Terms of Service** (MIT License & liability limitations)
 - **Cookie & Ad Policy** (Google AdSense compliance & localStorage usage)
@@ -62,6 +64,6 @@ This project has zero build step requirements and runs natively on any static ho
 
 ---
 
-##  License
+## License
 
 Distributed under the **MIT License**.
