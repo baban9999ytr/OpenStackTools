@@ -51,16 +51,17 @@ Includes dedicated regulatory transparency pages:
 
 ---
 
-## Deployment (GitHub Pages)
+## Deployment (Cloudflare Workers)
 
-This project has zero build step requirements and runs natively on any static host or **GitHub Pages**. Advertising is fail-closed unless the deployment provides its own AdSense publisher ID:
+The GitHub Actions workflow deploys the Worker and static assets using Wrangler. Configure these GitHub repository settings:
 
-1. Fork or push this repository to GitHub.
-2. Go to repository **Settings** -> **Pages**.
-3. Under **Branch**, select main and / (root). Click **Save**.
-4. Your platform will be live instantly!
+- **Secret `CLOUDFLARE_API_TOKEN`** with permission to deploy Workers and static assets.
+- **Variable `CLOUDFLARE_ACCOUNT_ID`** for the target Cloudflare account.
+- In the Cloudflare Worker settings, configure **`OST_ADSENSE_CLIENT`** as a Worker environment variable only if ads should be enabled. This publisher identifier is deployment-managed and must not be committed.
 
-To enable AdSense for a deployment, configure `window.OST_ADSENSE_CLIENT` (for example, as a generated inline configuration script) **before** `/js/consent-banner.js` on every page. Do not commit a publisher ID in this public repository. If the value is missing or malformed, advertising remains disabled. The AdSense script and ad elements are created only after an explicit advertising opt-in; verify consent, Google policy, and international-transfer requirements for your deployment before enabling ads.
+The Worker in `src/index.js` serves static assets through the `ASSETS` binding and replaces `__ADSENSE_PUBLISHER_ID__` in JavaScript responses with `env.OST_ADSENSE_CLIENT`. If the value is missing or malformed, ads remain disabled. `keep_vars = true` preserves dashboard-managed variables during Wrangler deployment. The AdSense script and ad elements are created only after explicit opt-in. Verify consent, Google policy, and international-transfer requirements before enabling advertising.
+
+For local development, use Wrangler with a non-committed `.dev.vars` file or Wrangler secret for `OST_ADSENSE_CLIENT`; never put production values in source control.
 
 ---
 

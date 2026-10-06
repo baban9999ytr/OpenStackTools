@@ -118,7 +118,7 @@
   }
 
   function loadAdSense() {
-    var client = window.OST_ADSENSE_CLIENT;
+    var client = '__ADSENSE_PUBLISHER_ID__';
     if (typeof client !== 'string' || !/^ca-pub-\d+$/.test(client)) {
       console.error('AdSense is disabled: a valid deployment-provided publisher ID is required.');
       return;

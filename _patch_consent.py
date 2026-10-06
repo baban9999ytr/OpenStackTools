@@ -3,11 +3,11 @@ from pathlib import Path
 
 root = Path(r"C:\Users\KRR\Desktop\OpenStackTools\OpenStackTools")
 ads_head = re.compile(
-    r"\s*<script async src=\"https://pagead2\.googlesyndication\.com/pagead/js/adsbygoogle\.js\?client=ca-pub-6573718396125228\"\s*crossorigin=\"anonymous\"></script>",
+    r"\s*<script async src=\"https://pagead2\.googlesyndication\.com/pagead/js/adsbygoogle\.js\?client=ca-pub-\d+\"\s*crossorigin=\"anonymous\"></script>",
     re.I,
 )
 ads_head2 = re.compile(
-    r"\s*<script async src=\"https://pagead2\.googlesyndication\.com/pagead/js/adsbygoogle\.js\?client=ca-pub-6573718396125228\"\s*\n\s*crossorigin=\"anonymous\"></script>",
+    r"\s*<script async src=\"https://pagead2\.googlesyndication\.com/pagead/js/adsbygoogle\.js\?client=ca-pub-\d+\"\s*\n\s*crossorigin=\"anonymous\"></script>",
     re.I,
 )
 push = re.compile(

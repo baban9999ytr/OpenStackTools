@@ -2,7 +2,7 @@
 
 > Free, open-source, client-side web utilities. Files are processed in browser RAM. Nothing is uploaded to a processing server.
 
-OpenStackTools is a static GitHub Pages site. PDF, image, audio, JSON, and WebCrypto tools run locally in the visitor's browser.
+OpenStackTools is deployed as a Cloudflare Worker serving static assets. PDF, image, audio, JSON, and WebCrypto tools run locally in the visitor's browser.
 
 ## Tools
 
@@ -17,8 +17,8 @@ OpenStackTools is a static GitHub Pages site. PDF, image, audio, JSON, and WebCr
 
 - No backend file-processing servers.
 - User files never leave the device as part of a tool pipeline.
-- Hosting telemetry (IP, user-agent) may be logged by GitHub Pages as standard HTTP logs.
-- Advertising is Google AdSense (ca-pub-6573718396125228) and is loaded only after ost_consent_given=true.
+- Hosting/CDN telemetry (IP, user-agent) may be processed by Cloudflare and asset providers as standard connection data.
+- Google AdSense is deployment-configured and is loaded only after an explicit advertising opt-in.
 - Languages: English and Turkish (client-side i18n, ?lang=en | ?lang=tr).
 
 ## Legal

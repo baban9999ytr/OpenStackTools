@@ -223,6 +223,8 @@ Thumbs.db
 Desktop.ini
 
 # Secrets & Environment variables
+.dev.vars
+.dev.vars.*
 
 !.env.example
 secrets.h
