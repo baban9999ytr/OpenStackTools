@@ -164,10 +164,8 @@
 
     adsScriptPromise.then(function () {
       if (readChoice() !== true) return;
-      document.querySelectorAll('ins.adsbygoogle:not([data-ost-pushed])').forEach(function () {
+      document.querySelectorAll('ins.adsbygoogle:not([data-ost-pushed])').forEach(function (slot) {
         (window.adsbygoogle = window.adsbygoogle || []).push({});
-      });
-      document.querySelectorAll('ins.adsbygoogle').forEach(function (slot) {
         slot.setAttribute('data-ost-pushed', 'true');
       });
     }).catch(function (error) {

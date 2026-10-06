@@ -26,7 +26,7 @@ export default {
       return response;
     }
 
-    const source = await response.text();
+    const source = await response.clone().text();
     const token = isJavaScript ? ADSENSE_TOKEN : ADSENSE_AUTH_TOKEN;
     if (!source.includes(token)) {
       return response;
