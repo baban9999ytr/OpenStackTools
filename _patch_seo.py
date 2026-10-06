@@ -1,9 +1,9 @@
-from pathlib import Path
 import re
+from pathlib import Path
 
 root = Path(r"C:\Users\KRR\Desktop\OpenStackTools\OpenStackTools")
 
-DOMAIN = "https://openstacktool.com"  
+DOMAIN = "https://openstacktool.com"
 
 pages = {
     "pdf-merger": {
@@ -74,7 +74,7 @@ pages = {
     },
 }
 
-seo_tpl = '''  <title>{title}</title>
+seo_tpl = """  <title>{title}</title>
   <meta name="description" content="{desc}">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="{domain}{path}">
@@ -111,14 +111,14 @@ seo_tpl = '''  <title>{title}</title>
       }}
     ]
   }}
-  </script>'''
+  </script>"""
 
-faq_html = '''
+faq_html = """
         <article class="mt-8 border border-zinc-200 dark:border-zinc-900 p-6 bg-zinc-50 dark:bg-zinc-950 text-xs text-zinc-600 dark:text-zinc-500 space-y-3">
           <h2 class="text-sm font-semibold text-zinc-300">FAQ</h2>
           <p class="leading-relaxed"><strong class="text-zinc-400">{faq_q}</strong> {faq_a}</p>
         </article>
-'''
+"""
 
 for slug, meta in pages.items():
     file_path = root / slug / "index.html"
@@ -137,7 +137,9 @@ for slug, meta in pages.items():
         flags=re.S,
     )
 
-    text = text.replace("flex flex-col lg:flex-row gap-8", "flex flex-col lg:flex-row gap-12")
+    text = text.replace(
+        "flex flex-col lg:flex-row gap-8", "flex flex-col lg:flex-row gap-12"
+    )
 
     old_h1_str = f'<h1 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">{meta["old_h1"]}</h1>'
     new_h1_str = f'<h1 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">{meta["h1"]}</h1>'
@@ -153,13 +155,21 @@ for slug, meta in pages.items():
     )
 
     if "FAQ</h2>" not in text:
-        marker = '      </div>\n\n      <!-- SIDEBAR ADSLOT'
+        marker = "      </div>\n\n      <!-- SIDEBAR ADSLOT"
         if marker in text:
-            text = text.replace(marker, faq_html.format(**meta) + "\n      </div>\n\n      <!-- SIDEBAR ADSLOT", 1)
+            text = text.replace(
+                marker,
+                faq_html.format(**meta) + "\n      </div>\n\n      <!-- SIDEBAR ADSLOT",
+                1,
+            )
         else:
-            marker2 = '      </div>\n\n      <aside'
+            marker2 = "      </div>\n\n      <aside"
             if marker2 in text:
-                text = text.replace(marker2, faq_html.format(**meta) + "\n      </div>\n\n      <aside", 1)
+                text = text.replace(
+                    marker2,
+                    faq_html.format(**meta) + "\n      </div>\n\n      <aside",
+                    1,
+                )
 
     file_path.write_text(text, encoding="utf-8")
     print(f"Successfully patched SEO for: {slug}")
