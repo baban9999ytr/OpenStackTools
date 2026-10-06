@@ -1,9 +1,7 @@
 name = "openstacktools"
 main = "src/index.js"
-compatibility_date = "2026-10-07"
-keep_vars = true
+compatibility_date = "2026-10-01"
 
 [assets]
 directory = "."
 binding = "ASSETS"
-run_worker_first = true
