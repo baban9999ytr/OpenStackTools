@@ -28,6 +28,16 @@ export default {
 
     const source = await response.text();
     const token = isJavaScript ? ADSENSE_TOKEN : ADSENSE_AUTH_TOKEN;
+    if (isJavaScript) {
+      console.info('[adsense-injection-check]', {
+        path: new URL(request.url).pathname,
+        contentType,
+        isJavaScript,
+        clientConfigured: Boolean(env.OST_ADSENSE_CLIENT),
+        clientFormatValid: /^ca-pub-\d+$/.test(env.OST_ADSENSE_CLIENT || ''),
+        tokenPresent: source.includes(ADSENSE_TOKEN),
+      });
+    }
 
     if (!source.includes(token)) {
       return response;

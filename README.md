@@ -57,7 +57,8 @@ The GitHub Actions workflow deploys the Worker and static assets using Wrangler.
 
 - **Secret `CLOUDFLARE_API_TOKEN`** with permission to deploy Workers and static assets.
 - **Secret `CLOUDFLARE_ACCOUNT_ID`** for the target Cloudflare account.
-- In the Cloudflare Worker settings, configure **`OST_ADSENSE_CLIENT`** as a Worker environment variable only if ads should be enabled. This publisher identifier is deployment-managed and must not be committed.
+- Configure the `openstacktool.com` custom domain for the `openstacktools` Worker. The Wrangler configuration declares this custom domain and Worker-first asset routing.
+- In the Cloudflare Worker settings for the **Production** environment, configure **`OST_ADSENSE_CLIENT`** as a Worker environment variable only if ads should be enabled. This publisher identifier is deployment-managed and must not be committed.
 
 The Worker in `src/index.js` serves static assets through the `ASSETS` binding and replaces `__ADSENSE_PUBLISHER_ID__` in JavaScript responses with `env.OST_ADSENSE_CLIENT`. If the value is missing or malformed, ads remain disabled. `keep_vars = true` preserves dashboard-managed variables during Wrangler deployment. The AdSense script and ad elements are created only after explicit opt-in. Verify consent, Google policy, and international-transfer requirements before enabling advertising.
 
