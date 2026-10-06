@@ -5,6 +5,7 @@
   var STORAGE_KEY = 'ost_consent_given';
   var CONSENT_VERSION = '2026-10-07-v1';
   var adsScriptPromise = null;
+  var adsInitialized = false;
 
   var COPY = {
     en: {
@@ -118,11 +119,17 @@
   }
 
   function loadAdSense() {
+    if (adsInitialized) {
+      return;
+    }
+
     var client = '__ADSENSE_PUBLISHER_ID__';
     if (typeof client !== 'string' || !/^ca-pub-\d+$/.test(client)) {
       console.error('AdSense is disabled: a valid deployment-provided publisher ID is required.');
       return;
     }
+
+    adsInitialized = true;
 
     document.querySelectorAll('.adsense-slot[data-ad-slot]').forEach(function (container) {
       var slotId = container.getAttribute('data-ad-slot');
