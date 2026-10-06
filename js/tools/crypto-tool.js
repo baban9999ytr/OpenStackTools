@@ -54,30 +54,53 @@
 
   function generateSecurePassword() {
     const len = parseInt(passLengthInput.value, 10);
-    const lowercase = 'abcdefghijklmnopqrstuvwxyz';
-    let charset = lowercase;
-    if (incUpper.checked) charset += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    if (incNumbers.checked) charset += '0123456789';
-    if (incSymbols.checked) charset += '!@#$%^&*()_+~|}{[]:;?><,./-=';
+    const groups = ['abcdefghijklmnopqrstuvwxyz'];
+    if (incUpper.checked) groups.push('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+    if (incNumbers.checked) groups.push('0123456789');
+    if (incSymbols.checked) groups.push('!@#$%^&*()_+~|}{[]:;?><,./-=');
 
-    const randomVals = new Uint32Array(len);
-    window.crypto.getRandomValues(randomVals);
-    let pass = '';
-    for (let i = 0; i < len; i++) {
-      pass += charset[randomVals[i] % charset.length];
+    if (!Number.isSafeInteger(len) || len < groups.length) {
+      throw new RangeError('Password length must be at least the number of selected character classes.');
     }
-    passOutput.value = pass;
+
+    function randomInt(maxExclusive) {
+      const range = 0x100000000;
+      const limit = range - (range % maxExclusive);
+      const word = new Uint32Array(1);
+      do {
+        window.crypto.getRandomValues(word);
+      } while (word[0] >= limit);
+      return word[0] % maxExclusive;
+    }
+
+    const allCharacters = groups.join('');
+    const characters = groups.map(group => group[randomInt(group.length)]);
+    while (characters.length < len) {
+      characters.push(allCharacters[randomInt(allCharacters.length)]);
+    }
+    for (let i = characters.length - 1; i > 0; i--) {
+      const j = randomInt(i + 1);
+      [characters[i], characters[j]] = [characters[j], characters[i]];
+    }
+    passOutput.value = characters.join('');
   }
 
   function generateUUID() {
     if (crypto.randomUUID) {
       uuidOutput.value = crypto.randomUUID();
     } else {
-      uuidOutput.value = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        const r = Math.random() * 16 | 0;
-        const v = c === 'x' ? r : (r & 0x3 | 0x8);
-        return v.toString(16);
-      });
+      const bytes = new Uint8Array(16);
+      window.crypto.getRandomValues(bytes);
+      bytes[6] = (bytes[6] & 0x0f) | 0x40;
+      bytes[8] = (bytes[8] & 0x3f) | 0x80;
+      const hex = bufferToHex(bytes);
+      uuidOutput.value = [
+        hex.slice(0, 8),
+        hex.slice(8, 12),
+        hex.slice(12, 16),
+        hex.slice(16, 20),
+        hex.slice(20)
+      ].join('-');
     }
   }
 
@@ -148,7 +171,8 @@
     }
     function convertToWordArray(string) {
       let lWordCount;
-      const lMessageLength = string.length;
+      const bytes = new TextEncoder().encode(string);
+      const lMessageLength = bytes.length;
       const lNumberOfWords_temp1 = lMessageLength + 8;
       const lNumberOfWords_temp2 = (lNumberOfWords_temp1 - (lNumberOfWords_temp1 % 64)) / 64;
       const lNumberOfWords = (lNumberOfWords_temp2 + 1) * 16;
@@ -158,7 +182,7 @@
       while (lByteCount < lMessageLength) {
         lWordCount = (lByteCount - (lByteCount % 4)) / 4;
         lBytePosition = (lByteCount % 4) * 8;
-        lWordArray[lWordCount] = (lWordArray[lWordCount] | (string.charCodeAt(lByteCount) << lBytePosition));
+        lWordArray[lWordCount] = (lWordArray[lWordCount] | (bytes[lByteCount] << lBytePosition));
         lByteCount++;
       }
       lWordCount = (lByteCount - (lByteCount % 4)) / 4;
@@ -243,7 +267,7 @@
       b = II(b, c, d, a, x[k + 5], S44, 0xFC93A039);
       a = II(a, b, c, d, x[k + 12], S41, 0x655B59C3);
       d = II(d, a, b, c, x[k + 3], S42, 0x8F0CCC92);
-      c = II(d, a, b, c, x[k + 10], S43, 0xFFEFF47D); 
+      c = II(c, d, a, b, x[k + 10], S43, 0xFFEFF47D);
       b = II(b, c, d, a, x[k + 1], S44, 0x85845DD1);
       a = II(a, b, c, d, x[k + 8], S41, 0x6FA87E4F);
       d = II(d, a, b, c, x[k + 15], S42, 0xFE2CE6E0);

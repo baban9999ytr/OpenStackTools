@@ -1,5 +1,5 @@
 # OpenStackTools 🛠️
-> **100% Free, Open-Source, Pure Client-Side Web Utility Platform**
+> **Free, client-side web utilities with an MIT-licensed public code repository**
 > No paywalls. No sign-up. No /mo subscriptions. Zero server file uploads.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg)](LICENSE)
@@ -41,11 +41,11 @@ Unlike conventional SaaS utility platforms that charge /mo subscriptions and upl
 
 ---
 
-## Legal & AdSense Compliance
+## Legal & AdSense Configuration
 
-Includes dedicated regulatory transparency sections:
+Includes dedicated regulatory transparency pages:
 - **Privacy Policy** (Zero-upload guarantee)
-- **Terms of Service** (MIT License & liability limitations)
+- **Terms of Service** (repository license distinction & liability limitations)
 - **Cookie & Ad Policy** (Google AdSense compliance & localStorage usage)
 - **GDPR / KVKK Statement** (Data Minimization by Architecture declaration)
 
@@ -53,15 +53,17 @@ Includes dedicated regulatory transparency sections:
 
 ## Deployment (GitHub Pages)
 
-This project has zero build step requirements and runs natively on any static host or **GitHub Pages**:
+This project has zero build step requirements and runs natively on any static host or **GitHub Pages**. Advertising is fail-closed unless the deployment provides its own AdSense publisher ID:
 
 1. Fork or push this repository to GitHub.
 2. Go to repository **Settings** -> **Pages**.
 3. Under **Branch**, select main and / (root). Click **Save**.
 4. Your platform will be live instantly!
 
+To enable AdSense for a deployment, configure `window.OST_ADSENSE_CLIENT` (for example, as a generated inline configuration script) **before** `/js/consent-banner.js` on every page. Do not commit a publisher ID in this public repository. If the value is missing or malformed, advertising remains disabled. The AdSense script and ad elements are created only after an explicit advertising opt-in; verify consent, Google policy, and international-transfer requirements for your deployment before enabling ads.
+
 ---
 
 ##  License
 
-Distributed under the **MIT License**.
+The public repository code is distributed under the **MIT License**, as stated in [LICENSE](LICENSE). The MIT license does not grant rights to the hosted website, OpenStackTools name or trademarks, hosted infrastructure, or separately licensed third-party scripts and services.

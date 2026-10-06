@@ -1,4 +1,5 @@
 ﻿import { t } from '../i18n.js';
+import { downloadBlob, sanitizeFilename } from '../file-utils.js';
 
 export function initAudioTool() {
   const dropZone = document.getElementById('av-drop-zone');
@@ -175,13 +176,11 @@ export function initAudioTool() {
     }
 
     const wavBlob = bufferToWaveBlob(trimmedBuffer, frameCount);
-    const filename = 	rimmed_.wav;
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(wavBlob);
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    const sourceName = sanitizeFilename(originalFile ? originalFile.name : 'audio');
+    const extensionIndex = sourceName.lastIndexOf('.');
+    const stem = extensionIndex > 0 ? sourceName.slice(0, extensionIndex) : sourceName;
+    const filename = 'trimmed_' + stem + '.wav';
+    downloadBlob(wavBlob, filename);
     statusEl.textContent = 'Audio trimmed and exported successfully!';
   });
 
