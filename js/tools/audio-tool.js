@@ -9,6 +9,10 @@ export function initAudioTool() {
   const startTimeInput = document.getElementById('av-start-time');
   const endTimeInput = document.getElementById('av-end-time');
   const durationEl = document.getElementById('av-duration');
+  const startRange = document.getElementById('av-start-range');
+  const endRange = document.getElementById('av-end-range');
+  const currentTimeEl = document.getElementById('av-current-time');
+  const selectedDurationEl = document.getElementById('av-selected-duration');
   const playBtn = document.getElementById('av-play-btn');
   const stopBtn = document.getElementById('av-stop-btn');
   const exportBtn = document.getElementById('av-export-btn');
@@ -21,8 +25,23 @@ export function initAudioTool() {
   let currentSource = null;
   let originalFile = null;
   let isPlaying = false;
+  let playbackStartedAt = 0;
+  let playbackStart = 0;
+  let playbackEnd = 0;
+  let pausedAt = null;
+  let animationFrame = 0;
 
-  dropZone.addEventListener('click', () => fileInput.click());
+  dropZone.setAttribute('role', 'button');
+  dropZone.tabIndex = 0;
+  dropZone.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      fileInput.click();
+    }
+  });
+  dropZone.addEventListener('click', (event) => {
+    if (event.target !== fileInput) fileInput.click();
+  });
   dropZone.addEventListener('dragover', (e) => {
     e.preventDefault();
     dropZone.classList.add('dragover');
@@ -42,6 +61,8 @@ export function initAudioTool() {
   });
 
   async function loadAudio(file) {
+    if (isPlaying) stopPlayback();
+    pausedAt = null;
     originalFile = file;
     statusEl.textContent = t('processing');
     try {
@@ -54,8 +75,14 @@ export function initAudioTool() {
       startTimeInput.value = '0.00';
       endTimeInput.value = audioBuffer.duration.toFixed(2);
       durationEl.textContent = audioBuffer.duration.toFixed(2) + 's';
+      startRange.max = audioBuffer.duration.toFixed(2);
+      endRange.max = audioBuffer.duration.toFixed(2);
+      startRange.value = '0';
+      endRange.value = audioBuffer.duration.toFixed(2);
+      currentTimeEl.textContent = '0.00s';
 
       controlPanel.classList.remove('hidden');
+      updateSelection();
       drawWaveform();
       statusEl.textContent = 'Audio decoded (' + audioBuffer.numberOfChannels + ' channels, ' + audioBuffer.sampleRate + ' Hz)';
     } catch (err) {
@@ -64,7 +91,7 @@ export function initAudioTool() {
     }
   }
 
-  function drawWaveform() {
+  function drawWaveform(playheadTime = null) {
     if (!audioBuffer || !canvas) return;
     const ctx = canvas.getContext('2d');
     const width = canvas.width = canvas.parentElement.clientWidth || 700;
@@ -114,40 +141,123 @@ export function initAudioTool() {
     ctx.moveTo(startX, 0); ctx.lineTo(startX, height);
     ctx.moveTo(endX, 0); ctx.lineTo(endX, height);
     ctx.stroke();
+
+    if (playheadTime !== null) {
+      const playheadX = Math.max(0, Math.min(width, (playheadTime / totalDuration) * width));
+      ctx.strokeStyle = '#f4f4f5';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(playheadX, 0);
+      ctx.lineTo(playheadX, height);
+      ctx.stroke();
+    }
   }
 
-  startTimeInput.addEventListener('input', drawWaveform);
-  endTimeInput.addEventListener('input', drawWaveform);
+  function updateSelection(changed = '') {
+    if (!audioBuffer) return;
+    const total = audioBuffer.duration;
+    let start = Math.max(0, Math.min(total, Number.parseFloat(startTimeInput.value) || 0));
+    let end = Math.max(0, Math.min(total, Number.parseFloat(endTimeInput.value) || total));
+    const epsilon = Math.min(0.01, total);
+    if (end <= start) {
+      if (changed === 'start') end = Math.min(total, start + epsilon);
+      else start = Math.max(0, end - epsilon);
+    }
+    startTimeInput.value = start.toFixed(2);
+    endTimeInput.value = end.toFixed(2);
+    startRange.value = String(start);
+    endRange.value = String(end);
+    selectedDurationEl.textContent = `${Math.max(0, end - start).toFixed(2)}s`;
+    drawWaveform(isPlaying ? getCurrentPlaybackTime() : null);
+  }
+
+  startTimeInput.addEventListener('input', () => updateSelection('start'));
+  endTimeInput.addEventListener('input', () => updateSelection('end'));
+  startRange.addEventListener('input', () => {
+    startTimeInput.value = startRange.value;
+    updateSelection('start');
+  });
+  endRange.addEventListener('input', () => {
+    endTimeInput.value = endRange.value;
+    updateSelection('end');
+  });
 
   playBtn.addEventListener('click', () => {
     if (!audioBuffer) return;
-    if (isPlaying) stopPlayback();
+    if (isPlaying) {
+      pausedAt = getCurrentPlaybackTime();
+      stopPlayback(false);
+      return;
+    }
 
-    const start = Math.max(0, parseFloat(startTimeInput.value) || 0);
+    const selectedStart = Math.max(0, parseFloat(startTimeInput.value) || 0);
     const end = Math.min(audioBuffer.duration, parseFloat(endTimeInput.value) || audioBuffer.duration);
-    const duration = Math.max(0, end - start);
+    const start = pausedAt !== null && pausedAt >= selectedStart && pausedAt < end ? pausedAt : selectedStart;
+    if (start >= end) pausedAt = null;
+    const playbackFrom = start >= end ? selectedStart : start;
+    const duration = Math.max(0, end - playbackFrom);
+    if (duration <= 0) return;
 
-    currentSource = audioCtx.createBufferSource();
-    currentSource.buffer = audioBuffer;
-    currentSource.connect(audioCtx.destination);
-    currentSource.start(0, start, duration);
+    const source = audioCtx.createBufferSource();
+    currentSource = source;
+    source.buffer = audioBuffer;
+    source.connect(audioCtx.destination);
+    source.start(0, playbackFrom, duration);
     isPlaying = true;
+    pausedAt = null;
+    playbackStartedAt = audioCtx.currentTime;
+    playbackStart = playbackFrom;
+    playbackEnd = end;
     playBtn.classList.add('bg-zinc-800');
+    playBtn.textContent = 'Pause';
+    playBtn.setAttribute('aria-pressed', 'true');
+    updatePlaybackDisplay();
 
-    currentSource.onended = () => {
+    source.onended = () => {
+      if (currentSource !== source) return;
+      const completedSelection = isPlaying;
       isPlaying = false;
+      currentSource = null;
+      cancelAnimationFrame(animationFrame);
       playBtn.classList.remove('bg-zinc-800');
+      playBtn.textContent = 'Play Selection';
+      playBtn.setAttribute('aria-pressed', 'false');
+      if (completedSelection) currentTimeEl.textContent = `${end.toFixed(2)}s`;
+      if (completedSelection) pausedAt = null;
+      drawWaveform();
     };
   });
 
   stopBtn.addEventListener('click', stopPlayback);
 
-  function stopPlayback() {
+  function stopPlayback(reset = true) {
     if (currentSource && isPlaying) {
       try { currentSource.stop(); } catch(e) {}
       isPlaying = false;
+      cancelAnimationFrame(animationFrame);
       playBtn.classList.remove('bg-zinc-800');
+      playBtn.textContent = 'Play Selection';
+      playBtn.setAttribute('aria-pressed', 'false');
+      if (reset) {
+        pausedAt = null;
+        currentTimeEl.textContent = `${(parseFloat(startTimeInput.value) || 0).toFixed(2)}s`;
+      } else {
+        currentTimeEl.textContent = `${(pausedAt ?? playbackStart).toFixed(2)}s`;
+      }
+      drawWaveform();
     }
+  }
+
+  function getCurrentPlaybackTime() {
+    return Math.min(playbackEnd, playbackStart + Math.max(0, audioCtx.currentTime - playbackStartedAt));
+  }
+
+  function updatePlaybackDisplay() {
+    if (!isPlaying) return;
+    const currentTime = getCurrentPlaybackTime();
+    currentTimeEl.textContent = `${currentTime.toFixed(2)}s`;
+    drawWaveform(currentTime);
+    if (currentTime < playbackEnd) animationFrame = requestAnimationFrame(updatePlaybackDisplay);
   }
 
   exportBtn.addEventListener('click', () => {
@@ -159,7 +269,7 @@ export function initAudioTool() {
     const duration = end - start;
 
     if (duration <= 0) {
-      alert('End time must be greater than start time.');
+      statusEl.textContent = 'Choose an end time after the start time.';
       return;
     }
 

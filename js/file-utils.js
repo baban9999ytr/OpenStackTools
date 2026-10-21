@@ -10,7 +10,6 @@ export function sanitizeFilename(input, fallback = 'download') {
 
   return basename || fallback;
 }
-
 export function downloadBlob(blob, filename) {
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');

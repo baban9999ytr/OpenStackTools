@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <title>Portfolio | Mustafa Göksal — OpenStackTools</title>
+  <meta name="description" content="Software projects by Mustafa Göksal, including OpenStackTools: a collection of privacy-conscious browser utilities built for the open web.">
+  <link rel="canonical" href="https://openstacktool.com/portfolio/">
+  <link rel="alternate" hreflang="en" href="https://openstacktool.com/portfolio/?lang=en">
+  <link rel="alternate" hreflang="tr" href="https://openstacktool.com/portfolio/?lang=tr">
+  <link rel="alternate" hreflang="x-default" href="https://openstacktool.com/portfolio/">
+  <meta property="og:type" content="profile">
+  <meta property="og:site_name" content="OpenStackTools">
+  <meta property="og:title" content="Portfolio | Mustafa Göksal — OpenStackTools">
+  <meta property="og:description" content="Software projects and practical digital products for the open web.">
+  <meta property="og:url" content="https://openstacktool.com/portfolio/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Portfolio | Mustafa Göksal — OpenStackTools">
+  <meta name="twitter:description" content="Software projects and practical digital products for the open web.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Mustafa Göksal",
+    "jobTitle": "Independent Software Developer",
+    "url": "https://openstacktool.com/portfolio/",
+    "sameAs": ["https://github.com/baban9999ytr/", "https://www.linkedin.com/in/mustafa-goksal-ari/"],
+    "knowsAbout": ["JavaScript", "HTML", "CSS", "Web APIs", "Python", "Cloudflare Workers"]
+  }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { zinc: { 850: '#1e1e24', 950: '#09090b' } } } }
+    };
+  </script>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-300 min-h-screen flex flex-col font-sans antialiased">
+  <header class="site-header sticky top-0 z-40 w-full bg-white/90 dark:bg-zinc-950/90 border-b border-zinc-200 dark:border-zinc-900">
+    <div class="site-header-inner max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3" aria-label="OpenStackTools home">
+        <span class="w-6 h-6 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-950 flex items-center justify-center font-bold font-mono text-[10px]">OST</span>
+        <span class="font-semibold text-sm text-zinc-900 dark:text-zinc-100">OpenStackTools</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm" aria-label="Main navigation">
+        <a href="/#tools-grid" class="text-zinc-600 dark:text-zinc-300 hover:text-sky-600 dark:hover:text-sky-300" data-i18n="nav_tools">Tools</a>
+        <a href="/#privacy" class="text-zinc-600 dark:text-zinc-300 hover:text-sky-600 dark:hover:text-sky-300" data-i18n="nav_privacy">Privacy</a>
+        <a href="/portfolio/" aria-current="page" class="text-zinc-900 dark:text-zinc-100 font-medium" data-i18n="nav_portfolio">Portfolio</a>
+      </nav>
+      <details class="mobile-site-nav md:hidden">
+        <summary data-i18n="nav_menu">Menu</summary>
+        <div class="mobile-site-nav-panel">
+          <a href="/#tools-grid" data-i18n="nav_tools">Tools</a>
+          <a href="/#privacy" data-i18n="nav_privacy">Privacy</a>
+          <a href="/portfolio/" data-i18n="nav_portfolio">Portfolio</a>
+          <a href="https://github.com/baban9999ytr/OpenStackTools" target="_blank" rel="noopener noreferrer" data-i18n="nav_source">Source on GitHub</a>
+        </div>
+      </details>
+      <div class="site-header-controls flex items-center space-x-3">
+        <button id="lang-toggle-btn" class="px-2 py-1 border border-zinc-300 dark:border-zinc-700 text-xs font-mono">TR</button>
+        <button id="ost-theme-toggle-btn" class="px-2 py-1 border border-zinc-300 dark:border-zinc-700 text-xs"><span id="ost-theme-icon">Light</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl w-full mx-auto px-4">
+    <section class="portfolio-hero py-20 sm:py-28">
+      <p class="home-eyebrow mb-5" data-i18n="portfolio_eyebrow">SOFTWARE · OPEN WEB · PRIVACY</p>
+      <h1 class="max-w-4xl text-4xl sm:text-6xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 leading-tight mb-6" data-i18n="portfolio_title">Building useful software for the open web.</h1>
+      <p class="max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400 mb-8" data-i18n="portfolio_intro">I build practical web tools and digital products, with care for privacy, clarity, and the people using them.</p>
+      <div class="flex flex-wrap gap-3">
+        <a class="home-primary-cta" href="https://github.com/baban9999ytr/" target="_blank" rel="noopener noreferrer" data-i18n="portfolio_github">View GitHub</a>
+        <a class="home-secondary-cta" href="https://www.linkedin.com/in/mustafa-goksal-ari/" target="_blank" rel="noopener noreferrer" data-i18n="portfolio_linkedin">View LinkedIn</a>
+      </div>
+    </section>
+
+    <section class="portfolio-feature border-t border-zinc-200 dark:border-zinc-800 py-14 sm:py-20" aria-labelledby="portfolio-feature-title">
+      <div class="grid lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-20">
+        <div>
+          <p class="home-eyebrow mb-3" data-i18n="portfolio_feature_label">FEATURED PROJECT</p>
+          <h2 id="portfolio-feature-title" class="text-3xl sm:text-4xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 mb-5">OpenStackTools</h2>
+          <p class="text-base leading-relaxed text-zinc-600 dark:text-zinc-400 mb-7" data-i18n="portfolio_project_summary">A set of browser utilities for everyday file and developer tasks. Files are processed on the device, so they do not need to be uploaded to an OpenStackTools file-processing server.</p>
+          <a class="portfolio-text-link" href="/" data-i18n="portfolio_visit">Explore OpenStackTools <span aria-hidden="true">→</span></a>
+          <a class="portfolio-text-link ml-5" href="https://github.com/baban9999ytr/OpenStackTools" target="_blank" rel="noopener noreferrer" data-i18n="portfolio_source">Read the source <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-x-8 gap-y-7">
+          <article><h3 class="portfolio-detail-title" data-i18n="portfolio_problem_title">The problem</h3><p class="portfolio-detail-copy" data-i18n="portfolio_problem">Simple file tasks often require sending personal files to a remote service or creating an account.</p></article>
+          <article><h3 class="portfolio-detail-title" data-i18n="portfolio_approach_title">The approach</h3><p class="portfolio-detail-copy" data-i18n="portfolio_approach">Keep file handling in the browser and make the workflow understandable before a user selects a file.</p></article>
+          <article><h3 class="portfolio-detail-title" data-i18n="portfolio_capabilities_title">What it does</h3><p class="portfolio-detail-copy" data-i18n="portfolio_capabilities">Merge and split PDFs, compress images, trim audio, format JSON and CSV, generate passwords and hashes, and erase image backgrounds by color.</p></article>
+          <article><h3 class="portfolio-detail-title" data-i18n="portfolio_challenges_title">Engineering considerations</h3><p class="portfolio-detail-copy" data-i18n="portfolio_challenges">Browser memory and file-format constraints shape each workflow. The site explains these practical limits while the processing remains on-device.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-zinc-200 dark:border-zinc-800 py-14 sm:py-20" aria-labelledby="portfolio-stack-title">
+      <div class="grid md:grid-cols-[0.7fr_1.3fr] gap-8">
+        <div><p class="home-eyebrow mb-3" data-i18n="portfolio_stack_label">TOOLS & TECHNOLOGIES</p><h2 id="portfolio-stack-title" class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100" data-i18n="portfolio_stack_title">Built with the web platform.</h2></div>
+        <div class="portfolio-stack-list">
+          <p><strong data-i18n="portfolio_stack_interface">Product interface</strong><span>HTML · CSS · JavaScript</span></p>
+          <p><strong data-i18n="portfolio_stack_browser">Browser processing</strong><span>Canvas · Web Audio · WebCrypto · pdf-lib</span></p>
+          <p><strong data-i18n="portfolio_stack_delivery">Delivery</strong><span>Cloudflare Workers · Static assets</span></p>
+          <p><strong data-i18n="portfolio_stack_python">Additional project code</strong><span>Python</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-zinc-200 dark:border-zinc-800 py-14 sm:py-20" aria-labelledby="portfolio-principles-title">
+      <p class="home-eyebrow mb-3" data-i18n="portfolio_principles_label">WORKING PRINCIPLES</p>
+      <h2 id="portfolio-principles-title" class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100 mb-8" data-i18n="portfolio_principles_title">Useful first. Thoughtful by default.</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <p class="portfolio-principle" data-i18n="portfolio_principle_practical">Solve a real task with a clear, focused workflow.</p>
+        <p class="portfolio-principle" data-i18n="portfolio_principle_privacy">Keep privacy decisions visible and technically precise.</p>
+        <p class="portfolio-principle" data-i18n="portfolio_principle_accessible">Make the web experience work for more people and devices.</p>
+        <p class="portfolio-principle" data-i18n="portfolio_principle_open">Share and inspect code where open source fits.</p>
+      </div>
+    </section>
+
+    <section class="portfolio-contact border-t border-zinc-200 dark:border-zinc-800 py-14 sm:py-20" aria-labelledby="portfolio-contact-title">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
+        <div><p class="home-eyebrow mb-3" data-i18n="portfolio_contact_label">CONTACT</p><h2 id="portfolio-contact-title" class="text-3xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3" data-i18n="portfolio_contact_title">Have a practical idea to build?</h2><a class="portfolio-text-link" href="mailto:gogsalmustafa19@gmail.com">gogsalmustafa19@gmail.com</a></div>
+        <div class="flex gap-5 text-sm"><a class="portfolio-text-link" href="https://github.com/baban9999ytr/" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a class="portfolio-text-link" href="https://www.linkedin.com/in/mustafa-goksal-ari/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-zinc-200 dark:border-zinc-900 py-7 mt-auto">
+    <div class="max-w-6xl mx-auto px-4 flex flex-wrap items-center justify-between gap-4 text-xs text-zinc-500">
+      <div class="flex flex-wrap gap-4"><a href="/" class="hover:text-zinc-900 dark:hover:text-zinc-100">OpenStackTools</a><a href="/privacy-policy/" data-i18n="footer_privacy">Privacy</a><a href="/terms-of-service/" data-i18n="footer_terms">Terms</a><a href="/cookie-policy/" data-i18n="footer_cookies">Cookies</a></div>
+      <span>Mustafa Göksal · <a href="mailto:gogsalmustafa19@gmail.com">gogsalmustafa19@gmail.com</a></span>
+    </div>
+  </footer>
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

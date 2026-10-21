@@ -72,8 +72,8 @@
     </div>
   </div>
 
-  <header class="sticky top-0 z-40 w-full backdrop-blur-md bg-white/80 dark:bg-zinc-950/80 border-b border-zinc-200 dark:border-zinc-900">
-    <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+  <header class="site-header sticky top-0 z-40 w-full backdrop-blur-md bg-white/80 dark:bg-zinc-950/80 border-b border-zinc-200 dark:border-zinc-900">
+    <div class="site-header-inner max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
       <a href="/" class="flex items-center space-x-3">
         <div class="w-6 h-6 bg-zinc-100 text-zinc-950 flex items-center justify-center font-bold font-mono text-[10px]">
           OST</div>
@@ -119,7 +119,7 @@
             </a>
             <a href="/background-remover/"
               class="block px-4 py-2.5 hover:bg-zinc-900 transition-colors border-t border-zinc-900">
-              <div class="text-xs font-semibold text-zinc-800 dark:text-zinc-200">Crop & Erase</div>
+              <div class="text-xs font-semibold text-zinc-800 dark:text-zinc-200">Crop & Color Erase</div>
               <div class="text-[11px] text-zinc-500">Color key transparency & crop</div>
             </a>
           </div>
@@ -151,11 +151,30 @@
           </div>
         </div>
 
+        <a href="/portfolio/" class="text-zinc-300 hover:text-zinc-100 transition-colors" data-i18n="nav_portfolio">Portfolio</a>
         <a href="https://github.com/baban9999ytr/OpenStackTools" target="_blank" rel="noopener noreferrer"
           class="hover:text-zinc-100 transition-colors text-zinc-300">Source</a>
       </nav>
 
-      <div class="flex items-center space-x-3">
+      <details class="mobile-site-nav md:hidden">
+
+        <summary data-i18n="nav_menu">Menu</summary>
+
+        <div class="mobile-site-nav-panel">
+
+          <a href="/#tools-grid" data-i18n="nav_tools">Tools</a>
+
+          <a href="/#privacy" data-i18n="nav_privacy">Privacy</a>
+
+          <a href="/portfolio/" data-i18n="nav_portfolio">Portfolio</a>
+
+          <a href="https://github.com/baban9999ytr/OpenStackTools" target="_blank" rel="noopener noreferrer" data-i18n="nav_source">Source on GitHub</a>
+
+        </div>
+
+      </details>
+
+      <div class="site-header-controls flex items-center space-x-3">
         <button id="lang-toggle-btn" class="px-2 py-1 border border-zinc-700 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-xs font-mono text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">EN / TR</button>
         <button id="ost-theme-toggle-btn" class="px-2 py-1 border border-zinc-700 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-xs text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"><span id="ost-theme-icon">Dark</span></button>
         <input type="range" id="ost-font-scale-slider" min="75" max="150" step="5" value="100" style="width:80px;flex-shrink:0;" class="h-2 accent-zinc-600 dark:accent-zinc-400 rounded" />
@@ -165,6 +184,7 @@
           <option value="bmc">Buy Me a Coffee (USD)</option>
         </select>
         <a id="donate-link" href="https://kreosus.com/aridigital/about" target="_blank" rel="noopener noreferrer" class="px-2 py-1 border border-zinc-700 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-xs text-zinc-800 dark:text-zinc-100 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors">Donate</a>
+
         <a href="https://github.com/baban9999ytr/OpenStackTools" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center space-x-2 px-3 py-1.5 text-xs font-medium text-zinc-100 bg-zinc-800 dark:bg-zinc-900 hover:bg-zinc-700 dark:hover:bg-zinc-800 border border-zinc-700 dark:border-zinc-800 transition-colors"><span>GitHub</span></a>
       </div>
     </div>
@@ -177,39 +197,49 @@
         <div class="border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 p-6">
           <div class="mb-6">
             <div class="inline-block border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900/50 px-2.5 py-0.5 mb-3">
-              <span class="text-[11px] font-mono text-zinc-400 uppercase tracking-widest">Client-Side Engine</span>
+              <span class="text-[11px] font-mono text-zinc-400 uppercase tracking-widest" data-i18n="trust_local">Processed in your browser</span>
             </div>
             <h1 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">Trim audio in the browser — files stay on your device</h1>
             <p class="text-xs text-zinc-500 mt-1">Decode with the Web Audio API, set start and end on the waveform, export WAV from RAM. Nothing is uploaded to process the clip.</p>
           </div>
 
-          <div id="av-drop-zone"
-            class="drop-zone border border-dashed border-zinc-800 hover:border-zinc-700 p-8 text-center cursor-pointer transition-colors bg-zinc-900/20">
-            <input type="file" id="av-file-input" accept="audio/*,video/*" class="hidden">
+          <div id="av-drop-zone" role="button" tabindex="0" aria-labelledby="av-drop-label"
+            class="drop-zone border border-dashed border-zinc-300 dark:border-zinc-800 hover:border-zinc-500 dark:hover:border-zinc-700 p-8 text-center cursor-pointer transition-colors bg-zinc-100/70 dark:bg-zinc-900/20">
+            <input type="file" id="av-file-input" accept="audio/*,video/*" aria-label="Choose an audio file" class="hidden">
             <svg class="mx-auto h-8 w-8 text-zinc-600 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                 d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
             </svg>
-            <p class="text-xs font-medium text-zinc-300">Select or drop an audio file (MP3, WAV, OGG, AAC)</p>
+            <p id="av-drop-label" class="text-xs font-medium text-zinc-700 dark:text-zinc-300">Select or drop an audio file (MP3, WAV, OGG, AAC)</p>
           </div>
 
           <div id="av-control-panel" class="hidden mt-6 space-y-6">
             <div class="w-full bg-zinc-900 border border-zinc-800 p-2">
-              <canvas id="av-waveform-canvas" class="w-full h-28 block"></canvas>
+              <canvas id="av-waveform-canvas" class="w-full h-28 block" role="img" aria-label="Audio waveform with selected range"></canvas>
+            </div>
+            <div class="flex flex-wrap items-center justify-between gap-2 text-xs text-zinc-400">
+              <span>Current time <strong id="av-current-time" class="font-mono text-zinc-200">0.00s</strong></span>
+              <span>Selected <strong id="av-selected-duration" class="font-mono text-zinc-200">0.00s</strong></span>
+            </div>
+            <div class="audio-range-controls" aria-label="Trim selection timeline">
+              <label for="av-start-range">Selection start</label>
+              <input type="range" id="av-start-range" min="0" max="1" step="0.01" value="0" aria-label="Selection start time">
+              <label for="av-end-range">Selection end</label>
+              <input type="range" id="av-end-range" min="0" max="1" step="0.01" value="1" aria-label="Selection end time">
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
-                <label class="block text-xs font-mono text-zinc-500 mb-1">Start Time (s)</label>
+                <label for="av-start-time" class="block text-xs font-mono text-zinc-500 mb-1">Start Time (s)</label>
                 <input type="number" step="0.01" id="av-start-time"
                   class="w-full bg-zinc-900 border border-zinc-800 px-3 py-1.5 text-xs text-zinc-200 font-mono focus:outline-none focus:border-zinc-700">
               </div>
               <div>
-                <label class="block text-xs font-mono text-zinc-500 mb-1">End Time (s)</label>
+                <label for="av-end-time" class="block text-xs font-mono text-zinc-500 mb-1">End Time (s)</label>
                 <input type="number" step="0.01" id="av-end-time"
                   class="w-full bg-zinc-900 border border-zinc-800 px-3 py-1.5 text-xs text-zinc-200 font-mono focus:outline-none focus:border-zinc-700">
               </div>
               <div>
-                <label class="block text-xs font-mono text-zinc-500 mb-1">Total Duration</label>
+                <label for="av-duration" class="block text-xs font-mono text-zinc-500 mb-1">Total Duration</label>
                 <div id="av-duration"
                   class="w-full bg-zinc-900/50 border border-zinc-800/80 px-3 py-1.5 text-xs text-zinc-400 font-mono">
                   0.00s</div>
@@ -217,10 +247,10 @@
             </div>
             <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-zinc-900">
               <div class="flex items-center space-x-2">
-                <button id="av-play-btn"
+                <button id="av-play-btn" type="button" aria-pressed="false"
                   class="px-3 py-1.5 border border-zinc-800 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 text-xs font-medium transition-colors">Play
                   Selection</button>
-                <button id="av-stop-btn"
+                <button id="av-stop-btn" type="button"
                   class="px-3 py-1.5 border border-zinc-800 text-zinc-400 hover:text-zinc-200 text-xs transition-colors">Stop</button>
               </div>
               <button id="av-export-btn"
@@ -228,16 +258,16 @@
                 & Export WAV</button>
             </div>
           </div>
-          <div id="av-status" class="mt-4 text-xs font-mono text-zinc-500"></div>
+          <div id="av-status" class="mt-4 text-xs font-mono text-zinc-500" role="status" aria-live="polite"></div>
         </div>
 
-        <article class="mt-8 border border-zinc-200 dark:border-zinc-900 p-6 bg-zinc-50 dark:bg-zinc-950 text-xs text-zinc-600 dark:text-zinc-500 space-y-3">
-          <h2 class="text-sm font-semibold text-zinc-300">Audio Buffer Processing</h2>
-          <p class="leading-relaxed">The Web Audio API decodes track channel data straight into an AudioBuffer object
+        <details class="mt-8 border border-zinc-200 dark:border-zinc-900 p-6 bg-zinc-50 dark:bg-zinc-950 text-xs text-zinc-600 dark:text-zinc-500 space-y-3 tool-technical-details">
+          <summary class="cursor-pointer select-none text-sm font-semibold text-zinc-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4" data-i18n="tool_how_work">How this works</summary>
+          <div class="mt-4 space-y-3"><h2 class="text-xs font-semibold text-zinc-400" data-i18n="tool_technical_details">Technical details</h2><p class="leading-relaxed">The Web Audio API decodes track channel data straight into an AudioBuffer object
             held in memory. Amplitude peaks are calculated and drawn directly to an HTML5 Canvas context. Trimming
             isolates the target PCM sample frames and wraps them into a RIFF WAV container without transmitting data
-            over any network interface.</p>
-        </article>
+            over any network interface.</p></div>
+        </details>
 
         <article class="mt-8 border border-zinc-200 dark:border-zinc-900 p-6 bg-zinc-50 dark:bg-zinc-950 text-xs text-zinc-600 dark:text-zinc-500 space-y-3">
           <h2 class="text-sm font-semibold text-zinc-300">FAQ</h2>

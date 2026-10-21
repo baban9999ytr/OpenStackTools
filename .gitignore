@@ -221,7 +221,9 @@ __marimo__/
 .DS_Store
 Thumbs.db
 Desktop.ini
-
+node_modules/
+dist/
+.env
 # Secrets & Environment variables
 .dev.vars
 .dev.vars.*

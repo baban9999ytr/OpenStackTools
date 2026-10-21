@@ -4,27 +4,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Crop Image & Remove Background Locally | OpenStackTools</title>
-  <meta name="description" content="Crop images and erase solid backgrounds to transparent PNG on HTML5 Canvas. No upload. Processing stays in RAM.">
+  <title>Crop &amp; Color Erase Images Locally | OpenStackTools</title>
+  <meta name="description" content="Crop images and remove a selected background color to transparent PNG with local Canvas processing. No upload.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://openstacktool.com/background-remover/">
   <link rel="alternate" hreflang="en" href="https://openstacktool.com/background-remover/?lang=en">
   <link rel="alternate" hreflang="tr" href="https://openstacktool.com/background-remover/?lang=tr">
   <link rel="alternate" hreflang="x-default" href="https://openstacktool.com/background-remover/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Crop Image & Remove Background Locally | OpenStackTools">
-  <meta property="og:description" content="Crop images and erase solid backgrounds to transparent PNG on HTML5 Canvas. No upload. Processing stays in RAM.">
+  <meta property="og:title" content="Crop &amp; Color Erase Images Locally | OpenStackTools">
+  <meta property="og:description" content="Crop images and remove a selected background color to transparent PNG with local Canvas processing. No upload.">
   <meta property="og:url" content="https://openstacktool.com/background-remover/">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Crop Image & Remove Background Locally | OpenStackTools">
-  <meta name="twitter:description" content="Crop images and erase solid backgrounds to transparent PNG on HTML5 Canvas. No upload. Processing stays in RAM.">
+  <meta name="twitter:title" content="Crop &amp; Color Erase Images Locally | OpenStackTools">
+  <meta name="twitter:description" content="Crop images and remove a selected background color to transparent PNG with local Canvas processing. No upload.">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": ["WebApplication", "SoftwareApplication"],
-        "name": "Crop & Background Eraser",
+        "name": "Crop & Color Eraser",
         "applicationCategory": "UtilitiesApplication",
         "operatingSystem": "Web browser",
         "isAccessibleForFree": true,
@@ -72,8 +72,8 @@
     </div>
   </div>
 
-  <header class="sticky top-0 z-40 w-full backdrop-blur-md bg-white/80 dark:bg-zinc-950/80 border-b border-zinc-200 dark:border-zinc-900">
-    <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+  <header class="site-header sticky top-0 z-40 w-full backdrop-blur-md bg-white/80 dark:bg-zinc-950/80 border-b border-zinc-200 dark:border-zinc-900">
+    <div class="site-header-inner max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
       <a href="/" class="flex items-center space-x-3">
         <div class="w-6 h-6 bg-zinc-100 text-zinc-950 flex items-center justify-center font-bold font-mono text-[10px]">
           OST</div>
@@ -119,7 +119,7 @@
             </a>
             <a href="/background-remover/"
               class="block px-4 py-2.5 hover:bg-zinc-900 transition-colors border-t border-zinc-900">
-              <div class="text-xs font-semibold text-zinc-800 dark:text-zinc-200">Crop & Erase</div>
+              <div class="text-xs font-semibold text-zinc-800 dark:text-zinc-200">Crop & Color Erase</div>
               <div class="text-[11px] text-zinc-500">Color key transparency & crop</div>
             </a>
           </div>
@@ -151,11 +151,30 @@
           </div>
         </div>
 
+        <a href="/portfolio/" class="text-zinc-300 hover:text-zinc-100 transition-colors" data-i18n="nav_portfolio">Portfolio</a>
         <a href="https://github.com/baban9999ytr/OpenStackTools" target="_blank" rel="noopener noreferrer"
           class="hover:text-zinc-100 transition-colors text-zinc-300">Source</a>
       </nav>
 
-      <div class="flex items-center space-x-3">
+      <details class="mobile-site-nav md:hidden">
+
+        <summary data-i18n="nav_menu">Menu</summary>
+
+        <div class="mobile-site-nav-panel">
+
+          <a href="/#tools-grid" data-i18n="nav_tools">Tools</a>
+
+          <a href="/#privacy" data-i18n="nav_privacy">Privacy</a>
+
+          <a href="/portfolio/" data-i18n="nav_portfolio">Portfolio</a>
+
+          <a href="https://github.com/baban9999ytr/OpenStackTools" target="_blank" rel="noopener noreferrer" data-i18n="nav_source">Source on GitHub</a>
+
+        </div>
+
+      </details>
+
+      <div class="site-header-controls flex items-center space-x-3">
         <button id="lang-toggle-btn" class="px-2 py-1 border border-zinc-700 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-xs font-mono text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">EN / TR</button>
         <button id="ost-theme-toggle-btn" class="px-2 py-1 border border-zinc-700 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-xs text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"><span id="ost-theme-icon">Dark</span></button>
         <input type="range" id="ost-font-scale-slider" min="75" max="150" step="5" value="100" style="width:80px;flex-shrink:0;" class="h-2 accent-zinc-600 dark:accent-zinc-400 rounded" />
@@ -165,6 +184,7 @@
           <option value="bmc">Buy Me a Coffee (USD)</option>
         </select>
         <a id="donate-link" href="https://kreosus.com/aridigital/about" target="_blank" rel="noopener noreferrer" class="px-2 py-1 border border-zinc-700 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-xs text-zinc-800 dark:text-zinc-100 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors">Donate</a>
+
         <a href="https://github.com/baban9999ytr/OpenStackTools" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center space-x-2 px-3 py-1.5 text-xs font-medium text-zinc-100 bg-zinc-800 dark:bg-zinc-900 hover:bg-zinc-700 dark:hover:bg-zinc-800 border border-zinc-700 dark:border-zinc-800 transition-colors"><span>GitHub</span></a>
       </div>
     </div>
@@ -177,36 +197,41 @@
         <div class="border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 p-6">
           <div class="mb-6">
             <div class="inline-block border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900/50 px-2.5 py-0.5 mb-3">
-              <span class="text-[11px] font-mono text-zinc-400 uppercase tracking-widest">Client-Side Engine</span>
+              <span class="text-[11px] font-mono text-zinc-400 uppercase tracking-widest" data-i18n="trust_local">Processed in your browser</span>
             </div>
-            <h1 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">Crop and erase backgrounds locally — no upload</h1>
+            <h1 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">Crop &amp; Color Erase — remove a background color locally</h1>
             <p class="text-xs text-zinc-500 mt-1">Color-key transparency and crop on Canvas in this tab. Your image is not uploaded to a removal API.</p>
           </div>
 
-          <div id="bg-drop-zone"
-            class="drop-zone border border-dashed border-zinc-800 hover:border-zinc-700 p-8 text-center cursor-pointer transition-colors bg-zinc-900/20">
-            <input type="file" id="bg-file-input" accept="image/*" class="hidden">
+          <div id="bg-drop-zone" role="button" tabindex="0" aria-labelledby="bg-drop-label"
+            class="drop-zone border border-dashed border-zinc-300 dark:border-zinc-800 hover:border-zinc-500 dark:hover:border-zinc-700 p-8 text-center cursor-pointer transition-colors bg-zinc-100/70 dark:bg-zinc-900/20">
+            <input type="file" id="bg-file-input" accept="image/*" aria-label="Choose an image file" class="hidden">
             <svg class="mx-auto h-8 w-8 text-zinc-600 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                 d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                 d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
             </svg>
-            <p class="text-xs font-medium text-zinc-300">Select or drop an image to edit</p>
+            <p id="bg-drop-label" class="text-xs font-medium text-zinc-700 dark:text-zinc-300">Select or drop an image to edit</p>
           </div>
 
           <div id="bg-control-panel" class="hidden mt-6 space-y-4">
             <div class="p-3 bg-zinc-900 border border-zinc-800 flex flex-wrap items-center justify-between gap-4">
               <div class="flex items-center space-x-3">
                 <label class="text-xs font-mono text-zinc-400">Target Color:</label>
-                <input type="color" id="bg-color-picker" value="#ffffff"
+                <input type="color" id="bg-color-picker" aria-label="Target color to erase" value="#ffffff"
                   class="w-6 h-6 border border-zinc-700 bg-transparent cursor-pointer">
               </div>
               <div class="flex items-center space-x-2">
                 <span class="text-xs font-mono text-zinc-400">Tolerance:</span>
-                <input type="range" id="bg-tolerance" min="5" max="150" value="40"
+                <input type="range" id="bg-tolerance" aria-label="Color match tolerance" min="5" max="150" value="40"
                   class="w-28 accent-zinc-100 bg-zinc-800">
                 <span id="bg-tolerance-val" class="text-xs font-mono text-zinc-200">40</span>
+              </div>
+              <div class="flex items-center flex-wrap gap-2">
+                <button id="bg-crop-mode-btn" type="button" aria-pressed="false" class="px-3 py-1.5 border border-zinc-800 text-zinc-300 hover:bg-zinc-800 text-xs">Select crop</button>
+                <button id="bg-crop-apply-btn" type="button" disabled class="px-3 py-1.5 border border-zinc-800 text-zinc-300 hover:bg-zinc-800 text-xs disabled:opacity-40">Crop selection</button>
+                <button id="bg-undo-btn" type="button" disabled class="px-3 py-1.5 border border-zinc-800 text-zinc-300 hover:bg-zinc-800 text-xs disabled:opacity-40">Undo</button>
               </div>
               <div class="flex items-center space-x-2">
                 <button id="bg-erase-btn"
@@ -220,21 +245,23 @@
               </div>
             </div>
 
-            <div
-              class="checker-bg border border-zinc-800 p-2 overflow-auto flex items-center justify-center max-h-[500px]">
-              <canvas id="bg-canvas" class="max-w-full h-auto cursor-crosshair"></canvas>
+            <div class="checker-bg border border-zinc-800 p-2 overflow-auto flex items-center justify-center max-h-[500px]">
+              <div class="relative inline-block max-w-full leading-[0]">
+                <canvas id="bg-canvas" aria-label="Image editor. Click to pick a color or select a crop area." class="max-w-full h-auto cursor-crosshair touch-none"></canvas>
+                <div id="bg-crop-overlay" aria-hidden="true" class="pointer-events-none absolute hidden border-2 border-sky-400 bg-sky-400/15"></div>
+              </div>
             </div>
           </div>
-          <div id="bg-status" class="mt-4 text-xs font-mono text-zinc-500"></div>
+          <div id="bg-status" class="mt-4 text-xs font-mono text-zinc-500" role="status" aria-live="polite"></div>
         </div>
 
-        <article class="mt-8 border border-zinc-200 dark:border-zinc-900 p-6 bg-zinc-50 dark:bg-zinc-950 text-xs text-zinc-600 dark:text-zinc-500 space-y-3">
-          <h2 class="text-sm font-semibold text-zinc-300">Canvas Color Key Manipulation</h2>
-          <p class="leading-relaxed">The tool parses pixel data directly through standard 2D Canvas ImageData contexts.
+        <details class="mt-8 border border-zinc-200 dark:border-zinc-900 p-6 bg-zinc-50 dark:bg-zinc-950 text-xs text-zinc-600 dark:text-zinc-500 space-y-3 tool-technical-details">
+          <summary class="cursor-pointer select-none text-sm font-semibold text-zinc-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4" data-i18n="tool_how_work">How this works</summary>
+          <div class="mt-4 space-y-3"><h2 class="text-xs font-semibold text-zinc-400" data-i18n="tool_technical_details">Technical details</h2><p class="leading-relaxed">The tool parses pixel data directly through standard 2D Canvas ImageData contexts.
             Selected RGB targets are compared against surrounding pixel color channels using Euclidean distance
             matching. Matching ranges are mutated to zero-alpha values in local memory before rendering uncompressed
-            transparent PNG outputs.</p>
-        </article>
+            transparent PNG outputs.</p></div>
+        </details>
 
         <article class="mt-8 border border-zinc-200 dark:border-zinc-900 p-6 bg-zinc-50 dark:bg-zinc-950 text-xs text-zinc-600 dark:text-zinc-500 space-y-3">
           <h2 class="text-sm font-semibold text-zinc-300">FAQ</h2>

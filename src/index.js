@@ -21,7 +21,6 @@ export default {
     const isJavaScript = /javascript|ecmascript/i.test(contentType);
     const isPlainText = /^text\/plain(?:;|$)/i.test(contentType);
 
-    // Only transform JS files and ads.txt-style plain-text files.
     if (!isJavaScript && !isPlainText) {
       return response;
     }

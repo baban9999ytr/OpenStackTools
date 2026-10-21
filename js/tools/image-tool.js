@@ -1,4 +1,5 @@
 ﻿import { t } from "../i18n.js";
+import { downloadBlob } from "../file-utils.js";
 
 export function initImageTool() {
   const dropZone = document.getElementById("img-drop-zone");
@@ -16,6 +17,9 @@ export function initImageTool() {
   const previewImg = document.getElementById("img-preview");
   const previewOriginal = document.getElementById("img-original-preview");
   const controlPanel = document.getElementById("img-control-panel");
+  const statusEl = document.getElementById("img-status");
+  const resetBtn = document.getElementById("img-reset-btn");
+  const presetButtons = document.querySelectorAll(".image-preset");
 
   if (!dropZone) return;
 
@@ -25,8 +29,20 @@ export function initImageTool() {
   let originalHeight = 0;
   let aspectRatio = 1;
   let compressedBlob = null;
+  let previewUrl = null;
+  let optimizationTimer = 0;
 
-  dropZone.addEventListener("click", () => fileInput.click());
+  dropZone.setAttribute("role", "button");
+  dropZone.tabIndex = 0;
+  dropZone.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      fileInput.click();
+    }
+  });
+  dropZone.addEventListener("click", (event) => {
+    if (event.target !== fileInput) fileInput.click();
+  });
   dropZone.addEventListener("dragover", (e) => {
     e.preventDefault();
     dropZone.classList.add("dragover");
@@ -49,9 +65,10 @@ export function initImageTool() {
 
   function processFile(file) {
     if (!file.type.startsWith("image/")) {
-      alert("Please upload an image file (PNG, JPEG, WebP)");
+      statusEl.textContent = t("img_error_type");
       return;
     }
+    statusEl.textContent = t("processing");
     originalFile = file;
     const reader = new FileReader();
     reader.onload = (ev) => {
@@ -68,6 +85,7 @@ export function initImageTool() {
         previewOriginal.src = ev.target.result;
 
         controlPanel.classList.remove("hidden");
+        statusEl.textContent = t("img_loaded");
         renderOptimization();
       };
       img.src = ev.target.result;
@@ -77,30 +95,62 @@ export function initImageTool() {
 
   qualitySlider.addEventListener("input", () => {
     qualityVal.textContent = qualitySlider.value + "%";
-    renderOptimization();
+    scheduleOptimization();
   });
 
-  formatSelect.addEventListener("change", () => renderOptimization());
+  formatSelect.addEventListener("change", scheduleOptimization);
 
   widthInput.addEventListener("input", () => {
     if (keepAspectCheckbox.checked && widthInput.value) {
       heightInput.value = Math.round(widthInput.value / aspectRatio);
     }
-    renderOptimization();
+    scheduleOptimization();
   });
 
   heightInput.addEventListener("input", () => {
     if (keepAspectCheckbox.checked && heightInput.value) {
       widthInput.value = Math.round(heightInput.value * aspectRatio);
     }
-    renderOptimization();
+    scheduleOptimization();
   });
+
+  presetButtons.forEach((button) => button.addEventListener("click", () => {
+    qualitySlider.value = button.dataset.quality;
+    qualityVal.textContent = qualitySlider.value + "%";
+    scheduleOptimization();
+  }));
+
+  resetBtn.addEventListener("click", () => {
+    if (!currentSource) return;
+    qualitySlider.value = "80";
+    qualityVal.textContent = "80%";
+    formatSelect.value = "image/webp";
+    keepAspectCheckbox.checked = true;
+    widthInput.value = originalWidth;
+    heightInput.value = originalHeight;
+    scheduleOptimization();
+  });
+
+  function scheduleOptimization() {
+    window.clearTimeout(optimizationTimer);
+    optimizationTimer = window.setTimeout(renderOptimization, 120);
+  }
 
   function renderOptimization() {
     if (!currentSource) return;
 
     const targetWidth = parseInt(widthInput.value, 10) || originalWidth;
     const targetHeight = parseInt(heightInput.value, 10) || originalHeight;
+    if (
+      targetWidth < 1 ||
+      targetHeight < 1 ||
+      targetWidth > 8192 ||
+      targetHeight > 8192 ||
+      targetWidth * targetHeight > 32_000_000
+    ) {
+      statusEl.textContent = "Choose output dimensions up to 8,192 px per side and 32 megapixels total.";
+      return;
+    }
     const quality = parseInt(qualitySlider.value, 10) / 100;
     const format = formatSelect.value;
 
@@ -118,7 +168,10 @@ export function initImageTool() {
 
     canvas.toBlob(
       (blob) => {
-        if (!blob) return;
+        if (!blob) {
+          statusEl.textContent = t("img_error_process");
+          return;
+        }
         compressedBlob = blob;
         newSizeEl.textContent = formatBytes(blob.size);
         const diff = originalFile.size - blob.size;
@@ -134,7 +187,10 @@ export function initImageTool() {
             "text-xs px-2 py-0.5 rounded font-mono font-medium text-amber-400 bg-amber-950/60 border border-amber-800/50";
         }
 
-        previewImg.src = URL.createObjectURL(blob);
+        if (previewUrl) URL.revokeObjectURL(previewUrl);
+        previewUrl = URL.createObjectURL(blob);
+        previewImg.src = previewUrl;
+        statusEl.textContent = t("img_ready");
       },
       format,
       quality,
@@ -149,12 +205,7 @@ export function initImageTool() {
         : formatSelect.value === "image/webp"
           ? "webp"
           : "png";
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(compressedBlob);
-    a.download = `optimized_${originalFile.name.split(".")[0]}.${ext}`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    downloadBlob(compressedBlob, `optimized_${originalFile.name.replace(/\.[^.]*$/, "")}.${ext}`);
   });
 
   function formatBytes(bytes) {

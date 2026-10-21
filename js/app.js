@@ -1,4 +1,5 @@
 import { setLanguage, currentLang, updateDOM } from "./i18n.js";
+import "./tool-search.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   try {
@@ -61,6 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let storedScale = localStorage.getItem("ost_font_scale") || "100";
 
   if (fontSlider) {
+    fontSlider.setAttribute("aria-label", "Page text size");
     fontSlider.style.width = "80px";
     fontSlider.style.flexShrink = "0";
     fontSlider.value = storedScale;
@@ -78,6 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     bmc: "https://buymeacoffee.com/mustafagoksal",
   };
   if (donationSelect && donateLink) {
+    donationSelect.setAttribute("aria-label", "Donation currency");
     donationSelect.addEventListener("change", () => {
       const url = donationUrls[donationSelect.value];
       if (url) donateLink.href = url;
