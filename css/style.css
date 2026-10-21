@@ -660,6 +660,90 @@ pre,
   margin: 0;
 }
 
+.adsense-slot[hidden],
+.is-ad-hidden[hidden] {
+  display: none !important;
+  width: 0 !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+.adsense-slot:not(.is-ad-pending):not(.is-ad-filled) {
+  display: none !important;
+}
+div:has(> .adsense-slot:not(.is-ad-pending):not(.is-ad-filled)):not(:has(> :not(.adsense-slot))) {
+  display: none !important;
+}
+
+
+/* Tool-first workspace layout shared by all six processing pages. */
+.tool-page-main { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
+.tool-page-main > .flex.flex-col { gap: 1.25rem !important; }
+.tool-page-main > .flex.flex-col > :first-child { min-width: 0; }
+.tool-page-main .tool-technical-details,
+.tool-page-main .tool-faq { margin-top: 1rem !important; padding: .75rem 1rem !important; }
+.tool-page-main .tool-faq > :not(summary) { margin-top: .6rem; }
+.tool-page-main .tool-technical-details summary { color: #3f3f46 !important; }
+html.dark .tool-page-main .tool-technical-details summary { color: #d4d4d8 !important; }
+
+/* The cryptography workspace uses the same semantic surface in both themes. */
+.crypto-workspace { padding: 1rem !important; gap: 1rem !important; color: #27272a; }
+html.dark .crypto-workspace { color: #e4e4e7; }
+.crypto-workspace .crypto-panel { border: 1px solid #e4e4e7 !important; background: #fff !important; color: #27272a !important; }
+html.dark .crypto-workspace .crypto-panel { border-color: #3f3f46 !important; background: #18181b !important; color: #e4e4e7 !important; }
+.crypto-workspace input:not([type="checkbox"]):not([type="range"]),
+.crypto-workspace .crypto-hash-row { background: #fafafa !important; color: #18181b !important; border-color: #d4d4d8 !important; }
+.crypto-workspace input[type="file"]::file-selector-button { background: #f4f4f5 !important; color: #18181b !important; border: 1px solid #d4d4d8 !important; }
+html.dark .crypto-workspace input:not([type="checkbox"]):not([type="range"]),
+html.dark .crypto-workspace .crypto-hash-row { background: #09090b !important; color: #f4f4f5 !important; border-color: #3f3f46 !important; }
+html.dark .crypto-workspace input[type="file"]::file-selector-button { background: #27272a !important; color: #f4f4f5 !important; border-color: #52525b !important; }
+.crypto-workspace .crypto-muted { color: #52525b !important; }
+html.dark .crypto-workspace .crypto-muted { color: #a1a1aa !important; }
+.crypto-workspace .text-zinc-200,
+.crypto-workspace .text-zinc-300,
+.crypto-workspace .text-zinc-400 { color: #3f3f46 !important; }
+html.dark .crypto-workspace .text-zinc-200 { color: #e4e4e7 !important; }
+html.dark .crypto-workspace .text-zinc-300 { color: #d4d4d8 !important; }
+html.dark .crypto-workspace .text-zinc-400 { color: #a1a1aa !important; }
+.crypto-workspace button.crypto-secondary { background: #f4f4f5 !important; color: #27272a !important; border: 1px solid #d4d4d8 !important; }
+html.dark .crypto-workspace button.crypto-secondary { background: #27272a !important; color: #f4f4f5 !important; border-color: #52525b !important; }
+.crypto-workspace .crypto-primary { background: #18181b !important; color: #fff !important; }
+html.dark .crypto-workspace .crypto-primary { background: #f4f4f5 !important; color: #18181b !important; }
+.crypto-workspace button:not(.crypto-primary):not(.crypto-secondary) { color: #27272a !important; }
+html.dark .crypto-workspace button:not(.crypto-primary):not(.crypto-secondary) { color: #e4e4e7 !important; }
+.crypto-workspace button.bg-zinc-100 { color: #18181b !important; }
+.crypto-workspace .crypto-warning { border-color: #fcd34d !important; background: #fffbeb !important; color: #78350f !important; }
+html.dark .crypto-workspace .crypto-warning { border-color: #92400e !important; background: rgba(120,53,15,.2) !important; color: #fde68a !important; }
+.crypto-workspace input:focus-visible,
+.crypto-workspace button:focus-visible { outline: 2px solid #2563eb !important; outline-offset: 2px; }
+.tool-page-main .text-zinc-100,
+.tool-page-main .text-zinc-200,
+.tool-page-main .text-zinc-300,
+.tool-page-main .text-zinc-400 { color: #52525b; }
+html.dark .tool-page-main .text-zinc-100 { color: #f4f4f5; }
+html.dark .tool-page-main .text-zinc-200 { color: #e4e4e7; }
+html.dark .tool-page-main .text-zinc-300 { color: #d4d4d8; }
+html.dark .tool-page-main .text-zinc-400 { color: #a1a1aa; }
+.tool-page-main .bg-zinc-900 { background-color: #f4f4f5; }
+html.dark .tool-page-main .bg-zinc-900 { background-color: #18181b; }
+.tool-page-main .bg-zinc-900\/20,
+.tool-page-main .bg-zinc-900\/50 { background-color: #f4f4f5; }
+html.dark .tool-page-main .bg-zinc-900\/20 { background-color: #18181b33; }
+html.dark .tool-page-main .bg-zinc-900\/50 { background-color: #18181b80; }
+.tool-page-main .bg-zinc-800 { background-color: #e4e4e7; }
+html.dark .tool-page-main .bg-zinc-800 { background-color: #27272a; }
+.tool-page-main .border-zinc-800 { border-color: #d4d4d8; }
+html.dark .tool-page-main .border-zinc-800 { border-color: #3f3f46; }
+@media (max-width: 480px) {
+  .crypto-workspace #crypto-uuid-output { flex-basis: 100%; }
+  .crypto-workspace button { min-height: 2.25rem; }
+}
+
 .adsense-slot > ins.adsbygoogle {
   width: 100%;
 }

@@ -42,9 +42,9 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="/css/tailwind-built.css?v=phase3-closeout">
-  <link rel="stylesheet" href="/css/style.css?v=phase3-closeout">
-  <script src="/js/consent-banner.js?v=phase3-closeout"></script>
+  <link rel="stylesheet" href="/css/tailwind-built.css?v=crypto-ads-hotfix-20261021">
+  <link rel="stylesheet" href="/css/style.css?v=crypto-ads-hotfix-20261021">
+  <script src="/js/consent-banner.js?v=crypto-ads-hotfix-20261021"></script>
 </head>
 
   <body
@@ -211,7 +211,7 @@
     </div>
   </header>
 
-  <main class="max-w-6xl mx-auto px-4 py-12 w-full flex-1">
+  <main class="tool-page-main max-w-6xl mx-auto px-4 py-12 w-full flex-1">
     <div class="flex flex-col lg:flex-row gap-12">
 
       <div class="flex-1">
@@ -273,6 +273,8 @@
                   Selection</button>
                 <button id="av-stop-btn" type="button"
                   class="px-3 py-1.5 border border-zinc-800 text-zinc-400 hover:text-zinc-200 text-xs transition-colors">Stop</button>
+                <button id="av-export-btn" type="button"
+                  class="px-3 py-1.5 bg-zinc-100 text-zinc-950 hover:bg-zinc-200 text-xs font-medium transition-colors">Export WAV</button>
               </div>
             </div>
           </div>
@@ -287,10 +289,7 @@
             over any network interface.</p></div>
         </details>
 
-          <article
-            class="mt-8 border border-zinc-200 dark:border-zinc-900 p-6 bg-zinc-50 dark:bg-zinc-950 text-xs text-zinc-600 dark:text-zinc-500 space-y-3"
-          >
-            <h2 class="text-sm font-semibold text-zinc-300">FAQ</h2>
+          <details class="tool-faq mt-8 border border-zinc-200 dark:border-zinc-900 p-6 bg-zinc-50 dark:bg-zinc-950 text-xs text-zinc-600 dark:text-zinc-500 space-y-3"><summary class="cursor-pointer font-semibold text-zinc-800 dark:text-zinc-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4" data-i18n="tool_faq_title">Frequently asked questions</summary>
             <p class="leading-relaxed">
               <strong class="text-zinc-400"
                 >Does the audio cutter upload my file?</strong
@@ -298,7 +297,7 @@
               No. Decoding, trimming, and WAV export happen in this browser
               session.
             </p>
-          </article>
+          </details>
         </div>
 
         <aside class="w-full lg:w-72 flex-shrink-0">
@@ -393,8 +392,8 @@
     </footer>
 
   <script type="module">
-    import { initAudioTool } from '/js/tools/audio-tool.js?v=phase3-closeout';
-    import '/js/app.js?v=phase3-closeout';
+    import { initAudioTool } from '/js/tools/audio-tool.js?v=crypto-ads-hotfix-20261021';
+    import '/js/app.js?v=crypto-ads-hotfix-20261021';
     document.addEventListener('DOMContentLoaded', () => {
       initAudioTool();
     });

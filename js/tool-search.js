@@ -1,4 +1,4 @@
-import { t } from "./i18n.js?v=phase3-closeout";
+import { t } from "./i18n.js?v=crypto-ads-hotfix-20261021";
 
 document.addEventListener("DOMContentLoaded", () => {
   const dialog = document.getElementById("tool-search-dialog");

@@ -1,4 +1,4 @@
-import { t } from "../i18n.js?v=phase3-closeout";
+import { t } from "../i18n.js?v=crypto-ads-hotfix-20261021";
 import { downloadBlob, sanitizeFilename } from "../file-utils.js?v=phase3-closeout";
 
 const PDFJS_VERSION = "4.10.38";

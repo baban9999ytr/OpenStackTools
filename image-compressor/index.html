@@ -42,9 +42,9 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="/css/tailwind-built.css?v=phase3-closeout">
-  <link rel="stylesheet" href="/css/style.css?v=phase3-closeout">
-  <script src="/js/consent-banner.js?v=phase3-closeout"></script>
+  <link rel="stylesheet" href="/css/tailwind-built.css?v=crypto-ads-hotfix-20261021">
+  <link rel="stylesheet" href="/css/style.css?v=crypto-ads-hotfix-20261021">
+  <script src="/js/consent-banner.js?v=crypto-ads-hotfix-20261021"></script>
 </head>
 
   <body
@@ -211,7 +211,7 @@
     </div>
   </header>
 
-  <main class="max-w-6xl mx-auto px-4 py-12 w-full flex-1">
+  <main class="tool-page-main max-w-6xl mx-auto px-4 py-12 w-full flex-1">
     <div class="flex flex-col lg:flex-row gap-12">
 
       <div class="flex-1">
@@ -323,10 +323,7 @@
             Blob constructs before issuing direct browser download streams.</p></div>
         </details>
 
-          <article
-            class="mt-8 border border-zinc-200 dark:border-zinc-900 p-6 bg-zinc-50 dark:bg-zinc-950 text-xs text-zinc-600 dark:text-zinc-500 space-y-3"
-          >
-            <h2 class="text-sm font-semibold text-zinc-300">FAQ</h2>
+          <details class="tool-faq mt-8 border border-zinc-200 dark:border-zinc-900 p-6 bg-zinc-50 dark:bg-zinc-950 text-xs text-zinc-600 dark:text-zinc-500 space-y-3"><summary class="cursor-pointer font-semibold text-zinc-800 dark:text-zinc-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4" data-i18n="tool_faq_title">Frequently asked questions</summary>
             <p class="leading-relaxed">
               <strong class="text-zinc-400"
                 >Are my photos uploaded when I compress them?</strong
@@ -334,7 +331,7 @@
               No. Compression runs on Canvas in this tab. Download the result
               from your device.
             </p>
-          </article>
+          </details>
         </div>
 
         <!-- SIDEBAR ADSLOT (Square_Banner_Slot) -->
@@ -431,8 +428,8 @@
     </footer>
 
   <script type="module">
-    import { initImageTool } from '/js/tools/image-tool.js?v=phase3-closeout';
-    import '/js/app.js?v=phase3-closeout';
+    import { initImageTool } from '/js/tools/image-tool.js?v=crypto-ads-hotfix-20261021';
+    import '/js/app.js?v=crypto-ads-hotfix-20261021';
     document.addEventListener('DOMContentLoaded', () => {
       initImageTool();
     });

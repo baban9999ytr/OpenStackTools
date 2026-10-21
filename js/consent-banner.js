@@ -5,7 +5,9 @@
   var CONSENT_VERSION = "2026-10-07-v1";
   var adsScriptPromise = null;
   var adsInitialized = false;
+  var adsScriptFailed = false;
   var consentOpener = null;
+  var adStatusObserver = null;
 
   var COPY = {
     en: {
@@ -142,11 +144,16 @@
 
   function loadAdSense() {
     if (adsInitialized) {
+      document.querySelectorAll(".adsense-slot").forEach(function (slot) {
+        if (adsScriptFailed) hidePlacement(slot);
+        else placementState(slot);
+      });
       return;
     }
 
     var client = "__ADSENSE_PUBLISHER_ID__";
     if (typeof client !== "string" || !/^ca-pub-\d+$/.test(client)) {
+      document.querySelectorAll(".adsense-slot").forEach(hidePlacement);
       console.error(
         "AdSense is disabled: a valid deployment-provided publisher ID is required.",
       );
@@ -176,7 +183,10 @@
         ad.setAttribute("data-ad-format", "auto");
         ad.setAttribute("data-full-width-responsive", "true");
         container.appendChild(ad);
+        showPlacement(container);
       });
+
+    observeAdStatus();
 
     if (!adsScriptPromise) {
       adsScriptPromise = new Promise(function (resolve, reject) {
@@ -194,6 +204,7 @@
         document.head.appendChild(script);
       }).catch(function (error) {
         adsScriptPromise = null;
+        adsScriptFailed = true;
         console.error(error);
         throw error;
       });
@@ -205,34 +216,119 @@
         document
           .querySelectorAll("ins.adsbygoogle:not([data-ost-pushed])")
           .forEach(function (slot) {
-            (window.adsbygoogle = window.adsbygoogle || []).push({});
             slot.setAttribute("data-ost-pushed", "true");
+            try {
+              (window.adsbygoogle = window.adsbygoogle || []).push({});
+            } catch (error) {
+              slot.removeAttribute("data-ost-pushed");
+              hidePlacement(slot.closest(".adsense-slot"));
+              console.error("AdSense slot initialization failed.", error);
+            }
           });
       })
       .catch(function (error) {
         console.error("AdSense initialization failed.", error);
+        document.querySelectorAll(".adsense-slot").forEach(function (slot) {
+          var ad = slot.querySelector("ins.adsbygoogle");
+          if (!ad || ad.getAttribute("data-ad-status") !== "filled") hidePlacement(slot);
+        });
       });
 
-    document.querySelectorAll(".adsense-slot").forEach(function (el) {
-      el.classList.remove("is-consent-blocked");
+  }
+
+  function placementState(slot) {
+    if (!slot) return;
+    var ad = slot.querySelector("ins.adsbygoogle");
+    if (!ad) {
+      hidePlacement(slot);
+      return;
+    }
+    var status = ad.getAttribute("data-ad-status");
+    if (status === "unfilled") {
+      hidePlacement(slot);
+    } else if (status === "filled" || ad.querySelector("iframe")) {
+      showPlacement(slot);
+      slot.classList.remove("is-ad-pending");
+      slot.classList.add("is-ad-filled");
+    } else {
+      showPlacement(slot);
+    }
+  }
+
+  function showPlacement(slot) {
+    if (!slot) return;
+    slot.hidden = false;
+    slot.classList.remove("is-ad-hidden", "is-consent-blocked");
+    slot.classList.add("is-ad-pending");
+    var parent = slot.parentElement;
+    while (parent && parent !== document.body && parent !== document.querySelector("main")) {
+      if (parent.hasAttribute("data-ad-collapsed")) {
+        parent.hidden = false;
+        parent.classList.remove("is-ad-hidden");
+        parent.removeAttribute("data-ad-collapsed");
+      }
+      if (parent.tagName === "ASIDE") break;
+      parent = parent.parentElement;
+    }
+  }
+
+  function hidePlacement(slot) {
+    if (!slot) return;
+    slot.hidden = true;
+    slot.classList.add("is-ad-hidden");
+    slot.classList.remove("is-ad-pending", "is-ad-filled");
+    var parent = slot.parentElement;
+    while (parent && parent !== document.body && parent !== document.querySelector("main")) {
+      if (parent.tagName === "ASIDE") {
+        var nonAd = Array.prototype.some.call(parent.querySelectorAll("*:not(.adsense-slot)"), function (node) {
+          return !node.closest(".adsense-slot") && node.children.length === 0 && node.textContent.trim().length > 0;
+        });
+        if (!nonAd && !parent.querySelector(".adsense-slot:not(.is-ad-hidden)")) {
+          parent.hidden = true;
+          parent.classList.add("is-ad-hidden");
+          parent.setAttribute("data-ad-collapsed", "true");
+        }
+        break;
+      }
+      var children = Array.prototype.filter.call(parent.children, function (child) {
+        return !child.hidden && !child.classList.contains("is-ad-hidden");
+      });
+      if (children.length === 0) {
+        parent.hidden = true;
+        parent.classList.add("is-ad-hidden");
+        parent.setAttribute("data-ad-collapsed", "true");
+      } else {
+        break;
+      }
+      parent = parent.parentElement;
+    }
+  }
+
+  function observeAdStatus() {
+    if (adStatusObserver) return;
+    adStatusObserver = new MutationObserver(function (records) {
+      records.forEach(function (record) {
+        var ad = record.target.matches && record.target.matches("ins.adsbygoogle")
+          ? record.target
+          : record.target.closest && record.target.closest("ins.adsbygoogle");
+        var slot = ad && ad.closest(".adsense-slot");
+        if (slot) placementState(slot);
+      });
+    });
+    document.querySelectorAll(".adsense-slot").forEach(function (slot) {
+      adStatusObserver.observe(slot, { subtree: true, childList: true, attributes: true, attributeFilter: ["data-ad-status"] });
+      placementState(slot);
     });
   }
 
   function markSlotsBlocked(lang) {
-    var t = COPY[lang] || COPY.en;
-    document
-      .querySelectorAll(".adsense-slot ins.adsbygoogle")
-      .forEach(function (slot) {
-        slot.remove();
-      });
     document.querySelectorAll(".adsense-slot").forEach(function (el) {
-      el.classList.add("is-consent-blocked");
-      if (!el.querySelector(".ost-ads-paused")) {
-        var n = document.createElement("div");
-        n.className =
-          "ost-ads-paused text-[10px] font-mono uppercase tracking-widest text-zinc-500 px-3 py-6 text-center";
-        n.textContent = t.adsOff;
-        el.appendChild(n);
+      var ad = el.querySelector("ins.adsbygoogle");
+      if (ad && (ad.getAttribute("data-ad-status") === "filled" || ad.querySelector("iframe"))) {
+        showPlacement(el);
+      } else {
+        el.classList.add("is-consent-blocked");
+        hidePlacement(el);
       }
     });
   }
@@ -240,12 +336,6 @@
   function applyChoice(granted, lang) {
     updateConsentMode(granted);
     if (granted) {
-      document.querySelectorAll(".ost-ads-paused").forEach(function (n) {
-        n.remove();
-      });
-      document.querySelectorAll(".adsense-slot").forEach(function (el) {
-        el.classList.remove("is-consent-blocked");
-      });
       loadAdSense();
     } else {
       markSlotsBlocked(lang || currentLang());

@@ -1,4 +1,4 @@
-﻿import { t } from "../i18n.js?v=phase3-closeout";
+import { t } from "../i18n.js?v=crypto-ads-hotfix-20261021";
 import { downloadBlob } from "../file-utils.js?v=phase3-closeout";
 
 export function initBgRemoverTool() {

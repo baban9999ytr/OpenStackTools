@@ -12,6 +12,8 @@ node_modules/
 output/
 .qa-final/
 .playwright-cli/
+.tmp*
+.wrangler/
 package.json
 css/tailwind.css
 __pycache__/
