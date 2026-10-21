@@ -1,5 +1,7 @@
-import { setLanguage, currentLang, updateDOM } from "./i18n.js";
-import "./tool-search.js";
+import { setLanguage, currentLang, updateDOM, t } from "./i18n.js?v=phase3-closeout";
+import "./tool-search.js?v=phase3-closeout";
+
+window.OSTTranslate = t;
 
 document.addEventListener("DOMContentLoaded", () => {
   try {

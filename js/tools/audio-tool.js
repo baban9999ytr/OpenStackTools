@@ -1,5 +1,5 @@
-﻿import { t } from '../i18n.js';
-import { downloadBlob, sanitizeFilename } from '../file-utils.js';
+﻿import { t } from '../i18n.js?v=phase3-closeout';
+import { downloadBlob, sanitizeFilename } from '../file-utils.js?v=phase3-closeout';
 
 export function initAudioTool() {
   const dropZone = document.getElementById('av-drop-zone');

@@ -1,0 +1,14 @@
+{
+  "name": "openstacktools",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Privacy-first browser utilities with local file processing",
+  "scripts": {
+    "build:css": "tailwindcss -i ./css/tailwind.css -o ./css/tailwind-built.css --minify"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@tailwindcss/cli": "4.3.0",
+    "tailwindcss": "4.3.0"
+  }
+}

@@ -14,10 +14,68 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html:not(.dark) body {
+  background-color: #ffffff;
+  color: #18181b;
+}
+
+html:not(.dark) .site-header nav > a,
+html:not(.dark) .site-header nav > .relative > a {
+  color: #3f3f46;
+}
+
+html:not(.dark) .site-header nav > a:hover,
+html:not(.dark) .site-header nav > .relative > a:hover {
+  color: #09090b;
+}
+
+html:not(.dark) .text-zinc-200,
+html:not(.dark) .text-zinc-300,
+html:not(.dark) .text-zinc-400 {
+  color: #3f3f46;
+}
+
+html:not(.dark) .bg-zinc-900 .text-zinc-200,
+html:not(.dark) .bg-zinc-900 .text-zinc-300,
+html:not(.dark) .bg-zinc-900 .text-zinc-400,
+html:not(.dark) .bg-zinc-950 .text-zinc-200,
+html:not(.dark) .bg-zinc-950 .text-zinc-300,
+html:not(.dark) .bg-zinc-950 .text-zinc-400,
+html:not(.dark) textarea.text-zinc-200,
+html:not(.dark) input.text-zinc-200 {
+  color: #e4e4e7;
+}
+
+html:not(.dark) .bg-zinc-900.text-zinc-200,
+html:not(.dark) .bg-zinc-900.text-zinc-300,
+html:not(.dark) .bg-zinc-900.text-zinc-100,
+html:not(.dark) .bg-zinc-950.text-zinc-200,
+html:not(.dark) .bg-zinc-950.text-zinc-300,
+html:not(.dark) .bg-zinc-900\/50.text-zinc-200 {
+  color: #e4e4e7;
+}
+
+html:not(.dark) .text-zinc-500 { color: #52525b; }
+html.dark .text-zinc-500,
+html.dark .text-zinc-600 { color: #a1a1aa; }
+
+.ost-ads-paused { color: #27272a !important; }
+html.dark .ost-ads-paused { color: #a1a1aa !important; }
+
+html.dark kbd { color: #a1a1aa; }
+
 .home-eyebrow {
   color: #0369a1;
   font: 600 0.7rem var(--font-mono);
   letter-spacing: 0.16em;
+}
+
+html:not(.dark) .home-eyebrow {
+  color: #075985;
+}
+
+html:not(.dark) .ecosystem-section [data-i18n="ecosystem_eyebrow"] {
+  color: #075985;
 }
 
 .dark .home-eyebrow {
@@ -389,6 +447,10 @@ body {
   color: #71717a;
 }
 
+.dark .portfolio-stack-list span {
+  color: #a1a1aa;
+}
+
 .portfolio-principle {
   min-height: 6.5rem;
   border-top: 2px solid #0ea5e9;
@@ -416,6 +478,11 @@ body {
 
 .dark .footer-column h2 {
   color: #e4e4e7;
+}
+
+.dark .footer-column a,
+.dark .footer-column button {
+  color: #a1a1aa;
 }
 
 .footer-column a,
@@ -1131,7 +1198,7 @@ aside .adsense-slot {
     overflow: hidden;
     margin: 0;
     padding: 0.75rem 0.5rem;
-    color: #71717a;
+    color: #a1a1aa;
     background: #18181b;
     font: 0.75rem/1.65 ui-monospace, SFMono-Regular, Menlo, monospace;
     text-align: right;
@@ -1168,6 +1235,129 @@ aside .adsense-slot {
     background: #27272a;
 }
 
+html:not(.dark) .json-utility-button {
+    color: #3f3f46;
+    background: #ffffff;
+    border-color: #a1a1aa;
+}
+
+html:not(.dark) .crypto-workspace [role="note"].border-amber-700\/60 {
+    border-color: #d97706;
+    background: #fffbeb;
+    color: #713f12;
+}
+
+.json-output-modes {
+    display: flex;
+    gap: 0.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.json-output-modes button {
+    min-height: 2rem;
+    padding: 0.35rem 0.65rem;
+    border: 1px solid #3f3f46;
+    background: #18181b;
+    color: #d4d4d8;
+    font: 500 0.7rem/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.json-output-modes button[aria-pressed="true"] {
+    color: #09090b;
+    background: #e4e4e7;
+    border-color: #e4e4e7;
+}
+
+.json-structured-view {
+    height: 20rem;
+    overflow: auto;
+    border: 1px solid #27272a;
+    background: #111113;
+    padding: 0.75rem;
+    color: #e4e4e7;
+    font: 0.75rem/1.65 ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.json-structured-view[hidden] {
+    display: none;
+}
+
+.json-structured-view pre {
+    margin: 0;
+    white-space: pre;
+}
+
+.json-token-key { color: #93c5fd; }
+.json-token-string { color: #86efac; }
+.json-token-number { color: #fcd34d; }
+.json-token-literal { color: #c4b5fd; }
+.json-token-punctuation { color: #a1a1aa; }
+
+.json-tree-view {
+    overflow-wrap: anywhere;
+}
+
+.json-tree-node {
+    margin-left: 0.25rem;
+}
+
+.json-tree-summary {
+    min-height: 1.75rem;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    cursor: pointer;
+    color: #d4d4d8;
+}
+
+.json-tree-summary:focus-visible,
+.json-output-modes button:focus-visible {
+    outline: 2px solid #38bdf8;
+    outline-offset: 2px;
+}
+
+.json-tree-children {
+    margin-left: 0.65rem;
+    padding-left: 0.65rem;
+    border-left: 1px solid #3f3f46;
+}
+
+.json-tree-leaf {
+    min-height: 1.6rem;
+    padding-left: 1.25rem;
+}
+
+.json-tree-limit {
+    margin-top: 0.75rem;
+    color: #fcd34d;
+}
+
+html:not(.dark) .json-output-modes button {
+    border-color: #d4d4d8;
+    background: #fff;
+    color: #3f3f46;
+}
+
+html:not(.dark) .json-output-modes button[aria-pressed="true"] {
+    color: #fff;
+    background: #27272a;
+    border-color: #27272a;
+}
+
+html:not(.dark) .json-structured-view {
+    background: #fff;
+    border-color: #d4d4d8;
+    color: #27272a;
+}
+
+html:not(.dark) .json-tree-summary { color: #27272a; }
+html:not(.dark) .json-tree-children { border-color: #d4d4d8; }
+html:not(.dark) .json-token-key { color: #1d4ed8; }
+html:not(.dark) .json-token-string { color: #166534; }
+html:not(.dark) .json-token-number { color: #92400e; }
+html:not(.dark) .json-token-literal { color: #6d28d9; }
+html:not(.dark) .json-token-punctuation { color: #52525b; }
+
 @media (prefers-reduced-motion: reduce) {
     .ecosystem-card,
     .ecosystem-cta {
@@ -1185,7 +1375,37 @@ aside .adsense-slot {
     }
 }
 
-@media (max-width: 1023px) {
+html:not(.dark) .crypto-workspace .text-zinc-200,
+html:not(.dark) .crypto-workspace .text-zinc-300,
+html:not(.dark) .crypto-workspace .text-zinc-400 {
+    color: #3f3f46;
+}
+
+html:not(.dark) .crypto-workspace .border-zinc-800,
+html:not(.dark) .crypto-workspace .border-zinc-700 {
+    border-color: #d4d4d8;
+}
+
+html:not(.dark) .crypto-workspace .bg-zinc-900\/30 {
+    background-color: #fafafa;
+}
+
+html:not(.dark) .crypto-workspace input.bg-zinc-900,
+html:not(.dark) .crypto-workspace .bg-zinc-900 {
+    background-color: #ffffff;
+}
+
+html:not(.dark) .crypto-workspace button.bg-zinc-900:hover {
+    background-color: #e4e4e7;
+}
+
+@media (max-width: 400px) {
+    .crypto-workspace #crypto-pass-output {
+        flex-basis: 100%;
+    }
+}
+
+@media (max-width: 1199px) {
     .site-header {
       position: relative;
     }

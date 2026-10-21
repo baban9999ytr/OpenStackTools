@@ -1,4 +1,4 @@
-import { t } from "./i18n.js";
+import { t } from "./i18n.js?v=phase3-closeout";
 
 document.addEventListener("DOMContentLoaded", () => {
   const dialog = document.getElementById("tool-search-dialog");

@@ -42,24 +42,9 @@
     ]
   }
   </script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            zinc: {
-              850: '#1e1e24',
-              950: '#09090b',
-            }
-          }
-        }
-      }
-    }
-  </script>
-  <link rel="stylesheet" href="/css/style.css">
-  <script src="/js/consent-banner.js"></script>
+  <link rel="stylesheet" href="/css/tailwind-built.css?v=phase3-closeout">
+  <link rel="stylesheet" href="/css/style.css?v=phase3-closeout">
+  <script src="/js/consent-banner.js?v=phase3-closeout"></script>
 </head>
 
 <body
@@ -230,9 +215,18 @@
                 <button id="json-copy-btn"
                   class="text-xs text-zinc-500 hover:text-zinc-200 font-mono transition-colors">Copy Output</button>
               </div>
-              <textarea id="json-output" aria-label="Formatted output" readonly
-                class="w-full h-80 bg-zinc-900/50 border border-zinc-800 p-3 font-mono text-xs text-zinc-200 focus:outline-none resize-none leading-relaxed"
-                placeholder="Formatted result appears here..."></textarea>
+              <div class="json-output-modes" role="group" data-i18n-aria-label="json_view_group" aria-label="Output presentation">
+                <button type="button" data-json-output-mode="text" aria-pressed="true" data-i18n="json_view_text">Text</button>
+                <button type="button" data-json-output-mode="highlight" aria-pressed="false" data-i18n="json_view_highlight">Highlighted</button>
+                <button type="button" data-json-output-mode="tree" aria-pressed="false" data-i18n="json_view_tree">Tree</button>
+              </div>
+              <div id="json-output-text-view">
+                <textarea id="json-output" aria-label="Formatted output" readonly
+                  class="w-full h-80 bg-zinc-900/50 border border-zinc-800 p-3 font-mono text-xs text-zinc-200 focus:outline-none resize-none leading-relaxed"
+                  placeholder="Formatted result appears here..."></textarea>
+              </div>
+              <div id="json-highlighted-output" class="json-structured-view" role="region" data-i18n-aria-label="json_view_highlight_label" aria-label="Syntax-highlighted JSON output" hidden><pre><code></code></pre></div>
+              <div id="json-tree-output" class="json-structured-view json-tree-view" role="region" data-i18n-aria-label="json_view_tree_label" aria-label="JSON tree view" hidden></div>
             </div>
           </div>
 
@@ -319,8 +313,8 @@
   </footer>
 
   <script type="module">
-    import { initJsonTool } from '/js/tools/json-tool.js?v=phase3-editor';
-    import '/js/app.js';
+    import { initJsonTool } from '/js/tools/json-tool.js?v=phase3-closeout';
+    import '/js/app.js?v=phase3-closeout';
     document.addEventListener('DOMContentLoaded', () => {
       initJsonTool();
     });

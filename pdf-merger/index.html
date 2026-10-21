@@ -42,25 +42,9 @@
     ]
   }
   </script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            zinc: {
-              850: '#1e1e24',
-              950: '#09090b',
-            }
-          }
-        }
-      }
-    }
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-  <link rel="stylesheet" href="/css/style.css">
-  <script src="/js/consent-banner.js"></script>
+  <link rel="stylesheet" href="/css/tailwind-built.css?v=phase3-closeout">
+  <link rel="stylesheet" href="/css/style.css?v=phase3-closeout">
+  <script src="/js/consent-banner.js?v=phase3-closeout"></script>
 </head>
 
 <body
@@ -306,8 +290,8 @@
   </footer>
 
   <script type="module">
-    import { initPdfTool } from '/js/tools/pdf-tool.js';
-    import '/js/app.js';
+    import { initPdfTool } from '/js/tools/pdf-tool.js?v=phase3-closeout';
+    import '/js/app.js?v=phase3-closeout';
     document.addEventListener('DOMContentLoaded', () => {
       initPdfTool();
     });

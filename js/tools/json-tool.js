@@ -1,5 +1,5 @@
-import { t } from "../i18n.js";
-import { downloadBlob } from "../file-utils.js";
+import { t } from "../i18n.js?v=phase3-closeout";
+import { downloadBlob } from "../file-utils.js?v=phase3-closeout";
 
 export function initJsonTool() {
   const inputEl = document.getElementById("json-input");
@@ -16,8 +16,128 @@ export function initJsonTool() {
   const searchInput = document.getElementById("json-search-input");
   const searchNextBtn = document.getElementById("json-search-next");
   const downloadBtn = document.getElementById("json-download-btn");
+  const outputModes = Array.from(document.querySelectorAll("[data-json-output-mode]"));
+  const outputTextView = document.getElementById("json-output-text-view");
+  const highlightedOutput = document.getElementById("json-highlighted-output");
+  const treeOutput = document.getElementById("json-tree-output");
 
   if (!inputEl) return;
+
+  let activeOutputMode = "text";
+
+  function jsonSource() {
+    if (outputEl.value.trim()) return outputEl.dataset.outputFormat === "json" ? outputEl.value : "";
+    return inputEl.value.trim();
+  }
+
+  function appendHighlightedJson(target, source) {
+    target.replaceChildren();
+    const tokenPattern = /("(?:\\.|[^"\\])*"\s*)(?=:)|("(?:\\.|[^"\\])*")|(-?\b\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\b)|\b(true|false|null)\b|([{}[\],:])/g;
+    let lastIndex = 0;
+    for (const match of source.matchAll(tokenPattern)) {
+      const index = match.index;
+      if (index > lastIndex) target.append(document.createTextNode(source.slice(lastIndex, index)));
+      const token = match[0];
+      const span = document.createElement("span");
+      span.className = match[1] ? "json-token-key" : match[2] ? "json-token-string" : match[3] ? "json-token-number" : match[4] ? "json-token-literal" : "json-token-punctuation";
+      span.textContent = token;
+      target.append(span);
+      lastIndex = index + token.length;
+    }
+    if (lastIndex < source.length) target.append(document.createTextNode(source.slice(lastIndex)));
+  }
+
+  function appendTreeValue(parent, value, key, state, depth = 0) {
+    if (state.nodes >= 2000 || depth > 40) {
+      state.limited = true;
+      return false;
+    }
+    state.nodes += 1;
+    const isContainer = value !== null && typeof value === "object";
+    if (!isContainer) {
+      const row = document.createElement("div");
+      row.className = "json-tree-leaf";
+      if (key !== undefined) {
+        const label = document.createElement("span");
+        label.className = "json-token-key json-tree-key";
+        label.textContent = `${JSON.stringify(String(key))}: `;
+        row.append(label);
+      }
+      const token = document.createElement("span");
+      const raw = JSON.stringify(value);
+      token.className = value === null || typeof value === "boolean" ? "json-token-literal" : typeof value === "number" ? "json-token-number" : "json-token-string";
+      token.textContent = raw === undefined ? "undefined" : raw;
+      row.append(token);
+      parent.append(row);
+      return true;
+    }
+
+    const entries = Array.isArray(value) ? value.map((item, index) => [index, item]) : Object.entries(value);
+    const details = document.createElement("details");
+    details.className = "json-tree-node";
+    details.open = depth === 0;
+    const summary = document.createElement("summary");
+    summary.className = "json-tree-summary";
+    if (key !== undefined) {
+      const label = document.createElement("span");
+      label.className = "json-token-key json-tree-key";
+      label.textContent = `${JSON.stringify(String(key))}: `;
+      summary.append(label);
+    }
+    const kind = Array.isArray(value) ? "Array" : "Object";
+    const marker = document.createElement("span");
+    marker.className = "json-token-punctuation";
+    marker.textContent = Array.isArray(value) ? "[ ]" : "{ }";
+    summary.append(marker, document.createTextNode(` ${entries.length} ${entries.length === 1 ? "item" : "items"}`));
+    details.append(summary);
+
+    if (entries.length) {
+      const children = document.createElement("div");
+      children.className = "json-tree-children";
+      for (const [childKey, childValue] of entries) {
+        if (!appendTreeValue(children, childValue, childKey, state, depth + 1)) break;
+      }
+      details.append(children);
+    } else {
+      summary.append(document.createTextNode(` · empty ${kind.toLowerCase()}`));
+    }
+    parent.append(details);
+    return !state.limited;
+  }
+
+  function renderOutputMode(mode) {
+    activeOutputMode = mode;
+    outputTextView.hidden = mode !== "text";
+    highlightedOutput.hidden = mode !== "highlight";
+    treeOutput.hidden = mode !== "tree";
+    outputModes.forEach((button) => {
+      const selected = button.dataset.jsonOutputMode === mode;
+      button.setAttribute("aria-pressed", String(selected));
+    });
+    if (mode === "text") return;
+    const source = jsonSource();
+    try {
+      const parsed = JSON.parse(source);
+      if (mode === "highlight") {
+        appendHighlightedJson(highlightedOutput.querySelector("code"), JSON.stringify(parsed, null, 2));
+      } else {
+        treeOutput.replaceChildren();
+        const state = { nodes: 0, limited: false };
+        appendTreeValue(treeOutput, parsed, undefined, state);
+        if (state.limited) {
+          const note = document.createElement("p");
+          note.className = "json-tree-limit";
+          note.textContent = t("json_view_limit");
+          treeOutput.append(note);
+        }
+      }
+    } catch {
+      const message = t("json_view_prompt");
+      (mode === "highlight" ? highlightedOutput : treeOutput).textContent = message;
+    }
+  }
+
+  outputModes.forEach((button) => button.addEventListener("click", () => renderOutputMode(button.dataset.jsonOutputMode)));
 
   function syncLineNumbers() {
     const lineCount = Math.max(1, inputEl.value.split("\n").length);
@@ -77,6 +197,7 @@ export function initJsonTool() {
     } catch (err) {
       showError("⚠ " + t("json_status_error"), err);
     }
+    if (activeOutputMode !== "text" && outputEl.dataset.outputFormat !== "json") renderOutputMode(activeOutputMode);
   }
 
   formatBtn.addEventListener("click", () => {
@@ -84,6 +205,7 @@ export function initJsonTool() {
       const obj = JSON.parse(inputEl.value);
       outputEl.value = JSON.stringify(obj, null, 2);
       outputEl.dataset.outputFormat = "json";
+      renderOutputMode(activeOutputMode);
       statusEl.textContent = "✓ Formatted JSON cleanly";
       statusEl.className = "text-xs font-mono text-emerald-400";
     } catch (err) {
@@ -96,6 +218,7 @@ export function initJsonTool() {
       const obj = JSON.parse(inputEl.value);
       outputEl.value = JSON.stringify(obj);
       outputEl.dataset.outputFormat = "json";
+      renderOutputMode(activeOutputMode);
       statusEl.textContent = "✓ Minified JSON successfully";
       statusEl.className = "text-xs font-mono text-emerald-400";
     } catch (err) {
@@ -110,6 +233,7 @@ export function initJsonTool() {
       if (arr.length === 0) {
         outputEl.value = "";
         outputEl.dataset.outputFormat = "csv";
+        renderOutputMode(activeOutputMode);
         statusEl.textContent = "✓ Converted an empty array to CSV";
         statusEl.className = "text-xs font-mono text-emerald-400";
         return;
@@ -146,6 +270,7 @@ export function initJsonTool() {
 
       outputEl.value = rows.join("\n");
       outputEl.dataset.outputFormat = "csv";
+      renderOutputMode(activeOutputMode);
       statusEl.textContent = "✓ Converted JSON to CSV";
       statusEl.className = "text-xs font-mono text-emerald-400";
     } catch (err) {
@@ -182,6 +307,7 @@ export function initJsonTool() {
 
       outputEl.value = JSON.stringify(result, null, 2);
       outputEl.dataset.outputFormat = "json";
+      renderOutputMode(activeOutputMode);
       statusEl.textContent = "✓ Converted CSV to JSON";
       statusEl.className = "text-xs font-mono text-emerald-400";
     } catch (err) {

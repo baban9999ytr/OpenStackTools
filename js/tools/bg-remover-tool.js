@@ -1,5 +1,5 @@
-﻿import { t } from "../i18n.js";
-import { downloadBlob } from "../file-utils.js";
+﻿import { t } from "../i18n.js?v=phase3-closeout";
+import { downloadBlob } from "../file-utils.js?v=phase3-closeout";
 
 export function initBgRemoverTool() {
   const dropZone = document.getElementById("bg-drop-zone");
@@ -20,7 +20,7 @@ export function initBgRemoverTool() {
 
   if (!dropZone || !canvas) return;
 
-  const ctx = canvas.getContext("2d");
+  const ctx = canvas.getContext("2d", { willReadFrequently: true });
   let originalImage = null;
   let originalData = null;
   let initialData = null;
@@ -186,11 +186,11 @@ export function initBgRemoverTool() {
 
   canvas.addEventListener("click", (e) => {
     if (!originalData) return;
-    if (cropMode) return;
     if (suppressNextClick) {
       suppressNextClick = false;
       return;
     }
+    if (cropMode) return;
     const rect = canvas.getBoundingClientRect();
     const scaleX = canvas.width / rect.width;
     const scaleY = canvas.height / rect.height;

@@ -6,6 +6,7 @@
   var CONSENT_VERSION = '2026-10-07-v1';
   var adsScriptPromise = null;
   var adsInitialized = false;
+  var consentOpener = null;
 
   var COPY = {
     en: {
@@ -226,6 +227,7 @@
       document.body.appendChild(root);
     }
 
+    var focusedLanguage = document.activeElement && document.activeElement.getAttribute && document.activeElement.getAttribute('data-ost-lang');
     root.innerHTML =
       '<button type="button" id="ost-consent-reopen" class="ost-consent-reopen" aria-haspopup="dialog">' +
         dict.settings +
@@ -263,6 +265,7 @@
       render(lang, false);
     });
     root.querySelector('#ost-consent-reopen').addEventListener('click', function () {
+      consentOpener = this;
       render(currentLang(), true);
     });
     root.querySelectorAll('[data-ost-lang]').forEach(function (btn) {
@@ -273,7 +276,52 @@
         render(next, true);
       });
     });
+
+    if (showDialog) {
+      var focusTarget = focusedLanguage
+        ? root.querySelector('[data-ost-lang="' + focusedLanguage + '"]')
+        : root.querySelector('#ost-consent-reject');
+      window.requestAnimationFrame(function () { if (focusTarget) focusTarget.focus(); });
+    } else {
+      var returnTarget = root.querySelector('#ost-consent-reopen');
+      window.requestAnimationFrame(function () {
+        if (consentOpener && consentOpener.isConnected) consentOpener.focus();
+        else if (returnTarget) returnTarget.focus();
+        consentOpener = null;
+      });
+    }
   }
+
+  document.addEventListener('keydown', function (event) {
+    var dialog = document.getElementById('ost-consent-dialog');
+    if (!dialog || !dialog.classList.contains('is-open')) return;
+
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      writeChoice(false);
+      applyChoice(false, currentLang());
+      render(currentLang(), false);
+      return;
+    }
+
+    if (event.key !== 'Tab') return;
+    var focusable = Array.prototype.slice.call(dialog.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'))
+      .filter(function (element) { return element.getClientRects().length > 0; });
+    if (!focusable.length) {
+      event.preventDefault();
+      dialog.focus();
+      return;
+    }
+    var first = focusable[0];
+    var last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
 
   function init() {
     hydrateAbsoluteUrls();

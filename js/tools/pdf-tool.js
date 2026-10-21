@@ -1,14 +1,34 @@
-import { t } from "../i18n.js";
-import { downloadBlob, sanitizeFilename } from "../file-utils.js";
+import { t } from "../i18n.js?v=phase3-closeout";
+import { downloadBlob, sanitizeFilename } from "../file-utils.js?v=phase3-closeout";
 
 const PDFJS_VERSION = "4.10.38";
 const PAGE_WINDOW_SIZE = 24;
 let pdfJsPromise;
+let pdfLibPromise;
 const pdfPreviewDocs = new Map();
 let pdfFiles = [];
 let pdfPages = [];
 let pageWindowStart = 0;
 let resultUrl = "";
+
+function getPdfLib() {
+  if (window.PDFLib) return Promise.resolve(window.PDFLib);
+  if (!pdfLibPromise) {
+    pdfLibPromise = new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = "https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js";
+      script.async = true;
+      script.onload = () => window.PDFLib ? resolve(window.PDFLib) : reject(new Error("pdf-lib did not initialize."));
+      script.onerror = () => {
+        script.remove();
+        pdfLibPromise = null;
+        reject(new Error("pdf-lib could not be loaded."));
+      };
+      document.head.append(script);
+    });
+  }
+  return pdfLibPromise;
+}
 
 export function initPdfTool() {
   const dropZone = document.getElementById("pdf-drop-zone");
@@ -78,17 +98,27 @@ export function initPdfTool() {
 
     statusEl.textContent = t("processing");
     let added = 0;
+    let pdfjs;
     for (const file of candidates) {
       try {
+        pdfjs ||= await getPdfJs();
         const bytes = await file.arrayBuffer();
-        const document = await PDFLib.PDFDocument.load(bytes, { ignoreEncryption: true });
         const entry = {
           id: crypto.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`,
           name: file.name,
           size: file.size,
           bytes,
-          pageCount: document.getPageCount(),
+          pageCount: 0,
         };
+        try {
+          const document = await getPreviewDocument(pdfjs, entry);
+          entry.pageCount = document.numPages;
+        } catch {
+          releasePreviewDoc(entry.id);
+          const PDFLib = await getPdfLib();
+          const document = await PDFLib.PDFDocument.load(bytes, { ignoreEncryption: true });
+          entry.pageCount = document.getPageCount();
+        }
         pdfFiles.push(entry);
         for (let pageIndex = 0; pageIndex < entry.pageCount; pageIndex += 1) {
           pdfPages.push({
@@ -341,6 +371,7 @@ export function initPdfTool() {
     }
     try {
       statusEl.textContent = t("processing");
+      const PDFLib = await getPdfLib();
       const mergedPdf = await PDFLib.PDFDocument.create();
       const sourceDocs = new Map();
       for (const page of pdfPages) {
@@ -378,6 +409,7 @@ export function initPdfTool() {
     }
     try {
       statusEl.textContent = t("processing");
+      const PDFLib = await getPdfLib();
       const source = pdfFiles[0];
       const document = await PDFLib.PDFDocument.load(source.bytes, { ignoreEncryption: true });
       const indices = parsePageRange(range, document.getPageCount());

@@ -9,6 +9,11 @@
 .env.*
 src/
 node_modules/
+output/
+.qa-final/
+.playwright-cli/
+package.json
+css/tailwind.css
 __pycache__/
 *.py
 *.toml

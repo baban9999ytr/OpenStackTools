@@ -223,6 +223,8 @@ Thumbs.db
 Desktop.ini
 node_modules/
 dist/
+.playwright-cli/
+.qa-final/
 .env
 # Secrets & Environment variables
 .dev.vars
@@ -240,3 +242,4 @@ htmlcov/
 *.db
 uploads/
 media/
+output/playwright/

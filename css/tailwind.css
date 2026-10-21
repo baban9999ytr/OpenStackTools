@@ -1,0 +1,8 @@
+@import "tailwindcss" source("../");
+
+@theme {
+  --color-zinc-850: #1e1e24;
+  --color-zinc-950: #09090b;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));

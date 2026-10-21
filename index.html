@@ -70,25 +70,10 @@
     ]
   }
   </script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            zinc: {
-              850: '#1e1e24',
-              950: '#09090b',
-            }
-          }
-        }
-      }
-    }
-  </script>
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/tailwind-built.css?v=phase3-closeout">
+  <link rel="stylesheet" href="/css/style.css?v=phase3-closeout">
   
-  <script src="/js/consent-banner.js"></script>
+  <script src="/js/consent-banner.js?v=phase3-closeout"></script>
 </head>
 
 <body
@@ -209,6 +194,7 @@
     </div>
   </header>
 
+  <main id="main-content">
   <section class="home-hero max-w-5xl mx-auto px-4 pt-20 sm:pt-28 pb-16 sm:pb-20 text-center">
     <p class="home-eyebrow mb-5" data-i18n="hero_eyebrow">PRIVATE BY DESIGN</p>
     <h1 class="text-4xl sm:text-6xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 mb-6 leading-tight" data-i18n="hero_headline">
@@ -503,6 +489,8 @@
       </div>
     </div>
   </section>
+
+  </main>
 
   <dialog id="tool-search-dialog" class="tool-search-dialog" aria-labelledby="tool-search-title">
     <div class="tool-search-shell">

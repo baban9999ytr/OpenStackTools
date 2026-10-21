@@ -42,24 +42,9 @@
     ]
   }
   </script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            zinc: {
-              850: '#1e1e24',
-              950: '#09090b',
-            }
-          }
-        }
-      }
-    }
-  </script>
-  <link rel="stylesheet" href="/css/style.css">
-  <script src="/js/consent-banner.js"></script>
+  <link rel="stylesheet" href="/css/tailwind-built.css?v=phase3-closeout">
+  <link rel="stylesheet" href="/css/style.css?v=phase3-closeout">
+  <script src="/js/consent-banner.js?v=phase3-closeout"></script>
 </head>
 
 <body
@@ -194,7 +179,7 @@
     <div class="flex flex-col lg:flex-row gap-12">
 
       <div class="flex-1">
-        <div class="border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 p-6 space-y-8">
+        <div class="crypto-workspace border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 p-6 space-y-8">
           <div>
             <div class="inline-block border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900/50 px-2.5 py-0.5 mb-3">
               <span class="text-[11px] font-mono text-zinc-400 uppercase tracking-widest" data-i18n="trust_local">Processed in your browser</span>
@@ -215,6 +200,10 @@
               class="w-full accent-zinc-100 bg-zinc-800">
             <div class="flex flex-wrap gap-4 text-xs text-zinc-400 font-mono">
               <label class="flex items-center space-x-1.5 cursor-pointer">
+                <input type="checkbox" id="crypto-inc-lower" checked class="bg-zinc-900 border-zinc-800">
+                <span data-i18n="crypto_include_lower">Lowercase (a-z)</span>
+              </label>
+              <label class="flex items-center space-x-1.5 cursor-pointer">
                 <input type="checkbox" id="crypto-inc-upper" checked class="bg-zinc-900 border-zinc-800">
                 <span>Uppercase (A-Z)</span>
               </label>
@@ -226,7 +215,21 @@
                 <input type="checkbox" id="crypto-inc-sym" checked class="bg-zinc-900 border-zinc-800">
                 <span>Symbols (!@#$)</span>
               </label>
+              <label class="flex items-center space-x-1.5 cursor-pointer">
+                <input type="checkbox" id="crypto-exclude-ambiguous" class="bg-zinc-900 border-zinc-800">
+                <span data-i18n="crypto_exclude_ambiguous">Exclude ambiguous characters (i, I, l, 1, O, 0)</span>
+              </label>
             </div>
+            <div class="space-y-1" aria-live="polite">
+              <div class="flex justify-between gap-2 text-[11px] font-mono text-zinc-400">
+                <span data-i18n="crypto_entropy_label">Estimated entropy</span>
+                <span id="crypto-pass-entropy">—</span>
+              </div>
+              <div class="h-1.5 bg-zinc-800 overflow-hidden" role="meter" aria-label="Password strength" aria-valuemin="0" aria-valuemax="128" aria-valuenow="0" id="crypto-pass-meter">
+                <div id="crypto-pass-meter-fill" class="h-full bg-amber-500 transition-[width] duration-200" style="width:0%"></div>
+              </div>
+            </div>
+            <p id="crypto-pass-status" class="text-xs text-amber-300" role="status" aria-live="polite"></p>
             <div class="flex flex-wrap items-center gap-2">
               <input type="text" id="crypto-pass-output" aria-label="Generated password" readonly
                 class="min-w-0 flex-1 bg-zinc-900 border border-zinc-800 px-3 py-1.5 font-mono text-xs text-zinc-200 focus:outline-none">
@@ -275,6 +278,24 @@
               MD5 is provided strictly for legacy checksum verification. It is cryptographically broken and must not
               be used for security, integrity-sensitive verification, or password storage.
             </p>
+          </div>
+
+          <div class="p-4 border border-zinc-800 bg-zinc-900/30 space-y-3">
+            <div>
+              <h2 class="text-xs font-mono text-zinc-300" data-i18n="crypto_file_title">Local file checksum</h2>
+              <p class="mt-1 text-xs text-zinc-500" data-i18n="crypto_file_hint">Calculate a SHA-256 checksum in this browser. Large files may use substantial memory.</p>
+            </div>
+            <label for="crypto-file-input" class="sr-only" data-i18n="crypto_file_choose">Choose a file to hash</label>
+            <div id="crypto-file-dropzone" class="border border-dashed border-zinc-700 p-3 space-y-2">
+              <p class="text-xs text-zinc-500" data-i18n="crypto_file_drop">Drop a file here or choose one</p>
+              <input id="crypto-file-input" type="file" class="block w-full text-xs text-zinc-300 file:mr-3 file:border file:border-zinc-700 file:bg-zinc-900 file:px-3 file:py-2 file:text-zinc-200">
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+              <button id="crypto-file-hash-btn" type="button" class="px-3 py-1.5 border border-zinc-700 bg-zinc-900 hover:bg-zinc-800 text-xs text-zinc-200" data-i18n="crypto_file_compute">Calculate SHA-256</button>
+              <button id="crypto-file-copy-btn" type="button" class="px-3 py-1.5 border border-zinc-700 text-xs text-zinc-300" data-i18n="crypto_file_copy" disabled>Copy checksum</button>
+            </div>
+            <p id="crypto-file-status" class="break-all text-xs text-zinc-400" role="status" aria-live="polite"></p>
+            <output id="crypto-file-output" class="block break-all font-mono text-xs text-zinc-300" aria-label="SHA-256 file checksum"></output>
           </div>
         </div>
 
@@ -337,8 +358,8 @@
   </footer>
 
   <script type="module">
-    import { initCryptoTool } from '/js/tools/crypto-tool.js';
-    import '/js/app.js';
+    import { initCryptoTool } from '/js/tools/crypto-tool.js?v=phase3-closeout';
+    import '/js/app.js?v=phase3-closeout';
     document.addEventListener('DOMContentLoaded', () => {
       initCryptoTool();
     });
