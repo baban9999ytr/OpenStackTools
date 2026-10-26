@@ -116,10 +116,14 @@ export function initBgRemoverTool() {
   cropModeBtn.addEventListener("click", () => {
     cropMode = !cropMode;
     cropModeBtn.setAttribute("aria-pressed", String(cropMode));
-    cropModeBtn.textContent = cropMode ? "Cancel crop selection" : "Select crop";
+    cropModeBtn.textContent = cropMode
+      ? "Cancel crop selection"
+      : "Select crop";
     canvas.style.cursor = cropMode ? "crosshair" : "pointer";
     if (!cropMode) clearCropSelection();
-    statusEl.textContent = cropMode ? "Drag across the image to select a crop area." : "Crop selection cancelled.";
+    statusEl.textContent = cropMode
+      ? "Drag across the image to select a crop area."
+      : "Crop selection cancelled.";
   });
 
   canvas.addEventListener("pointerdown", (event) => {
@@ -147,9 +151,12 @@ export function initBgRemoverTool() {
     if (!cropStart) return;
     cropStart = null;
     suppressNextClick = true;
-    const valid = cropSelection && cropSelection.width >= 2 && cropSelection.height >= 2;
+    const valid =
+      cropSelection && cropSelection.width >= 2 && cropSelection.height >= 2;
     cropApplyBtn.disabled = !valid;
-    statusEl.textContent = valid ? "Crop area selected. Apply crop or adjust the selection." : "Select a larger crop area.";
+    statusEl.textContent = valid
+      ? "Crop area selected. Apply crop or adjust the selection."
+      : "Select a larger crop area.";
   });
 
   cropApplyBtn.addEventListener("click", () => {
@@ -277,8 +284,20 @@ export function initBgRemoverTool() {
   function getCanvasPoint(event) {
     const rect = canvas.getBoundingClientRect();
     return {
-      x: Math.max(0, Math.min(canvas.width, (event.clientX - rect.left) * canvas.width / rect.width)),
-      y: Math.max(0, Math.min(canvas.height, (event.clientY - rect.top) * canvas.height / rect.height)),
+      x: Math.max(
+        0,
+        Math.min(
+          canvas.width,
+          ((event.clientX - rect.left) * canvas.width) / rect.width,
+        ),
+      ),
+      y: Math.max(
+        0,
+        Math.min(
+          canvas.height,
+          ((event.clientY - rect.top) * canvas.height) / rect.height,
+        ),
+      ),
     };
   }
 
@@ -308,7 +327,10 @@ export function initBgRemoverTool() {
   }
 
   function pushHistory() {
-    history.push({ image: copyImageData(ctx.getImageData(0, 0, canvas.width, canvas.height)), base: copyImageData(originalData) });
+    history.push({
+      image: copyImageData(ctx.getImageData(0, 0, canvas.width, canvas.height)),
+      base: copyImageData(originalData),
+    });
     if (history.length > 10) history.shift();
     undoBtn.disabled = false;
   }

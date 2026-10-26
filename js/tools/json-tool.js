@@ -16,7 +16,9 @@ export function initJsonTool() {
   const searchInput = document.getElementById("json-search-input");
   const searchNextBtn = document.getElementById("json-search-next");
   const downloadBtn = document.getElementById("json-download-btn");
-  const outputModes = Array.from(document.querySelectorAll("[data-json-output-mode]"));
+  const outputModes = Array.from(
+    document.querySelectorAll("[data-json-output-mode]"),
+  );
   const outputTextView = document.getElementById("json-output-text-view");
   const highlightedOutput = document.getElementById("json-highlighted-output");
   const treeOutput = document.getElementById("json-tree-output");
@@ -26,25 +28,37 @@ export function initJsonTool() {
   let activeOutputMode = "text";
 
   function jsonSource() {
-    if (outputEl.value.trim()) return outputEl.dataset.outputFormat === "json" ? outputEl.value : "";
+    if (outputEl.value.trim())
+      return outputEl.dataset.outputFormat === "json" ? outputEl.value : "";
     return inputEl.value.trim();
   }
 
   function appendHighlightedJson(target, source) {
     target.replaceChildren();
-    const tokenPattern = /("(?:\\.|[^"\\])*"\s*)(?=:)|("(?:\\.|[^"\\])*")|(-?\b\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\b)|\b(true|false|null)\b|([{}[\],:])/g;
+    const tokenPattern =
+      /("(?:\\.|[^"\\])*"\s*)(?=:)|("(?:\\.|[^"\\])*")|(-?\b\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\b)|\b(true|false|null)\b|([{}[\],:])/g;
     let lastIndex = 0;
     for (const match of source.matchAll(tokenPattern)) {
       const index = match.index;
-      if (index > lastIndex) target.append(document.createTextNode(source.slice(lastIndex, index)));
+      if (index > lastIndex)
+        target.append(document.createTextNode(source.slice(lastIndex, index)));
       const token = match[0];
       const span = document.createElement("span");
-      span.className = match[1] ? "json-token-key" : match[2] ? "json-token-string" : match[3] ? "json-token-number" : match[4] ? "json-token-literal" : "json-token-punctuation";
+      span.className = match[1]
+        ? "json-token-key"
+        : match[2]
+          ? "json-token-string"
+          : match[3]
+            ? "json-token-number"
+            : match[4]
+              ? "json-token-literal"
+              : "json-token-punctuation";
       span.textContent = token;
       target.append(span);
       lastIndex = index + token.length;
     }
-    if (lastIndex < source.length) target.append(document.createTextNode(source.slice(lastIndex)));
+    if (lastIndex < source.length)
+      target.append(document.createTextNode(source.slice(lastIndex)));
   }
 
   function appendTreeValue(parent, value, key, state, depth = 0) {
@@ -65,14 +79,21 @@ export function initJsonTool() {
       }
       const token = document.createElement("span");
       const raw = JSON.stringify(value);
-      token.className = value === null || typeof value === "boolean" ? "json-token-literal" : typeof value === "number" ? "json-token-number" : "json-token-string";
+      token.className =
+        value === null || typeof value === "boolean"
+          ? "json-token-literal"
+          : typeof value === "number"
+            ? "json-token-number"
+            : "json-token-string";
       token.textContent = raw === undefined ? "undefined" : raw;
       row.append(token);
       parent.append(row);
       return true;
     }
 
-    const entries = Array.isArray(value) ? value.map((item, index) => [index, item]) : Object.entries(value);
+    const entries = Array.isArray(value)
+      ? value.map((item, index) => [index, item])
+      : Object.entries(value);
     const details = document.createElement("details");
     details.className = "json-tree-node";
     details.open = depth === 0;
@@ -88,14 +109,20 @@ export function initJsonTool() {
     const marker = document.createElement("span");
     marker.className = "json-token-punctuation";
     marker.textContent = Array.isArray(value) ? "[ ]" : "{ }";
-    summary.append(marker, document.createTextNode(` ${entries.length} ${entries.length === 1 ? "item" : "items"}`));
+    summary.append(
+      marker,
+      document.createTextNode(
+        ` ${entries.length} ${entries.length === 1 ? "item" : "items"}`,
+      ),
+    );
     details.append(summary);
 
     if (entries.length) {
       const children = document.createElement("div");
       children.className = "json-tree-children";
       for (const [childKey, childValue] of entries) {
-        if (!appendTreeValue(children, childValue, childKey, state, depth + 1)) break;
+        if (!appendTreeValue(children, childValue, childKey, state, depth + 1))
+          break;
       }
       details.append(children);
     } else {
@@ -119,7 +146,10 @@ export function initJsonTool() {
     try {
       const parsed = JSON.parse(source);
       if (mode === "highlight") {
-        appendHighlightedJson(highlightedOutput.querySelector("code"), JSON.stringify(parsed, null, 2));
+        appendHighlightedJson(
+          highlightedOutput.querySelector("code"),
+          JSON.stringify(parsed, null, 2),
+        );
       } else {
         treeOutput.replaceChildren();
         const state = { nodes: 0, limited: false };
@@ -133,15 +163,23 @@ export function initJsonTool() {
       }
     } catch {
       const message = t("json_view_prompt");
-      (mode === "highlight" ? highlightedOutput : treeOutput).textContent = message;
+      (mode === "highlight" ? highlightedOutput : treeOutput).textContent =
+        message;
     }
   }
 
-  outputModes.forEach((button) => button.addEventListener("click", () => renderOutputMode(button.dataset.jsonOutputMode)));
+  outputModes.forEach((button) =>
+    button.addEventListener("click", () =>
+      renderOutputMode(button.dataset.jsonOutputMode),
+    ),
+  );
 
   function syncLineNumbers() {
     const lineCount = Math.max(1, inputEl.value.split("\n").length);
-    lineNumbersEl.textContent = Array.from({ length: lineCount }, (_, index) => index + 1).join("\n");
+    lineNumbersEl.textContent = Array.from(
+      { length: lineCount },
+      (_, index) => index + 1,
+    ).join("\n");
     lineNumbersEl.scrollTop = inputEl.scrollTop;
   }
 
@@ -150,7 +188,11 @@ export function initJsonTool() {
     const explicitLocation = message.match(/line\s+(\d+)\s+column\s+(\d+)/i);
     const position = message.match(/position\s+(\d+)/i);
     const unexpected = message.match(/Unexpected token ['"](.+?)['"]/i)?.[1];
-    let offset = position ? Number(position[1]) : unexpected ? source.indexOf(unexpected) : -1;
+    let offset = position
+      ? Number(position[1])
+      : unexpected
+        ? source.indexOf(unexpected)
+        : -1;
     if (/Unexpected end of JSON input/i.test(message)) offset = source.length;
     let line = Number(explicitLocation?.[1]);
     let column = Number(explicitLocation?.[2]);
@@ -163,7 +205,9 @@ export function initJsonTool() {
     statusEl.className = "text-xs font-mono text-red-400";
   }
 
-  inputEl.addEventListener("scroll", () => { lineNumbersEl.scrollTop = inputEl.scrollTop; });
+  inputEl.addEventListener("scroll", () => {
+    lineNumbersEl.scrollTop = inputEl.scrollTop;
+  });
   syncLineNumbers();
 
   if (loadFileBtn && fileInput) {
@@ -181,7 +225,10 @@ export function initJsonTool() {
     });
   }
 
-  inputEl.addEventListener("input", () => { syncLineNumbers(); validateRealtime(); });
+  inputEl.addEventListener("input", () => {
+    syncLineNumbers();
+    validateRealtime();
+  });
 
   function validateRealtime() {
     const val = inputEl.value.trim();
@@ -197,7 +244,8 @@ export function initJsonTool() {
     } catch (err) {
       showError("⚠ " + t("json_status_error"), err);
     }
-    if (activeOutputMode !== "text" && outputEl.dataset.outputFormat !== "json") renderOutputMode(activeOutputMode);
+    if (activeOutputMode !== "text" && outputEl.dataset.outputFormat !== "json")
+      renderOutputMode(activeOutputMode);
   }
 
   formatBtn.addEventListener("click", () => {
@@ -239,8 +287,14 @@ export function initJsonTool() {
         return;
       }
 
-      if (!arr.every((item) => item && typeof item === "object" && !Array.isArray(item))) {
-        throw new Error("JSON to CSV requires an object or an array of objects.");
+      if (
+        !arr.every(
+          (item) => item && typeof item === "object" && !Array.isArray(item),
+        )
+      ) {
+        throw new Error(
+          "JSON to CSV requires an object or an array of objects.",
+        );
       }
 
       // Collect all keys
@@ -285,7 +339,10 @@ export function initJsonTool() {
 
       const rows = parseCsv(csv);
       if (rows.length < 2) {
-        showError("CSV needs a header row and at least one data row", new Error("Add a row beneath the headings."));
+        showError(
+          "CSV needs a header row and at least one data row",
+          new Error("Add a row beneath the headings."),
+        );
         return;
       }
 
@@ -371,7 +428,8 @@ export function initJsonTool() {
       statusEl.textContent = "Copied output to clipboard.";
       statusEl.className = "text-xs font-mono text-emerald-400";
     } catch {
-      statusEl.textContent = "Clipboard access is unavailable. Select and copy the output instead.";
+      statusEl.textContent =
+        "Clipboard access is unavailable. Select and copy the output instead.";
       statusEl.className = "text-xs font-mono text-amber-400";
     }
   });
@@ -392,14 +450,18 @@ export function initJsonTool() {
     }
     inputEl.focus();
     inputEl.setSelectionRange(foundAt, foundAt + query.length);
-    const lineHeight = Number.parseFloat(getComputedStyle(inputEl).lineHeight) || 20;
-    inputEl.scrollTop = Math.max(0, source.slice(0, foundAt).split("\n").length - 1) * lineHeight;
+    const lineHeight =
+      Number.parseFloat(getComputedStyle(inputEl).lineHeight) || 20;
+    inputEl.scrollTop =
+      Math.max(0, source.slice(0, foundAt).split("\n").length - 1) * lineHeight;
     lineNumbersEl.scrollTop = inputEl.scrollTop;
     statusEl.textContent = "Match selected in input.";
     statusEl.className = "text-xs font-mono text-sky-400";
   });
 
-  searchInput.addEventListener("keydown", (event) => { if (event.key === "Enter") searchNextBtn.click(); });
+  searchInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") searchNextBtn.click();
+  });
 
   downloadBtn.addEventListener("click", () => {
     if (!outputEl.value) {
@@ -409,7 +471,10 @@ export function initJsonTool() {
     }
     const format = outputEl.dataset.outputFormat === "csv" ? "csv" : "json";
     const type = format === "csv" ? "text/csv" : "application/json";
-    downloadBlob(new Blob([outputEl.value], { type }), `openstacktools-result.${format}`);
+    downloadBlob(
+      new Blob([outputEl.value], { type }),
+      `openstacktools-result.${format}`,
+    );
     statusEl.textContent = "Download started.";
     statusEl.className = "text-xs font-mono text-emerald-400";
   });

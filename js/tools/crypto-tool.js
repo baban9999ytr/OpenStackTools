@@ -1,37 +1,37 @@
 ﻿export function initCryptoTool() {
-  const passLengthInput = document.getElementById('crypto-pass-length');
+  const passLengthInput = document.getElementById("crypto-pass-length");
   const t = (key) => window.OSTTranslate?.(key) ?? key;
-  const incLower = document.getElementById('crypto-inc-lower');
-  const passLengthVal = document.getElementById('crypto-pass-length-val');
-  const incUpper = document.getElementById('crypto-inc-upper');
-  const incNumbers = document.getElementById('crypto-inc-num');
-  const incSymbols = document.getElementById('crypto-inc-sym');
-  const excludeAmbiguous = document.getElementById('crypto-exclude-ambiguous');
-  const genPassBtn = document.getElementById('crypto-gen-pass-btn');
-  const passOutput = document.getElementById('crypto-pass-output');
-  const copyPassBtn = document.getElementById('crypto-copy-pass-btn');
+  const incLower = document.getElementById("crypto-inc-lower");
+  const passLengthVal = document.getElementById("crypto-pass-length-val");
+  const incUpper = document.getElementById("crypto-inc-upper");
+  const incNumbers = document.getElementById("crypto-inc-num");
+  const incSymbols = document.getElementById("crypto-inc-sym");
+  const excludeAmbiguous = document.getElementById("crypto-exclude-ambiguous");
+  const genPassBtn = document.getElementById("crypto-gen-pass-btn");
+  const passOutput = document.getElementById("crypto-pass-output");
+  const copyPassBtn = document.getElementById("crypto-copy-pass-btn");
 
   const genUuidBtn = document.getElementById("crypto-gen-uuid-btn");
   const uuidOutput = document.getElementById("crypto-uuid-output");
   const copyUuidBtn = document.getElementById("crypto-copy-uuid-btn");
 
-  const hashInput = document.getElementById('crypto-hash-input');
-  const sha256Output = document.getElementById('crypto-sha256-output');
-  const sha512Output = document.getElementById('crypto-sha512-output');
-  const md5Output = document.getElementById('crypto-md5-output');
-  const copySha256Btn = document.getElementById('crypto-copy-sha256');
-  const copySha512Btn = document.getElementById('crypto-copy-sha512');
-  const copyMd5Btn = document.getElementById('crypto-copy-md5');
-  const entropyOutput = document.getElementById('crypto-pass-entropy');
-  const passStatus = document.getElementById('crypto-pass-status');
-  const strengthMeter = document.getElementById('crypto-pass-meter');
-  const strengthMeterFill = document.getElementById('crypto-pass-meter-fill');
-  const fileInput = document.getElementById('crypto-file-input');
-  const fileHashBtn = document.getElementById('crypto-file-hash-btn');
-  const fileCopyBtn = document.getElementById('crypto-file-copy-btn');
-  const fileStatus = document.getElementById('crypto-file-status');
-  const fileOutput = document.getElementById('crypto-file-output');
-  const fileDropzone = document.getElementById('crypto-file-dropzone');
+  const hashInput = document.getElementById("crypto-hash-input");
+  const sha256Output = document.getElementById("crypto-sha256-output");
+  const sha512Output = document.getElementById("crypto-sha512-output");
+  const md5Output = document.getElementById("crypto-md5-output");
+  const copySha256Btn = document.getElementById("crypto-copy-sha256");
+  const copySha512Btn = document.getElementById("crypto-copy-sha512");
+  const copyMd5Btn = document.getElementById("crypto-copy-md5");
+  const entropyOutput = document.getElementById("crypto-pass-entropy");
+  const passStatus = document.getElementById("crypto-pass-status");
+  const strengthMeter = document.getElementById("crypto-pass-meter");
+  const strengthMeterFill = document.getElementById("crypto-pass-meter-fill");
+  const fileInput = document.getElementById("crypto-file-input");
+  const fileHashBtn = document.getElementById("crypto-file-hash-btn");
+  const fileCopyBtn = document.getElementById("crypto-file-copy-btn");
+  const fileStatus = document.getElementById("crypto-file-status");
+  const fileOutput = document.getElementById("crypto-file-output");
+  const fileDropzone = document.getElementById("crypto-file-dropzone");
 
   if (!passLengthInput) return;
 
@@ -40,27 +40,32 @@
     generateSecurePassword();
   });
 
-  genPassBtn.addEventListener('click', generateSecurePassword);
-  genUuidBtn.addEventListener('click', generateUUID);
-  hashInput.addEventListener('input', computeHashes);
-  [incLower, incUpper, incNumbers, incSymbols, excludeAmbiguous].forEach((input) => {
-    input?.addEventListener('change', generateSecurePassword);
-  });
-  fileHashBtn?.addEventListener('click', calculateFileChecksum);
-  fileCopyBtn?.addEventListener('click', copyFileChecksum);
-  fileInput?.addEventListener('change', clearFileChecksum);
-  window.addEventListener('languageChanged', () => {
+  genPassBtn.addEventListener("click", generateSecurePassword);
+  genUuidBtn.addEventListener("click", generateUUID);
+  hashInput.addEventListener("input", computeHashes);
+  [incLower, incUpper, incNumbers, incSymbols, excludeAmbiguous].forEach(
+    (input) => {
+      input?.addEventListener("change", generateSecurePassword);
+    },
+  );
+  fileHashBtn?.addEventListener("click", calculateFileChecksum);
+  fileCopyBtn?.addEventListener("click", copyFileChecksum);
+  fileInput?.addEventListener("change", clearFileChecksum);
+  window.addEventListener("languageChanged", () => {
     generateSecurePassword();
-    if (fileStatus.dataset.messageKey) fileStatus.textContent = t(fileStatus.dataset.messageKey);
+    if (fileStatus.dataset.messageKey)
+      fileStatus.textContent = t(fileStatus.dataset.messageKey);
   });
-  fileDropzone?.addEventListener('dragover', (event) => {
+  fileDropzone?.addEventListener("dragover", (event) => {
     event.preventDefault();
-    fileDropzone.classList.add('border-zinc-400');
+    fileDropzone.classList.add("border-zinc-400");
   });
-  fileDropzone?.addEventListener('dragleave', () => fileDropzone.classList.remove('border-zinc-400'));
-  fileDropzone?.addEventListener('drop', (event) => {
+  fileDropzone?.addEventListener("dragleave", () =>
+    fileDropzone.classList.remove("border-zinc-400"),
+  );
+  fileDropzone?.addEventListener("drop", (event) => {
     event.preventDefault();
-    fileDropzone.classList.remove('border-zinc-400');
+    fileDropzone.classList.remove("border-zinc-400");
     if (event.dataTransfer?.files?.length) {
       fileInput.files = event.dataTransfer.files;
       clearFileChecksum();
@@ -79,16 +84,16 @@
 
   function setupCopyBtn(btn, targetEl) {
     if (!btn || !targetEl) return;
-    btn.addEventListener('click', async () => {
+    btn.addEventListener("click", async () => {
       const val = targetEl.value || targetEl.textContent;
       if (!val) return;
       try {
         await navigator.clipboard.writeText(val);
         const orig = btn.textContent;
-        btn.textContent = `✓ ${t('copied')}`;
-        setTimeout(() => btn.textContent = orig, 1500);
+        btn.textContent = `✓ ${t("copied")}`;
+        setTimeout(() => (btn.textContent = orig), 1500);
       } catch {
-        btn.setAttribute('aria-label', t('crypto_clipboard_error'));
+        btn.setAttribute("aria-label", t("crypto_clipboard_error"));
       }
     });
   }
@@ -96,20 +101,25 @@
   function generateSecurePassword() {
     const len = parseInt(passLengthInput.value, 10);
     const groups = [];
-    if (incLower.checked) groups.push('abcdefghijklmnopqrstuvwxyz');
-    if (incUpper.checked) groups.push('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
-    if (incNumbers.checked) groups.push('0123456789');
-    if (incSymbols.checked) groups.push('!@#$%^&*()_+~|}{[]:;?><,./-=');
+    if (incLower.checked) groups.push("abcdefghijklmnopqrstuvwxyz");
+    if (incUpper.checked) groups.push("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+    if (incNumbers.checked) groups.push("0123456789");
+    if (incSymbols.checked) groups.push("!@#$%^&*()_+~|}{[]:;?><,./-=");
     if (excludeAmbiguous.checked) {
-      for (let i = 0; i < groups.length; i++) groups[i] = groups[i].replace(/[iIl1O0]/g, '');
+      for (let i = 0; i < groups.length; i++)
+        groups[i] = groups[i].replace(/[iIl1O0]/g, "");
     }
 
-    if (!groups.length || groups.some((group) => !group.length) || len < groups.length) {
-      passOutput.value = '';
-      if (passStatus) passStatus.textContent = t('crypto_pass_select_charset');
-      if (entropyOutput) entropyOutput.textContent = '—';
-      if (strengthMeter) strengthMeter.setAttribute('aria-valuenow', '0');
-      if (strengthMeterFill) strengthMeterFill.style.width = '0%';
+    if (
+      !groups.length ||
+      groups.some((group) => !group.length) ||
+      len < groups.length
+    ) {
+      passOutput.value = "";
+      if (passStatus) passStatus.textContent = t("crypto_pass_select_charset");
+      if (entropyOutput) entropyOutput.textContent = "—";
+      if (strengthMeter) strengthMeter.setAttribute("aria-valuenow", "0");
+      if (strengthMeterFill) strengthMeterFill.style.width = "0%";
       return;
     }
 
@@ -123,20 +133,27 @@
       return word[0] % maxExclusive;
     }
 
-    const allCharacters = groups.join('');
+    const allCharacters = groups.join("");
     let password;
     do {
-      password = Array.from({ length: len }, () => allCharacters[randomInt(allCharacters.length)]).join('');
-    } while (!groups.every((group) => Array.from(group).some((character) => password.includes(character))));
+      password = Array.from(
+        { length: len },
+        () => allCharacters[randomInt(allCharacters.length)],
+      ).join("");
+    } while (
+      !groups.every((group) =>
+        Array.from(group).some((character) => password.includes(character)),
+      )
+    );
     passOutput.value = password;
-    if (passStatus) passStatus.textContent = '';
+    if (passStatus) passStatus.textContent = "";
     updateStrength(groups, len);
   }
 
   function updateStrength(groups, len) {
     const poolSize = groups.reduce((sum, group) => sum + group.length, 0);
     let validPasswords = 0;
-    for (let mask = 0; mask < (1 << groups.length); mask++) {
+    for (let mask = 0; mask < 1 << groups.length; mask++) {
       let excludedCharacters = 0;
       let includedGroups = 0;
       for (let index = 0; index < groups.length; index++) {
@@ -145,54 +162,90 @@
           includedGroups++;
         }
       }
-      validPasswords += (includedGroups % 2 ? -1 : 1) * Math.pow(poolSize - excludedCharacters, len);
+      validPasswords +=
+        (includedGroups % 2 ? -1 : 1) *
+        Math.pow(poolSize - excludedCharacters, len);
     }
     const bits = Math.log2(Math.max(validPasswords, 1));
-    const strengthKey = bits < 40 ? 'crypto_strength_weak' : bits < 60 ? 'crypto_strength_fair' : bits < 80 ? 'crypto_strength_strong' : 'crypto_strength_very_strong';
+    const strengthKey =
+      bits < 40
+        ? "crypto_strength_weak"
+        : bits < 60
+          ? "crypto_strength_fair"
+          : bits < 80
+            ? "crypto_strength_strong"
+            : "crypto_strength_very_strong";
     const strength = t(strengthKey);
-    if (entropyOutput) entropyOutput.textContent = t('crypto_entropy_bits').replace('{bits}', String(Math.round(bits))).replace('{strength}', strength);
+    if (entropyOutput)
+      entropyOutput.textContent = t("crypto_entropy_bits")
+        .replace("{bits}", String(Math.round(bits)))
+        .replace("{strength}", strength);
     if (strengthMeter) {
-      strengthMeter.setAttribute('aria-valuenow', String(Math.round(Math.min(bits, 128))));
-      strengthMeter.setAttribute('aria-valuetext', `${Math.round(bits)} bits, ${strength}`);
-      strengthMeter.setAttribute('aria-label', t('crypto_file_strength_label'));
+      strengthMeter.setAttribute(
+        "aria-valuenow",
+        String(Math.round(Math.min(bits, 128))),
+      );
+      strengthMeter.setAttribute(
+        "aria-valuetext",
+        `${Math.round(bits)} bits, ${strength}`,
+      );
+      strengthMeter.setAttribute("aria-label", t("crypto_file_strength_label"));
     }
     if (strengthMeterFill) {
       strengthMeterFill.style.width = `${Math.min((bits / 128) * 100, 100)}%`;
-      strengthMeterFill.classList.remove('bg-amber-500', 'bg-sky-500', 'bg-emerald-500');
-      strengthMeterFill.classList.add(bits < 40 ? 'bg-amber-500' : bits < 60 ? 'bg-amber-500' : bits < 80 ? 'bg-sky-500' : 'bg-emerald-500');
+      strengthMeterFill.classList.remove(
+        "bg-amber-500",
+        "bg-sky-500",
+        "bg-emerald-500",
+      );
+      strengthMeterFill.classList.add(
+        bits < 40
+          ? "bg-amber-500"
+          : bits < 60
+            ? "bg-amber-500"
+            : bits < 80
+              ? "bg-sky-500"
+              : "bg-emerald-500",
+      );
     }
   }
 
   async function calculateFileChecksum() {
     const file = fileInput?.files?.[0];
     if (!file) {
-      setFileStatus('crypto_file_no_file');
+      setFileStatus("crypto_file_no_file");
       return;
     }
     fileHashBtn.disabled = true;
     fileCopyBtn.disabled = true;
-    setFileStatus('crypto_file_processing');
-    fileOutput.textContent = '';
+    setFileStatus("crypto_file_processing");
+    fileOutput.textContent = "";
     try {
-      const digest = await crypto.subtle.digest('SHA-256', await file.arrayBuffer());
+      const digest = await crypto.subtle.digest(
+        "SHA-256",
+        await file.arrayBuffer(),
+      );
       fileOutput.textContent = bufferToHex(digest);
-      setFileStatus('crypto_file_done');
+      setFileStatus("crypto_file_done");
       fileCopyBtn.disabled = false;
     } catch {
-      setFileStatus('crypto_file_error');
+      setFileStatus("crypto_file_error");
     } finally {
       fileHashBtn.disabled = false;
     }
   }
 
   function clearFileChecksum() {
-    fileOutput.textContent = '';
+    fileOutput.textContent = "";
     const file = fileInput?.files?.[0];
     if (file) {
-      fileStatus.dataset.messageKey = 'crypto_file_selected';
-      fileStatus.textContent = t('crypto_file_selected').replace('{name}', file.name);
+      fileStatus.dataset.messageKey = "crypto_file_selected";
+      fileStatus.textContent = t("crypto_file_selected").replace(
+        "{name}",
+        file.name,
+      );
     } else {
-      fileStatus.textContent = '';
+      fileStatus.textContent = "";
       delete fileStatus.dataset.messageKey;
     }
     fileCopyBtn.disabled = true;
@@ -207,9 +260,9 @@
     if (!fileOutput?.textContent) return;
     try {
       await navigator.clipboard.writeText(fileOutput.textContent);
-      setFileStatus('crypto_file_copied');
+      setFileStatus("crypto_file_copied");
     } catch {
-      setFileStatus('crypto_clipboard_error');
+      setFileStatus("crypto_clipboard_error");
     }
   }
 

@@ -114,11 +114,13 @@ export function initImageTool() {
     scheduleOptimization();
   });
 
-  presetButtons.forEach((button) => button.addEventListener("click", () => {
-    qualitySlider.value = button.dataset.quality;
-    qualityVal.textContent = qualitySlider.value + "%";
-    scheduleOptimization();
-  }));
+  presetButtons.forEach((button) =>
+    button.addEventListener("click", () => {
+      qualitySlider.value = button.dataset.quality;
+      qualityVal.textContent = qualitySlider.value + "%";
+      scheduleOptimization();
+    }),
+  );
 
   resetBtn.addEventListener("click", () => {
     if (!currentSource) return;
@@ -148,7 +150,8 @@ export function initImageTool() {
       targetHeight > 8192 ||
       targetWidth * targetHeight > 32_000_000
     ) {
-      statusEl.textContent = "Choose output dimensions up to 8,192 px per side and 32 megapixels total.";
+      statusEl.textContent =
+        "Choose output dimensions up to 8,192 px per side and 32 megapixels total.";
       return;
     }
     const quality = parseInt(qualitySlider.value, 10) / 100;
@@ -205,7 +208,10 @@ export function initImageTool() {
         : formatSelect.value === "image/webp"
           ? "webp"
           : "png";
-    downloadBlob(compressedBlob, `optimized_${originalFile.name.replace(/\.[^.]*$/, "")}.${ext}`);
+    downloadBlob(
+      compressedBlob,
+      `optimized_${originalFile.name.replace(/\.[^.]*$/, "")}.${ext}`,
+    );
   });
 
   function formatBytes(bytes) {

@@ -230,10 +230,10 @@
         console.error("AdSense initialization failed.", error);
         document.querySelectorAll(".adsense-slot").forEach(function (slot) {
           var ad = slot.querySelector("ins.adsbygoogle");
-          if (!ad || ad.getAttribute("data-ad-status") !== "filled") hidePlacement(slot);
+          if (!ad || ad.getAttribute("data-ad-status") !== "filled")
+            hidePlacement(slot);
         });
       });
-
   }
 
   function placementState(slot) {
@@ -261,7 +261,11 @@
     slot.classList.remove("is-ad-hidden", "is-consent-blocked");
     slot.classList.add("is-ad-pending");
     var parent = slot.parentElement;
-    while (parent && parent !== document.body && parent !== document.querySelector("main")) {
+    while (
+      parent &&
+      parent !== document.body &&
+      parent !== document.querySelector("main")
+    ) {
       if (parent.hasAttribute("data-ad-collapsed")) {
         parent.hidden = false;
         parent.classList.remove("is-ad-hidden");
@@ -278,21 +282,38 @@
     slot.classList.add("is-ad-hidden");
     slot.classList.remove("is-ad-pending", "is-ad-filled");
     var parent = slot.parentElement;
-    while (parent && parent !== document.body && parent !== document.querySelector("main")) {
+    while (
+      parent &&
+      parent !== document.body &&
+      parent !== document.querySelector("main")
+    ) {
       if (parent.tagName === "ASIDE") {
-        var nonAd = Array.prototype.some.call(parent.querySelectorAll("*:not(.adsense-slot)"), function (node) {
-          return !node.closest(".adsense-slot") && node.children.length === 0 && node.textContent.trim().length > 0;
-        });
-        if (!nonAd && !parent.querySelector(".adsense-slot:not(.is-ad-hidden)")) {
+        var nonAd = Array.prototype.some.call(
+          parent.querySelectorAll("*:not(.adsense-slot)"),
+          function (node) {
+            return (
+              !node.closest(".adsense-slot") &&
+              node.children.length === 0 &&
+              node.textContent.trim().length > 0
+            );
+          },
+        );
+        if (
+          !nonAd &&
+          !parent.querySelector(".adsense-slot:not(.is-ad-hidden)")
+        ) {
           parent.hidden = true;
           parent.classList.add("is-ad-hidden");
           parent.setAttribute("data-ad-collapsed", "true");
         }
         break;
       }
-      var children = Array.prototype.filter.call(parent.children, function (child) {
-        return !child.hidden && !child.classList.contains("is-ad-hidden");
-      });
+      var children = Array.prototype.filter.call(
+        parent.children,
+        function (child) {
+          return !child.hidden && !child.classList.contains("is-ad-hidden");
+        },
+      );
       if (children.length === 0) {
         parent.hidden = true;
         parent.classList.add("is-ad-hidden");
@@ -308,15 +329,21 @@
     if (adStatusObserver) return;
     adStatusObserver = new MutationObserver(function (records) {
       records.forEach(function (record) {
-        var ad = record.target.matches && record.target.matches("ins.adsbygoogle")
-          ? record.target
-          : record.target.closest && record.target.closest("ins.adsbygoogle");
+        var ad =
+          record.target.matches && record.target.matches("ins.adsbygoogle")
+            ? record.target
+            : record.target.closest && record.target.closest("ins.adsbygoogle");
         var slot = ad && ad.closest(".adsense-slot");
         if (slot) placementState(slot);
       });
     });
     document.querySelectorAll(".adsense-slot").forEach(function (slot) {
-      adStatusObserver.observe(slot, { subtree: true, childList: true, attributes: true, attributeFilter: ["data-ad-status"] });
+      adStatusObserver.observe(slot, {
+        subtree: true,
+        childList: true,
+        attributes: true,
+        attributeFilter: ["data-ad-status"],
+      });
       placementState(slot);
     });
   }
@@ -324,7 +351,11 @@
   function markSlotsBlocked(lang) {
     document.querySelectorAll(".adsense-slot").forEach(function (el) {
       var ad = el.querySelector("ins.adsbygoogle");
-      if (ad && (ad.getAttribute("data-ad-status") === "filled" || ad.querySelector("iframe"))) {
+      if (
+        ad &&
+        (ad.getAttribute("data-ad-status") === "filled" ||
+          ad.querySelector("iframe"))
+      ) {
         showPlacement(el);
       } else {
         el.classList.add("is-consent-blocked");
@@ -355,7 +386,10 @@
       document.body.appendChild(root);
     }
 
-    var focusedLanguage = document.activeElement && document.activeElement.getAttribute && document.activeElement.getAttribute('data-ost-lang');
+    var focusedLanguage =
+      document.activeElement &&
+      document.activeElement.getAttribute &&
+      document.activeElement.getAttribute("data-ost-lang");
     root.innerHTML =
       '<button type="button" id="ost-consent-reopen" class="ost-consent-reopen" aria-haspopup="dialog">' +
       dict.settings +
@@ -406,25 +440,35 @@
       "</div>" +
       "</div>";
 
-    root.querySelector('#ost-consent-accept').addEventListener('click', function () {
-      writeChoice(true);
-      applyChoice(true, lang);
-      render(lang, false);
-    });
-    root.querySelector('#ost-consent-reject').addEventListener('click', function () {
-      writeChoice(false);
-      applyChoice(false, lang);
-      render(lang, false);
-    });
-    root.querySelector('#ost-consent-reopen').addEventListener('click', function () {
-      consentOpener = this;
-      render(currentLang(), true);
-    });
-    root.querySelectorAll('[data-ost-lang]').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var next = btn.getAttribute('data-ost-lang');
-        try { localStorage.setItem('ost_lang', next); } catch (e) {  }
-        window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang: next } }));
+    root
+      .querySelector("#ost-consent-accept")
+      .addEventListener("click", function () {
+        writeChoice(true);
+        applyChoice(true, lang);
+        render(lang, false);
+      });
+    root
+      .querySelector("#ost-consent-reject")
+      .addEventListener("click", function () {
+        writeChoice(false);
+        applyChoice(false, lang);
+        render(lang, false);
+      });
+    root
+      .querySelector("#ost-consent-reopen")
+      .addEventListener("click", function () {
+        consentOpener = this;
+        render(currentLang(), true);
+      });
+    root.querySelectorAll("[data-ost-lang]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var next = btn.getAttribute("data-ost-lang");
+        try {
+          localStorage.setItem("ost_lang", next);
+        } catch (e) {}
+        window.dispatchEvent(
+          new CustomEvent("languageChanged", { detail: { lang: next } }),
+        );
         render(next, true);
       });
     });
@@ -432,10 +476,12 @@
     if (showDialog) {
       var focusTarget = focusedLanguage
         ? root.querySelector('[data-ost-lang="' + focusedLanguage + '"]')
-        : root.querySelector('#ost-consent-reject');
-      window.requestAnimationFrame(function () { if (focusTarget) focusTarget.focus(); });
+        : root.querySelector("#ost-consent-reject");
+      window.requestAnimationFrame(function () {
+        if (focusTarget) focusTarget.focus();
+      });
     } else {
-      var returnTarget = root.querySelector('#ost-consent-reopen');
+      var returnTarget = root.querySelector("#ost-consent-reopen");
       window.requestAnimationFrame(function () {
         if (consentOpener && consentOpener.isConnected) consentOpener.focus();
         else if (returnTarget) returnTarget.focus();
@@ -444,11 +490,11 @@
     }
   }
 
-  document.addEventListener('keydown', function (event) {
-    var dialog = document.getElementById('ost-consent-dialog');
-    if (!dialog || !dialog.classList.contains('is-open')) return;
+  document.addEventListener("keydown", function (event) {
+    var dialog = document.getElementById("ost-consent-dialog");
+    if (!dialog || !dialog.classList.contains("is-open")) return;
 
-    if (event.key === 'Escape') {
+    if (event.key === "Escape") {
       event.preventDefault();
       writeChoice(false);
       applyChoice(false, currentLang());
@@ -456,9 +502,16 @@
       return;
     }
 
-    if (event.key !== 'Tab') return;
-    var focusable = Array.prototype.slice.call(dialog.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'))
-      .filter(function (element) { return element.getClientRects().length > 0; });
+    if (event.key !== "Tab") return;
+    var focusable = Array.prototype.slice
+      .call(
+        dialog.querySelectorAll(
+          'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ),
+      )
+      .filter(function (element) {
+        return element.getClientRects().length > 0;
+      });
     if (!focusable.length) {
       event.preventDefault();
       dialog.focus();
