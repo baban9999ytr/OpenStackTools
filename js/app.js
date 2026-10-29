@@ -3,7 +3,7 @@ import {
   currentLang,
   updateDOM,
   t,
-} from "./i18n.js?v=crypto-ads-hotfix-20261021";
+} from "./i18n.js?v=portfolio-identity-20261021";
 import "./tool-search.js?v=crypto-ads-hotfix-20261021";
 
 window.OSTTranslate = t;
@@ -30,8 +30,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const isDark = theme === "dark";
     document.documentElement.classList.toggle("dark", isDark);
     if (themeIcon) {
-      themeIcon.textContent = isDark ? "Light" : "Dark";
+      themeIcon.textContent = t(isDark ? "theme_light" : "theme_dark");
     }
+    if (themeBtn) themeBtn.setAttribute("aria-pressed", String(isDark));
     localStorage.setItem("ost_theme", theme);
   }
 

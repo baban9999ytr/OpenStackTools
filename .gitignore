@@ -222,6 +222,7 @@ __marimo__/
 Thumbs.db
 Desktop.ini
 node_modules/
+.wrangler/
 dist/
 .playwright-cli/
 .qa-final/
