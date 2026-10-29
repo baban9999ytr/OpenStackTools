@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">Mustafa Göksal — Software Developer</title>
+  <desc id="description">Portfolio preview for Mustafa Göksal, GitHub identity baban9999ytr.</desc>
+  <rect width="1200" height="630" fill="#fafafa"/>
+  <path d="M0 0h1200v14H0z" fill="#18181b"/>
+  <path d="M64 70h28v28H64z" fill="#18181b"/>
+  <text x="78" y="89" fill="#fafafa" font-family="Arial, sans-serif" font-size="10" font-weight="700" text-anchor="middle">OST</text>
+  <text x="108" y="90" fill="#27272a" font-family="Arial, sans-serif" font-size="16" font-weight="700">OpenStackTools</text>
+  <text x="64" y="174" fill="#075985" font-family="Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="3">SOFTWARE · WEB · AUTOMATION</text>
+  <text x="64" y="286" fill="#18181b" font-family="Arial, sans-serif" font-size="83" font-weight="700" letter-spacing="-4">Mustafa Göksal</text>
+  <text x="68" y="343" fill="#3f3f46" font-family="Arial, sans-serif" font-size="25" font-weight="600">Software Developer</text>
+  <text x="68" y="386" fill="#52525b" font-family="Arial, sans-serif" font-size="20">Backend · Automation · Web Applications</text>
+  <path d="M68 435h92" stroke="#0284c7" stroke-width="4"/>
+  <text x="68" y="488" fill="#71717a" font-family="Arial, sans-serif" font-size="17">GitHub</text>
+  <text x="68" y="522" fill="#0369a1" font-family="Arial, sans-serif" font-size="19" font-weight="700">github.com/baban9999ytr</text>
+  <rect x="846" y="78" width="290" height="474" rx="10" fill="#09090b"/>
+  <circle cx="1102" cy="126" r="74" fill="none" stroke="#3f3f46" stroke-width="2"/>
+  <circle cx="1102" cy="126" r="48" fill="none" stroke="#27272a" stroke-width="2"/>
+  <text x="886" y="145" fill="#a1a1aa" font-family="Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="2">GITHUB PROFILE</text>
+  <text x="884" y="330" fill="#fafafa" font-family="Arial, sans-serif" font-size="144" font-weight="700" letter-spacing="-12">MG</text>
+  <text x="888" y="388" fill="#fafafa" font-family="Arial, sans-serif" font-size="22" font-weight="700">Mustafa Göksal</text>
+  <text x="888" y="421" fill="#a1a1aa" font-family="Arial, sans-serif" font-size="16">@baban9999ytr</text>
+  <path d="M888 456h204" stroke="#3f3f46" stroke-width="1"/>
+  <text x="888" y="492" fill="#d4d4d8" font-family="Arial, sans-serif" font-size="15">Python · Web · Android · IoT</text>
+  <text x="68" y="584" fill="#71717a" font-family="Arial, sans-serif" font-size="15">openstacktool.com/portfolio/</text>
+</svg>

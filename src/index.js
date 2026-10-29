@@ -11,6 +11,17 @@ function adsenseClient(env) {
 
 export default {
   async fetch(request, env) {
+    const url = new URL(request.url);
+    if (url.pathname === "/mustafa-goksal" || url.pathname === "/mustafa-goksal/") {
+      return new Response(null, {
+        status: 301,
+        headers: {
+          Location: "https://openstacktool.com/portfolio/",
+          "Cache-Control": "public, max-age=3600",
+        },
+      });
+    }
+
     const response = await env.ASSETS.fetch(request);
 
     if (response.status !== 200) {

@@ -224,6 +224,7 @@ Desktop.ini
 node_modules/
 dist/
 .playwright-cli/
+.wrangler/
 .qa-final/
 .env
 # Secrets & Environment variables
