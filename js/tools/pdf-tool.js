@@ -1,5 +1,8 @@
 import { t } from "../i18n.js?v=crypto-ads-hotfix-20261021";
-import { downloadBlob, sanitizeFilename } from "../file-utils.js?v=phase3-closeout";
+import {
+  downloadBlob,
+  sanitizeFilename,
+} from "../file-utils.js?v=phase3-closeout";
 
 const PDFJS_VERSION = "4.10.38";
 const PAGE_WINDOW_SIZE = 24;
@@ -16,9 +19,13 @@ function getPdfLib() {
   if (!pdfLibPromise) {
     pdfLibPromise = new Promise((resolve, reject) => {
       const script = document.createElement("script");
-      script.src = "https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js";
+      script.src =
+        "https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js";
       script.async = true;
-      script.onload = () => window.PDFLib ? resolve(window.PDFLib) : reject(new Error("pdf-lib did not initialize."));
+      script.onload = () =>
+        window.PDFLib
+          ? resolve(window.PDFLib)
+          : reject(new Error("pdf-lib did not initialize."));
       script.onerror = () => {
         script.remove();
         pdfLibPromise = null;
@@ -62,11 +69,14 @@ export function initPdfTool() {
     event.preventDefault();
     dropZone.classList.add("dragover");
   });
-  dropZone.addEventListener("dragleave", () => dropZone.classList.remove("dragover"));
+  dropZone.addEventListener("dragleave", () =>
+    dropZone.classList.remove("dragover"),
+  );
   dropZone.addEventListener("drop", (event) => {
     event.preventDefault();
     dropZone.classList.remove("dragover");
-    if (event.dataTransfer.files.length) handleFiles(Array.from(event.dataTransfer.files));
+    if (event.dataTransfer.files.length)
+      handleFiles(Array.from(event.dataTransfer.files));
   });
 
   fileInput.addEventListener("change", (event) => {
@@ -89,7 +99,9 @@ export function initPdfTool() {
 
   async function handleFiles(files) {
     const candidates = files.filter(
-      (file) => file.type === "application/pdf" || file.name.toLowerCase().endsWith(".pdf"),
+      (file) =>
+        file.type === "application/pdf" ||
+        file.name.toLowerCase().endsWith(".pdf"),
     );
     if (!candidates.length) {
       statusEl.textContent = "Choose a PDF file to continue.";
@@ -104,7 +116,9 @@ export function initPdfTool() {
         pdfjs ||= await getPdfJs();
         const bytes = await file.arrayBuffer();
         const entry = {
-          id: crypto.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`,
+          id:
+            crypto.randomUUID?.() ||
+            `${Date.now()}-${Math.random().toString(36).slice(2)}`,
           name: file.name,
           size: file.size,
           bytes,
@@ -116,7 +130,9 @@ export function initPdfTool() {
         } catch {
           releasePreviewDoc(entry.id);
           const PDFLib = await getPdfLib();
-          const document = await PDFLib.PDFDocument.load(bytes, { ignoreEncryption: true });
+          const document = await PDFLib.PDFDocument.load(bytes, {
+            ignoreEncryption: true,
+          });
           entry.pageCount = document.getPageCount();
         }
         pdfFiles.push(entry);
@@ -130,11 +146,13 @@ export function initPdfTool() {
         }
         added += 1;
       } catch {
-        statusEl.textContent = "A file could not be opened. Check that it is a valid, unencrypted PDF.";
+        statusEl.textContent =
+          "A file could not be opened. Check that it is a valid, unencrypted PDF.";
       }
     }
     renderWorkspace();
-    if (added) statusEl.textContent = `${added} PDF${added === 1 ? "" : "s"} added · ${pdfPages.length} pages ready to arrange.`;
+    if (added)
+      statusEl.textContent = `${added} PDF${added === 1 ? "" : "s"} added · ${pdfPages.length} pages ready to arrange.`;
   }
 
   function renderWorkspace() {
@@ -155,13 +173,15 @@ export function initPdfTool() {
     }
 
     const heading = document.createElement("h2");
-    heading.className = "text-xs font-semibold text-zinc-400 uppercase tracking-wide mb-2";
+    heading.className =
+      "text-xs font-semibold text-zinc-400 uppercase tracking-wide mb-2";
     heading.textContent = "Documents";
     fileList.append(heading);
 
     for (const file of pdfFiles) {
       const row = document.createElement("div");
-      row.className = "flex items-center justify-between gap-3 border border-zinc-800 bg-zinc-900/60 px-3 py-2 text-sm";
+      row.className =
+        "flex items-center justify-between gap-3 border border-zinc-800 bg-zinc-900/60 px-3 py-2 text-sm";
       const info = document.createElement("div");
       info.className = "flex min-w-0 items-center gap-3";
       const filename = document.createElement("span");
@@ -172,13 +192,20 @@ export function initPdfTool() {
       detail.className = "shrink-0 text-xs text-zinc-500";
       detail.textContent = `${file.pageCount} pages · ${formatBytes(file.size)}`;
       info.append(filename, detail);
-      const remove = makeButton("Remove document", "Remove", "text-xs text-zinc-400 hover:text-red-300");
+      const remove = makeButton(
+        "Remove document",
+        "Remove",
+        "text-xs text-zinc-400 hover:text-red-300",
+      );
       remove.setAttribute("aria-label", `Remove ${file.name}`);
       remove.addEventListener("click", () => {
         releasePreviewDoc(file.id);
         pdfFiles = pdfFiles.filter((item) => item.id !== file.id);
         pdfPages = pdfPages.filter((page) => page.sourceId !== file.id);
-        pageWindowStart = Math.min(pageWindowStart, Math.max(0, pdfPages.length - PAGE_WINDOW_SIZE));
+        pageWindowStart = Math.min(
+          pageWindowStart,
+          Math.max(0, pdfPages.length - PAGE_WINDOW_SIZE),
+        );
         renderWorkspace();
         statusEl.textContent = `${file.name} removed.`;
       });
@@ -202,14 +229,27 @@ export function initPdfTool() {
     const label = document.createElement("p");
     label.className = "text-xs text-zinc-400 mr-auto";
     label.textContent = `Pages ${pageWindowStart + 1}–${end} of ${pdfPages.length}`;
-    const previous = makeButton("Previous pages", "← Previous", "page-nav-button", pageWindowStart === 0);
-    const next = makeButton("Next pages", "Next →", "page-nav-button", end >= pdfPages.length);
+    const previous = makeButton(
+      "Previous pages",
+      "← Previous",
+      "page-nav-button",
+      pageWindowStart === 0,
+    );
+    const next = makeButton(
+      "Next pages",
+      "Next →",
+      "page-nav-button",
+      end >= pdfPages.length,
+    );
     previous.addEventListener("click", () => {
       pageWindowStart = Math.max(0, pageWindowStart - PAGE_WINDOW_SIZE);
       renderPages();
     });
     next.addEventListener("click", () => {
-      pageWindowStart = Math.min(pdfPages.length - 1, pageWindowStart + PAGE_WINDOW_SIZE);
+      pageWindowStart = Math.min(
+        pdfPages.length - 1,
+        pageWindowStart + PAGE_WINDOW_SIZE,
+      );
       renderPages();
     });
     pageNavigation.append(label, previous, next);
@@ -221,14 +261,20 @@ export function initPdfTool() {
       const card = document.createElement("article");
       card.className = "pdf-page-card";
       card.draggable = true;
-      card.setAttribute("aria-label", `Page ${page.sourceIndex + 1} of ${source.name}`);
+      card.setAttribute(
+        "aria-label",
+        `Page ${page.sourceIndex + 1} of ${source.name}`,
+      );
       const canvas = document.createElement("canvas");
       canvas.className = "pdf-page-thumbnail";
       canvas.hidden = true;
       canvas.width = 144;
       canvas.height = 190;
       canvas.setAttribute("role", "img");
-      canvas.setAttribute("aria-label", `Preview of page ${page.sourceIndex + 1}`);
+      canvas.setAttribute(
+        "aria-label",
+        `Preview of page ${page.sourceIndex + 1}`,
+      );
       const fallback = document.createElement("span");
       fallback.className = "pdf-thumbnail-fallback";
       fallback.textContent = "PDF page";
@@ -238,16 +284,36 @@ export function initPdfTool() {
       caption.title = caption.textContent;
       const actions = document.createElement("div");
       actions.className = "pdf-page-actions";
-      const up = makeButton(`Move page ${index + 1} earlier`, "↑", "pdf-page-action", index === 0);
-      const down = makeButton(`Move page ${index + 1} later`, "↓", "pdf-page-action", index === pdfPages.length - 1);
-      const rotate = makeButton(`Rotate page ${index + 1} clockwise`, "↻", "pdf-page-action");
-      const remove = makeButton(`Remove page ${index + 1}`, "Remove", "pdf-page-remove");
+      const up = makeButton(
+        `Move page ${index + 1} earlier`,
+        "↑",
+        "pdf-page-action",
+        index === 0,
+      );
+      const down = makeButton(
+        `Move page ${index + 1} later`,
+        "↓",
+        "pdf-page-action",
+        index === pdfPages.length - 1,
+      );
+      const rotate = makeButton(
+        `Rotate page ${index + 1} clockwise`,
+        "↻",
+        "pdf-page-action",
+      );
+      const remove = makeButton(
+        `Remove page ${index + 1}`,
+        "Remove",
+        "pdf-page-remove",
+      );
       card.addEventListener("dragstart", (event) => {
         event.dataTransfer.effectAllowed = "move";
         event.dataTransfer.setData("text/plain", String(index));
         card.classList.add("is-dragging");
       });
-      card.addEventListener("dragend", () => card.classList.remove("is-dragging"));
+      card.addEventListener("dragend", () =>
+        card.classList.remove("is-dragging"),
+      );
       card.addEventListener("dragover", (event) => {
         event.preventDefault();
         event.dataTransfer.dropEffect = "move";
@@ -266,7 +332,10 @@ export function initPdfTool() {
       });
       remove.addEventListener("click", () => {
         pdfPages.splice(index, 1);
-        pageWindowStart = Math.min(pageWindowStart, Math.max(0, pdfPages.length - PAGE_WINDOW_SIZE));
+        pageWindowStart = Math.min(
+          pageWindowStart,
+          Math.max(0, pdfPages.length - PAGE_WINDOW_SIZE),
+        );
         renderWorkspace();
         statusEl.textContent = "Page removed from the output sequence.";
       });
@@ -299,7 +368,10 @@ export function initPdfTool() {
           const viewport = pdfPage.getViewport({ scale, rotation });
           canvas.width = Math.ceil(viewport.width);
           canvas.height = Math.ceil(viewport.height);
-          await pdfPage.render({ canvasContext: canvas.getContext("2d"), viewport }).promise;
+          await pdfPage.render({
+            canvasContext: canvas.getContext("2d"),
+            viewport,
+          }).promise;
           canvas.dataset.rendered = "true";
           canvas.hidden = false;
           fallback.hidden = true;
@@ -311,12 +383,15 @@ export function initPdfTool() {
     };
 
     if (typeof IntersectionObserver === "function") {
-      const observer = new IntersectionObserver((entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          observer.disconnect();
-          render();
-        }
-      }, { rootMargin: "120px" });
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            observer.disconnect();
+            render();
+          }
+        },
+        { rootMargin: "120px" },
+      );
       observer.observe(fallback);
     } else {
       render();
@@ -325,11 +400,12 @@ export function initPdfTool() {
 
   function getPdfJs() {
     if (!pdfJsPromise) {
-      pdfJsPromise = import(`https://cdn.jsdelivr.net/npm/pdfjs-dist@${PDFJS_VERSION}/build/pdf.min.mjs`)
-        .then((pdfjs) => {
-          pdfjs.GlobalWorkerOptions.workerSrc = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${PDFJS_VERSION}/build/pdf.worker.min.mjs`;
-          return pdfjs;
-        });
+      pdfJsPromise = import(
+        `https://cdn.jsdelivr.net/npm/pdfjs-dist@${PDFJS_VERSION}/build/pdf.min.mjs`
+      ).then((pdfjs) => {
+        pdfjs.GlobalWorkerOptions.workerSrc = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${PDFJS_VERSION}/build/pdf.worker.min.mjs`;
+        return pdfjs;
+      });
     }
     return pdfJsPromise;
   }
@@ -337,13 +413,17 @@ export function initPdfTool() {
   function getPreviewDocument(pdfjs, source) {
     const cached = pdfPreviewDocs.get(source.id);
     if (cached) return cached;
-    const task = pdfjs.getDocument({ data: new Uint8Array(source.bytes.slice(0)) });
+    const task = pdfjs.getDocument({
+      data: new Uint8Array(source.bytes.slice(0)),
+    });
     const promise = task.promise;
     pdfPreviewDocs.set(source.id, promise);
     while (pdfPreviewDocs.size > 3) {
       const [oldestId, oldest] = pdfPreviewDocs.entries().next().value;
       pdfPreviewDocs.delete(oldestId);
-      oldest.then((document) => window.setTimeout(() => document.destroy(), 30000)).catch(() => {});
+      oldest
+        .then((document) => window.setTimeout(() => document.destroy(), 30000))
+        .catch(() => {});
     }
     promise.catch(() => pdfPreviewDocs.delete(source.id));
     return promise;
@@ -356,7 +436,8 @@ export function initPdfTool() {
   }
 
   function reorderPage(from, to) {
-    if (from < 0 || from >= pdfPages.length || to < 0 || to >= pdfPages.length) return;
+    if (from < 0 || from >= pdfPages.length || to < 0 || to >= pdfPages.length)
+      return;
     const [page] = pdfPages.splice(from, 1);
     pdfPages.splice(to, 0, page);
     pageWindowStart = Math.floor(to / PAGE_WINDOW_SIZE) * PAGE_WINDOW_SIZE;
@@ -379,12 +460,18 @@ export function initPdfTool() {
         if (!donor) {
           const source = pdfFiles.find((file) => file.id === page.sourceId);
           if (!source) continue;
-          donor = await PDFLib.PDFDocument.load(source.bytes, { ignoreEncryption: true });
+          donor = await PDFLib.PDFDocument.load(source.bytes, {
+            ignoreEncryption: true,
+          });
           sourceDocs.set(page.sourceId, donor);
         }
-        const [copiedPage] = await mergedPdf.copyPages(donor, [page.sourceIndex]);
+        const [copiedPage] = await mergedPdf.copyPages(donor, [
+          page.sourceIndex,
+        ]);
         if (page.rotation) {
-          copiedPage.setRotation(PDFLib.degrees(copiedPage.getRotation().angle + page.rotation));
+          copiedPage.setRotation(
+            PDFLib.degrees(copiedPage.getRotation().angle + page.rotation),
+          );
         }
         mergedPdf.addPage(copiedPage);
       }
@@ -395,7 +482,8 @@ export function initPdfTool() {
       downloadBlob(blob, filename);
       statusEl.textContent = `Merged successfully · ${pdfPages.length} pages · download started.`;
     } catch {
-      statusEl.textContent = "The PDFs could not be merged. Check that they are valid and not password protected.";
+      statusEl.textContent =
+        "The PDFs could not be merged. Check that they are valid and not password protected.";
     }
   });
 
@@ -411,7 +499,9 @@ export function initPdfTool() {
       statusEl.textContent = t("processing");
       const PDFLib = await getPdfLib();
       const source = pdfFiles[0];
-      const document = await PDFLib.PDFDocument.load(source.bytes, { ignoreEncryption: true });
+      const document = await PDFLib.PDFDocument.load(source.bytes, {
+        ignoreEncryption: true,
+      });
       const indices = parsePageRange(range, document.getPageCount());
       if (!indices.length) {
         statusEl.textContent = `That range does not match this document's ${document.getPageCount()} pages.`;
@@ -428,7 +518,8 @@ export function initPdfTool() {
       downloadBlob(blob, filename);
       statusEl.textContent = `Extracted ${pages.length} page${pages.length === 1 ? "" : "s"} · download started.`;
     } catch {
-      statusEl.textContent = "Those pages could not be extracted from this PDF.";
+      statusEl.textContent =
+        "Those pages could not be extracted from this PDF.";
     }
   });
 
@@ -461,8 +552,14 @@ function parsePageRange(value, maxPages) {
     if (range) {
       const first = Number(range[1]);
       const last = Number(range[2]);
-      if (first < 1 || last < 1 || first > maxPages || last > maxPages) continue;
-      for (let page = Math.min(first, last); page <= Math.max(first, last); page += 1) pages.add(page - 1);
+      if (first < 1 || last < 1 || first > maxPages || last > maxPages)
+        continue;
+      for (
+        let page = Math.min(first, last);
+        page <= Math.max(first, last);
+        page += 1
+      )
+        pages.add(page - 1);
       continue;
     }
     if (/^\d+$/.test(part.trim())) {

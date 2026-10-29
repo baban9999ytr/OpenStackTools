@@ -222,9 +222,9 @@ __marimo__/
 Thumbs.db
 Desktop.ini
 node_modules/
+.wrangler/
 dist/
 .playwright-cli/
-.wrangler/
 .qa-final/
 .env
 # Secrets & Environment variables

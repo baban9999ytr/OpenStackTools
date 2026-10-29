@@ -39,7 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const description = document.createElement("span");
       description.className = "tool-search-result-description";
-      description.textContent = card.querySelector("p")?.textContent.trim() || "";
+      description.textContent =
+        card.querySelector("p")?.textContent.trim() || "";
 
       link.append(title, description);
       const item = document.createElement("li");
@@ -47,9 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
       results.append(item);
     });
 
-    status.textContent = matches.length
-      ? ""
-      : t("search_no_results");
+    status.textContent = matches.length ? "" : t("search_no_results");
   }
 
   function openSearch(opener = document.activeElement) {
@@ -64,9 +63,11 @@ document.addEventListener("DOMContentLoaded", () => {
     opener.addEventListener("click", () => openSearch(opener));
   });
 
-  dialog.querySelector("[data-close-tool-search]")?.addEventListener("click", () => {
-    dialog.close();
-  });
+  dialog
+    .querySelector("[data-close-tool-search]")
+    ?.addEventListener("click", () => {
+      dialog.close();
+    });
 
   dialog.addEventListener("click", (event) => {
     if (event.target === dialog) dialog.close();
@@ -93,7 +94,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
     const links = [...results.querySelectorAll("a")];
     const currentIndex = links.indexOf(document.activeElement);
-    const nextIndex = event.key === "ArrowDown" ? currentIndex + 1 : currentIndex - 1;
+    const nextIndex =
+      event.key === "ArrowDown" ? currentIndex + 1 : currentIndex - 1;
     event.preventDefault();
     if (nextIndex < 0) input.focus();
     else links[Math.min(nextIndex, links.length - 1)]?.focus();

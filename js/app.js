@@ -1,4 +1,9 @@
-import { setLanguage, currentLang, updateDOM, t } from "./i18n.js?v=portfolio-identity-20261021";
+import {
+  setLanguage,
+  currentLang,
+  updateDOM,
+  t,
+} from "./i18n.js?v=portfolio-identity-20261021";
 import "./tool-search.js?v=crypto-ads-hotfix-20261021";
 
 window.OSTTranslate = t;

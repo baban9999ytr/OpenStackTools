@@ -40,7 +40,8 @@ export const translations = {
     privacy_step_browser: "This browser",
     privacy_step_local: "Local processing",
     privacy_step_download: "Your download",
-    privacy_boundary: "No OpenStackTools processing server sits in the file path.",
+    privacy_boundary:
+      "No OpenStackTools processing server sits in the file path.",
     privacy_details: "How does local processing work?",
     privacy_details_body:
       "The tools use browser capabilities such as Canvas, Web Audio, WebCrypto and pdf-lib. The page still makes normal web requests to load the site and its dependencies. Those requests do not include the files you select for processing.",
@@ -52,17 +53,22 @@ export const translations = {
     source_cta: "View source on GitHub",
     search_close: "Close search",
     card_pdf_title: "PDF Merger & Splitter",
-    card_pdf_description: "Reorder, combine, split, and extract pages using pdf-lib.",
+    card_pdf_description:
+      "Reorder, combine, split, and extract pages using pdf-lib.",
     card_image_title: "Image Compressor",
-    card_image_description: "Compress and resize JPEG, PNG, and WebP via HTML5 Canvas.",
+    card_image_description:
+      "Compress and resize JPEG, PNG, and WebP via HTML5 Canvas.",
     card_audio_title: "Audio Cutter",
-    card_audio_description: "Decode, trim precisely, and export audio via Web Audio API.",
+    card_audio_description:
+      "Decode, trim precisely, and export audio via Web Audio API.",
     card_json_title: "JSON & CSV Studio",
     card_json_description: "Format, repair, and convert JSON payloads locally.",
     card_crypto_title: "Cryptography Tools",
-    card_crypto_description: "Generate secure passwords, UUIDs, and compute hashes.",
+    card_crypto_description:
+      "Generate secure passwords, UUIDs, and compute hashes.",
     card_crop_title: "Crop & Color Erase",
-    card_crop_description: "Crop regions or make backgrounds transparent locally.",
+    card_crop_description:
+      "Crop regions or make backgrounds transparent locally.",
     footer_privacy: "Privacy",
     footer_terms: "Terms",
     footer_cookies: "Cookies",
@@ -184,7 +190,8 @@ export const translations = {
     mapsguard_description:
       "Analyze your Google Maps business profile and customer reviews. Identify feedback that may warrant a legitimate review or dispute, and turn sentiment into a clearer picture of your business.",
     mapsguard_feature_analysis: "Profile and customer review analysis",
-    mapsguard_feature_detection: "Evaluation of potentially problematic feedback",
+    mapsguard_feature_detection:
+      "Evaluation of potentially problematic feedback",
     mapsguard_feature_reporting: "Reporting and dispute workflow assistance",
     mapsguard_feature_reputation: "Trends, strengths, and areas to improve",
     mapsguard_cta: "Explore MapsGuard",
@@ -240,7 +247,8 @@ export const translations = {
       "Compress and resize JPEG, PNG, and WebP images instantly on HTML5 Canvas without data degradation.",
     img_drop_zone: "Drag & drop an image here (PNG, JPEG, WebP)",
     img_error_type: "Choose a PNG, JPEG, or WebP image.",
-    img_error_process: "The browser could not create this image. Try another format or smaller dimensions.",
+    img_error_process:
+      "The browser could not create this image. Try another format or smaller dimensions.",
     img_loaded: "Image ready to edit locally.",
     img_ready: "Preview updated. Download when it looks right.",
     img_quality: "Compression Quality",
@@ -280,8 +288,10 @@ export const translations = {
     json_view_group: "Output presentation",
     json_view_highlight_label: "Syntax-highlighted JSON output",
     json_view_tree_label: "JSON tree view",
-    json_view_prompt: "Enter valid JSON or create JSON output to use this view.",
-    json_view_limit: "Tree view is limited to 2,000 values for responsiveness. Use the text view for larger JSON.",
+    json_view_prompt:
+      "Enter valid JSON or create JSON output to use this view.",
+    json_view_limit:
+      "Tree view is limited to 2,000 values for responsiveness. Use the text view for larger JSON.",
     crypto_title: "Password, Hash & UUID Generator",
     crypto_desc:
       "Generate cryptographically secure passwords, UUID v4 tokens, and compute SHA-256 / SHA-512 / MD5 hashes.",
@@ -295,14 +305,18 @@ export const translations = {
     crypto_hash_heading: "Hash Calculator",
     crypto_generate: "Generate",
     crypto_copy: "Copy",
-    crypto_md5_warning: "MD5 is provided strictly for legacy checksum verification. It is cryptographically broken and must not be used for security, integrity-sensitive verification, or password storage.",
+    crypto_md5_warning:
+      "MD5 is provided strictly for legacy checksum verification. It is cryptographically broken and must not be used for security, integrity-sensitive verification, or password storage.",
     crypto_faq_title: "Frequently asked questions",
     tool_faq_title: "Frequently asked questions",
     crypto_faq_question: "Do you store generated passwords?",
-    crypto_faq_answer: "No. Values exist only in this page until you copy or leave. We have no password database.",
-    crypto_technical_intro: "Random values come from the browser’s cryptographically secure random number generator. Hashes are computed with Web Crypto directly in browser memory.",
+    crypto_faq_answer:
+      "No. Values exist only in this page until you copy or leave. We have no password database.",
+    crypto_technical_intro:
+      "Random values come from the browser’s cryptographically secure random number generator. Hashes are computed with Web Crypto directly in browser memory.",
     crypto_isolation_title: "Isolation Note",
-    crypto_isolation_body: "Entropy and hash outputs are generated locally with native Web Crypto APIs.",
+    crypto_isolation_body:
+      "Entropy and hash outputs are generated locally with native Web Crypto APIs.",
     crypto_pass_length: "Password Length",
     crypto_include_lower: "Lowercase (a-z)",
     crypto_include_upper: "Uppercase (A-Z)",
@@ -311,24 +325,28 @@ export const translations = {
     crypto_exclude_ambiguous: "Exclude ambiguous characters (i, I, l, 1, O, 0)",
     crypto_entropy_label: "Estimated entropy",
     crypto_entropy_bits: "{bits} bits · {strength}",
-    crypto_pass_select_charset: "Select at least one character set to generate a password.",
+    crypto_pass_select_charset:
+      "Select at least one character set to generate a password.",
     crypto_strength_weak: "weak",
     crypto_strength_fair: "fair",
     crypto_strength_strong: "strong",
     crypto_strength_very_strong: "very strong",
     crypto_file_title: "Local file checksum",
-    crypto_file_hint: "Calculate a SHA-256 checksum in this browser. Large files may use substantial memory.",
+    crypto_file_hint:
+      "Calculate a SHA-256 checksum in this browser. Large files may use substantial memory.",
     crypto_file_choose: "Choose a file to hash",
     crypto_file_drop: "Drop a file here or choose one",
     crypto_file_compute: "Calculate SHA-256",
     crypto_file_copy: "Copy checksum",
     crypto_file_copied: "Checksum copied",
-    crypto_clipboard_error: "Clipboard access is unavailable. Select the value and copy it manually.",
+    crypto_clipboard_error:
+      "Clipboard access is unavailable. Select the value and copy it manually.",
     crypto_file_no_file: "Choose a file first.",
     crypto_file_selected: "Selected: {name}",
     crypto_file_processing: "Calculating locally…",
     crypto_file_done: "SHA-256 checksum calculated locally.",
-    crypto_file_error: "Could not calculate the checksum. Try a smaller or different file.",
+    crypto_file_error:
+      "Could not calculate the checksum. Try a smaller or different file.",
     crypto_file_strength_label: "Password strength",
     crypto_btn_gen_pass: "Generate Password",
     crypto_btn_gen_uuid: "Generate UUID v4",
@@ -411,17 +429,23 @@ export const translations = {
     source_cta: "GitHub'da kaynak kodu gör",
     search_close: "Aramayı kapat",
     card_pdf_title: "PDF Birleştirici ve Bölücü",
-    card_pdf_description: "pdf-lib ile sayfaları sıralayın, birleştirin, bölün ve çıkarın.",
+    card_pdf_description:
+      "pdf-lib ile sayfaları sıralayın, birleştirin, bölün ve çıkarın.",
     card_image_title: "Görsel Sıkıştırıcı",
-    card_image_description: "JPEG, PNG ve WebP görsellerini Canvas ile sıkıştırın ve boyutlandırın.",
+    card_image_description:
+      "JPEG, PNG ve WebP görsellerini Canvas ile sıkıştırın ve boyutlandırın.",
     card_audio_title: "Ses Kesici",
-    card_audio_description: "Web Audio API ile sesi çözümleyin, kesin ve dışa aktarın.",
+    card_audio_description:
+      "Web Audio API ile sesi çözümleyin, kesin ve dışa aktarın.",
     card_json_title: "JSON ve CSV Stüdyosu",
-    card_json_description: "JSON verilerini tarayıcıda biçimlendirin, düzeltin ve dönüştürün.",
+    card_json_description:
+      "JSON verilerini tarayıcıda biçimlendirin, düzeltin ve dönüştürün.",
     card_crypto_title: "Kriptografi Araçları",
-    card_crypto_description: "Güvenli parolalar, UUID'ler üretin ve hash hesaplayın.",
+    card_crypto_description:
+      "Güvenli parolalar, UUID'ler üretin ve hash hesaplayın.",
     card_crop_title: "Kırp ve Renk Sil",
-    card_crop_description: "Alanları kırpın veya arka planı yerel olarak saydamlaştırın.",
+    card_crop_description:
+      "Alanları kırpın veya arka planı yerel olarak saydamlaştırın.",
     footer_privacy: "Gizlilik",
     footer_terms: "Koşullar",
     footer_cookies: "Çerezler",
@@ -543,7 +567,8 @@ export const translations = {
     mapsguard_description:
       "Google Haritalar işletme profilinizi ve müşteri yorumlarınızı analiz edin. Meşru inceleme veya itiraz süreçlerine konu olabilecek geri bildirimleri değerlendirin; müşteri görüşlerinden işletmenize dair içgörüler çıkarın.",
     mapsguard_feature_analysis: "Profil ve müşteri yorumu analizi",
-    mapsguard_feature_detection: "Sorunlu olabilecek geri bildirimlerin değerlendirilmesi",
+    mapsguard_feature_detection:
+      "Sorunlu olabilecek geri bildirimlerin değerlendirilmesi",
     mapsguard_feature_reporting: "Raporlama ve itiraz süreci desteği",
     mapsguard_feature_reputation: "Eğilimler, güçlü yönler ve gelişim alanları",
     mapsguard_cta: "MapsGuard'ı Keşfet",
@@ -600,7 +625,8 @@ export const translations = {
       "JPEG, PNG ve WebP formatlarını HTML5 Canvas ile kalite kaybı olmadan anında optimize edin.",
     img_drop_zone: "Görseli buraya sürükleyin (PNG, JPEG, WebP)",
     img_error_type: "PNG, JPEG veya WebP görseli seçin.",
-    img_error_process: "Tarayıcı bu görseli oluşturamadı. Başka biçim veya daha küçük boyut deneyin.",
+    img_error_process:
+      "Tarayıcı bu görseli oluşturamadı. Başka biçim veya daha küçük boyut deneyin.",
     img_loaded: "Görsel cihazınızda düzenlenmeye hazır.",
     img_ready: "Önizleme güncellendi. Sonucu beğendiğinizde indirin.",
     img_quality: "Sıkıştırma Kalitesi",
@@ -640,8 +666,10 @@ export const translations = {
     json_view_group: "Sonuç görünümü",
     json_view_highlight_label: "Sözdizimi renklendirilmiş JSON çıktısı",
     json_view_tree_label: "JSON ağaç görünümü",
-    json_view_prompt: "Bu görünümü kullanmak için geçerli JSON girin veya JSON çıktısı oluşturun.",
-    json_view_limit: "Performans için ağaç görünümü 2.000 değerle sınırlıdır. Daha büyük JSON için metin görünümünü kullanın.",
+    json_view_prompt:
+      "Bu görünümü kullanmak için geçerli JSON girin veya JSON çıktısı oluşturun.",
+    json_view_limit:
+      "Performans için ağaç görünümü 2.000 değerle sınırlıdır. Daha büyük JSON için metin görünümünü kullanın.",
     crypto_title: "Şifre, Hash (Özet) & UUID Üretici",
     crypto_desc:
       "Kriptografik olarak güvenli parolalar, UUID v4 anahtarları ve SHA-256 / SHA-512 / MD5 özetleri oluşturun.",
@@ -655,40 +683,49 @@ export const translations = {
     crypto_hash_heading: "Özet Hesaplayıcı",
     crypto_generate: "Üret",
     crypto_copy: "Kopyala",
-    crypto_md5_warning: "MD5 yalnızca eski sistemlerde sağlama toplamı doğrulaması için sunulur. Kriptografik olarak kırılmıştır; güvenlik, bütünlük doğrulaması veya parola saklama amacıyla kullanılmamalıdır.",
+    crypto_md5_warning:
+      "MD5 yalnızca eski sistemlerde sağlama toplamı doğrulaması için sunulur. Kriptografik olarak kırılmıştır; güvenlik, bütünlük doğrulaması veya parola saklama amacıyla kullanılmamalıdır.",
     crypto_faq_title: "Sık sorulan sorular",
     tool_faq_title: "Sık sorulan sorular",
     crypto_faq_question: "Üretilen parolaları saklıyor musunuz?",
-    crypto_faq_answer: "Hayır. Değerler yalnızca siz kopyalayana veya sayfadan ayrılana kadar bu sayfada bulunur. Parola veritabanımız yoktur.",
-    crypto_technical_intro: "Rastgele değerler tarayıcının kriptografik olarak güvenli rastgele sayı üretecinden alınır. Özetler Web Crypto ile doğrudan tarayıcı belleğinde hesaplanır.",
+    crypto_faq_answer:
+      "Hayır. Değerler yalnızca siz kopyalayana veya sayfadan ayrılana kadar bu sayfada bulunur. Parola veritabanımız yoktur.",
+    crypto_technical_intro:
+      "Rastgele değerler tarayıcının kriptografik olarak güvenli rastgele sayı üretecinden alınır. Özetler Web Crypto ile doğrudan tarayıcı belleğinde hesaplanır.",
     crypto_isolation_title: "Yalıtım bilgisi",
-    crypto_isolation_body: "Entropi ve özet çıktıları yerel olarak yerleşik Web Crypto API'leriyle oluşturulur.",
+    crypto_isolation_body:
+      "Entropi ve özet çıktıları yerel olarak yerleşik Web Crypto API'leriyle oluşturulur.",
     crypto_pass_length: "Şifre Uzunluğu",
     crypto_include_lower: "Küçük harf (a-z)",
     crypto_include_upper: "Büyük Harf (A-Z)",
     crypto_include_numbers: "Rakamlar (0-9)",
     crypto_include_symbols: "Semboller (!@#$)",
-    crypto_exclude_ambiguous: "Karışabilecek karakterleri çıkar (i, I, l, 1, O, 0)",
+    crypto_exclude_ambiguous:
+      "Karışabilecek karakterleri çıkar (i, I, l, 1, O, 0)",
     crypto_entropy_label: "Tahmini entropi",
     crypto_entropy_bits: "{bits} bit · {strength}",
-    crypto_pass_select_charset: "Parola üretmek için en az bir karakter kümesi seçin.",
+    crypto_pass_select_charset:
+      "Parola üretmek için en az bir karakter kümesi seçin.",
     crypto_strength_weak: "zayıf",
     crypto_strength_fair: "orta",
     crypto_strength_strong: "güçlü",
     crypto_strength_very_strong: "çok güçlü",
     crypto_file_title: "Yerel dosya sağlama toplamı",
-    crypto_file_hint: "Bu tarayıcıda SHA-256 özeti hesaplayın. Büyük dosyalar önemli miktarda bellek kullanabilir.",
+    crypto_file_hint:
+      "Bu tarayıcıda SHA-256 özeti hesaplayın. Büyük dosyalar önemli miktarda bellek kullanabilir.",
     crypto_file_choose: "Özetlenecek dosyayı seçin",
     crypto_file_drop: "Dosyayı buraya bırakın veya seçin",
     crypto_file_compute: "SHA-256 hesapla",
     crypto_file_copy: "Özeti kopyala",
     crypto_file_copied: "Özet kopyalandı",
-    crypto_clipboard_error: "Pano kullanılamıyor. Değeri seçip elle kopyalayın.",
+    crypto_clipboard_error:
+      "Pano kullanılamıyor. Değeri seçip elle kopyalayın.",
     crypto_file_no_file: "Önce bir dosya seçin.",
     crypto_file_selected: "Seçilen: {name}",
     crypto_file_processing: "Yerel olarak hesaplanıyor…",
     crypto_file_done: "SHA-256 özeti yerel olarak hesaplandı.",
-    crypto_file_error: "Özet hesaplanamadı. Daha küçük veya farklı bir dosya deneyin.",
+    crypto_file_error:
+      "Özet hesaplanamadı. Daha küçük veya farklı bir dosya deneyin.",
     crypto_file_strength_label: "Şifre gücü",
     crypto_btn_gen_pass: "Güçlü Şifre Üret",
     crypto_btn_gen_uuid: "UUID v4 Üret",
@@ -759,11 +796,6 @@ export function t(key) {
 }
 
 export function updateDOM() {
-  document.querySelectorAll("[data-i18n-content]").forEach((el) => {
-    const key = el.getAttribute("data-i18n-content");
-    el.setAttribute("content", t(key));
-  });
-
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.getAttribute("data-i18n");
     const translation = t(key);
@@ -776,8 +808,6 @@ export function updateDOM() {
   });
 
   document.documentElement.lang = currentLang;
-  const langButton = document.getElementById("lang-toggle-btn");
-  if (langButton) langButton.textContent = currentLang === "en" ? "TR" : "EN";
 
   document.querySelectorAll("[data-i18n-title]").forEach((el) => {
     const key = el.getAttribute("data-i18n-title");
