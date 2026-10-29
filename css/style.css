@@ -986,12 +986,20 @@ aside .adsense-slot {
     --ecosystem-accent: #7e22ce;
 }
 
+.ecosystem-card-mods {
+    --ecosystem-accent: #0369a1;
+}
+
 .dark .ecosystem-card-mapsguard {
     --ecosystem-accent: #7dd3fc;
 }
 
 .dark .ecosystem-card-bilgi {
     --ecosystem-accent: #d8b4fe;
+}
+
+.dark .ecosystem-card-mods {
+    --ecosystem-accent: #7dd3fc;
 }
 
 .ecosystem-card-header {
