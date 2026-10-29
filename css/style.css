@@ -986,12 +986,20 @@ aside .adsense-slot {
     --ecosystem-accent: #7e22ce;
 }
 
+.ecosystem-card-mods {
+    --ecosystem-accent: #0369a1;
+}
+
 .dark .ecosystem-card-mapsguard {
     --ecosystem-accent: #7dd3fc;
 }
 
 .dark .ecosystem-card-bilgi {
     --ecosystem-accent: #d8b4fe;
+}
+
+.dark .ecosystem-card-mods {
+    --ecosystem-accent: #7dd3fc;
 }
 
 .ecosystem-card-header {
@@ -1533,6 +1541,8 @@ html:not(.dark) .json-token-punctuation { color: #52525b; }
 .dark .portfolio-hero-card-label, .dark .portfolio-project-type { color: #a1a1aa; }
 .portfolio-monogram { margin: 2rem 0 1.6rem; color: #18181b; font-size: clamp(4.75rem, 9vw, 7.5rem); font-weight: 700; line-height: 0.85; letter-spacing: -0.1em; }
 .dark .portfolio-monogram { color: #fafafa; }
+.portfolio-avatar { display: block; width: 7rem; height: 7rem; margin: 1.5rem 0; border: 1px solid #e4e4e7; border-radius: 1rem; object-fit: contain; background: #fff; }
+.dark .portfolio-avatar { border-color: #3f3f46; background: #18181b; }
 .portfolio-hero-card-name { margin: 0 0 0.25rem; color: #18181b; font-size: 1.1rem; font-weight: 650; }
 .portfolio-hero-card-handle { margin: 0 0 1.25rem; color: #71717a; font: 0.85rem ui-monospace, SFMono-Regular, Menlo, monospace; }
 .dark .portfolio-hero-card-name { color: #fafafa; }
